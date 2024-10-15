@@ -288,107 +288,11 @@ footer {
 </style>
 </head>
 <body>
-	<header>
-		<nav class="navbar">
-			<div class="navbar-logo">
-				<a href="homeMain.do"><img src="resources/imgs/logo.png" alt="회사 로고"></a>
-			</div>
-			<div class="navbar-actions">
-				<ul class="navbar-menu">
-					<li><a href="aboutM.do">About Us</a></li>
-					<li><a href="productsM.do">Products</a></li>
-					<li><a href="#.jsp">News</a></li>
-					<li><a href="#.jsp">Business</a></li>
-					<li><a href="contactUs.do">Contact Us</a></li>
-				</ul>
-				<div class="navbar-search">
-					<form action="#" method="POST">
-						<input type="text" placeholder="검색어를 입력하세요" name="search_str">
-						<button type="submit">
-							<img src="resources/imgs/search-img.png" alt="돋보기" id="search-img">
-						</button>
-					</form>
-				</div>
-				<div class="navbar-language">
-					<select name="language">
-						<option value="korean">Korean</option>
-						<option value="english">English</option>
-						<option value="chinese">Chinese</option>
-						<option value="japanese">Japanese</option>
-					</select>
-				</div>
-			</div>
-		</nav>
-	</header>
-
-
-	<!-- 홍보용 이미지 -->
-	<div class="aboutPromotion" align="center">
-		<img width="100%" height="300px" alt="홍보용 이미지" src="resources/imgs/aboutus.png">
-	</div>
-
-
-
-	<!-- 중간 메뉴버튼 -->
-	<div class="container">
-		<div class="location">
-			<ul class="wrap">
-				<li><a href="homeMain.do" class="irCommon">Home</a></li>
-				<li><a href="">About Us<i class="irCommon"></i></a>
-					<ul>
-					<li><a href="aboutM.do">About Us</a></li>
-					<li><a href="productsM.do">Products</a></li>
-					<li><a href="#.jsp">News</a></li>
-					<li><a href="#.jsp">Business</a></li>
-					<li><a href="contactUs.do">Contact Us</a></li>
-					</ul>
-				</li>
-
-
-				<li ><a href="">소개<i class="irCommon"></i></a>
-					<ul>
-						<li><a href="aboutM.do">회사소개</a></li>
-						<li><a href="aboutM_History.do">연혁</a></li>
-						<li><a href="aboutM_Export.do">수출사업</a></li>
-						<li><a href="aboutM_Import.do">수입사업</a></li>
-						<li><a href="aboutM_Im_pro.do">수입제품</a></li>
-						<li><a href="aboutM_OEM.do">OEM</a></li>
-						<li><a href="aboutM_O_brand.do">자사브랜드</a></li>
-					</ul></li>
-			</ul>
-		</div>
-
-		<br>
+	
+			
+			
+			
 		
-<!-- 사이드 메뉴와 제품 리스트 -->
-		<div style="display: flex;">
-			<div class="productsMenus">
-				<div class="productsMenu">
-					<a href="aboutM.do">회사소개</a>
-				</div>
-				<div class="productsMenu">
-					<a href="aboutM_History.do">연혁</a>
-				</div>
-				<div class="productsMenu">
-					<a href="aboutM_Export.do">수출사업</a>
-				</div>
-				<div class="productsMenu">
-					<a href="aboutM_Import.do">수입사업</a>
-				</div>
-				<div class="productsMenu">
-					<a href="aboutM_Im_pro.do">수입제품</a>
-				</div>
-				<div class="productsMenu">
-					<a href="aboutM_OEM.do">OEM</a>
-				</div>
-				<div class="productsMenu">
-					<a href="aboutM_O_brand.do">자사브랜드</a>
-				</div>
-		    </div>
-			
-			
-			
-			<section>
 			<br>
 			<h1> <수입사업> </h1>
 			<article class="wrap introWrap">
@@ -432,10 +336,8 @@ footer {
 			</p>
 		</div>
 	</article>
-</section>
-			
-		</div>
-	</div>
+
+		
 
 
 
@@ -448,14 +350,6 @@ footer {
 
 
 
-	<br>
-	<footer>
-		<div class="footer-content">
-			<p>㈜큐케이씨 | 서울특별시 성동구 아차산로 15길 52 삼환디지털벤처타워 905호</p>
-			<p>대표 : 김새한 | Tel: 070-4352-2800 | Fax: 070-8673-2808</p>
-			<p>사업자등록번호: 214-87-64337 | COPYRIGHTⓒQuali Korea Corp. ALL RIGHTS
-				RESERVED.</p>
-		</div>
-	</footer>
+	
 </body>
 </html>

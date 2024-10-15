@@ -2,73 +2,31 @@ package com.qkcfamily.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class aboutMController {
 
 	
-	@GetMapping("/aboutM.do")
-	public String aboutM() {
+	@GetMapping("/AboutUsPage.do/{page}")
+	public String AboutUsPage(@PathVariable("page")String page){
 		
-		// 단순 페이지 이동 
-		// 출력데이터 가져오기
-		
-		
-		return "aboutM";
-	}
-	@GetMapping("/aboutM_History.do")
-	public String aboutM_History() {
-		
-		// 단순 페이지 이동 
-		// 출력데이터 가져오기
-		
-		
-		return "aboutM_History";
-	}
-	@GetMapping("/aboutM_Export.do")
-	public String aboutM_Export() {
-		
-		// 단순 페이지 이동 
-		// 출력데이터 가져오기
+		if("History".equals(page)){
+			return "AboutUs/History";
+		}else if("Export".equals(page)){
+			return "AboutUs/Export";
+		}else if("Import".equals(page)){
+			return "AboutUs/Import";
+		}else if("Oem".equals(page)){
+			return "AboutUs/Oem";
+		}else if("OurBrand".equals(page)){
+			return "AboutUs/OurBrand";
+		}else {
+			return "error/404";
+		}
 		
 		
-		return "aboutM_Export";
-	}
-	@GetMapping("/aboutM_Import.do")
-	public String aboutM_Import() {
 		
-		// 단순 페이지 이동 
-		// 출력데이터 가져오기
-		
-		
-		return "aboutM_Import";
-	}
-	@GetMapping("/aboutM_Im_pro.do")
-	public String aboutM_Im_pro() {
-		
-		// 단순 페이지 이동 
-		// 출력데이터 가져오기
-		
-		
-		return "aboutM_Im_pro";
-	}
-	@GetMapping("/aboutM_OEM.do")
-	public String aboutM_OEM() {
-		
-		// 단순 페이지 이동 
-		// 출력데이터 가져오기
-		
-		
-		return "aboutM_OEM";
-	}
-	@GetMapping("/aboutM_O_brand.do")
-	public String aboutM_O_brand() {
-		
-		// 단순 페이지 이동 
-		// 출력데이터 가져오기
-		
-		
-		return "aboutM_O_brand";
 	}
 	
 	

@@ -364,11 +364,11 @@ footer {
 				<!-- 메뉴 항목 -->
 				<!--메뉴버튼을 누르면 해당 페이지로 이동하도록, 마우스 가져다댈시 아래 항목뜨는건 구현 아직 못함.  -->
 				<ul class="navbar-menu">
-					<li><a href="aboutM.do">About Us</a></li>
-					<li><a href="productsM.do">Products</a></li>
-					<li><a href="#.jsp">News</a></li>
+					<li><a href="aboutUsPage.do">About Us</a></li>
+					<li><a href="ProductsPage.do">Products</a></li>
+					<li><a href="NewsPage.do">News</a></li>
 					<li><a href="#.jsp">Business</a></li>
-					<li><a href="contactUs.do">Contact Us</a></li>
+					<li><a href="contactUsPage.do">Contact Us</a></li>
 				</ul>
 
 				<!-- 검색 -->

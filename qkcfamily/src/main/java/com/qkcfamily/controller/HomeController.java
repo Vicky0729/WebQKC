@@ -32,35 +32,14 @@ public class HomeController {
 
 		return "homeMain";
 	}
-	/*
-	 * @PostMapping("/SearchService.do") public String
-	 * SearchService(@RequestParam("search_str") String search_str, Model model){
-	 * 
-	 * ArrayList<Product> productList = productMapper.productSearch(search_str);
-	 * 
-	 * model.addAttribute("productList",productList);
-	 * 
-	 * return "detail"; }
-	 */
 	
-	
-	/*
-	 * @GetMapping("/visitCount.do") public String VisitCount(){
-	 * 
-	 * LocalDate today = LocalDate.now();
-	 * 
-	 * 
-	 * 
-	 * }
-	 */
-	
-	@GetMapping("/contactUs.do")
+	@GetMapping("/contactUsPage.do")
 	public String contactUs() {
 
 		// 단순 페이지 이동
 		// 출력데이터 가져오기
 
-		return "contactUs";
+		return "ContactUs/contactUs";
 	}
 	
 	  
@@ -74,7 +53,26 @@ public class HomeController {
 
 	      return "homeMain";
 	   }
+	   
+	   @GetMapping("/aboutUsPage.do")
+	   public String aboutUs(){
+		   
+		   return "AboutUs/Company";
+		   
+	   }
 
+	@GetMapping("/ProductsPage.do")
+	public String Products(){
+		
+		
+		return "Products/Main";
+	}
+	
+	@GetMapping("/NewsPage.do")
+	public String News() {
+		
+		return "News/News";
+	}
 	
 	
 }
