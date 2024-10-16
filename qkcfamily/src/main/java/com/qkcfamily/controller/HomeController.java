@@ -24,14 +24,6 @@ public class HomeController {
 	 @Autowired
 	 PopupMapper popupMapper;
 	
-	@GetMapping("/homeMain.do")
-	public String HomeMain(Model model) {
-
-		// 단순 페이지 이동
-		// 출력데이터 가져오기
-
-		return "homeMain";
-	}
 	/*
 	 * @PostMapping("/SearchService.do") public String
 	 * SearchService(@RequestParam("search_str") String search_str, Model model){
@@ -66,11 +58,11 @@ public class HomeController {
 	  
 	      
 
-	   @GetMapping("/HomeMain.do")
-	   public String boardDetail(Model model) {
+	@GetMapping("/homeMain.do")
+	   public String HomeMain(Model model) {
 
-	      Popup popup = popupMapper.getPopup();
-	      model.addAttribute("popup", popup);
+	      ArrayList<Popup> popupList = popupMapper.getPopup();
+	      model.addAttribute("popupList", popupList);
 
 	      return "homeMain";
 	   }

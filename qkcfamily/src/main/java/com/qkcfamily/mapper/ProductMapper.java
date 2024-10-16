@@ -39,18 +39,17 @@ public interface ProductMapper {
 	
 	public void InsertProduct(Product product);
 	
-	   @Select("select * from tb_product")
-	   public ArrayList<Product> getSnackList();
+
 
 	   @Select("select * from tb_product where pd_idx = #{pd_idx}")
 	   public Product getDetail(int pd_idx);
 	   
 	   // 페이징을 위한 제과 제품 리스트 가져오기
 	    @Select("SELECT * FROM tb_product ORDER BY pd_idx DESC LIMIT #{offset}, #{pageSize}")
-	    List<Product> getPagedSnackList(@Param("offset") int offset, @Param("pageSize") int pageSize);
+	    public List<Product> getSnackList(@Param("offset") int offset, @Param("pageSize") int pageSize);
 	    
 	    // 전체 제과 제품 개수 가져오기 (페이징 계산을 위해 필요)
 	    @Select("SELECT COUNT(*) FROM tb_product")
-	    int getTotalSnackCount();
+	    public int getTotalSnackCount();
 	
 }

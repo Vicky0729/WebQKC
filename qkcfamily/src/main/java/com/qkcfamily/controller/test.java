@@ -12,6 +12,11 @@ public class test {
 	        return "AboutUs/Export";  // JSP 경로 반환 (prefix, suffix 제외)
 	    }
 	    
+	    @GetMapping("/Adm/LoginMain")
+	    public String showExpotPage() {
+	        return "Adm/LoginMain";  // JSP 경로 반환 (prefix, suffix 제외)
+	    }
+	    
 	    @GetMapping("/showPage")
 	    public String showPage() {
 			return "uploadLogo";

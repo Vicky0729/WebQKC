@@ -16,7 +16,7 @@ public class AdminRESTController {
 	   @Autowired
 	   AdminMapper adminMapper;
 
-	   @PostMapping(value = "/checkId.do", produces = "application/text; charset=UTF-8")
+	   @PostMapping(value = "/Adm/checkId", produces = "application/text; charset=UTF-8")
 	   public String checkId(@RequestParam("admin_id") String adminId) {
 	      int row = adminMapper.checkId(adminId);
 	      if (row > 0)
@@ -25,7 +25,7 @@ public class AdminRESTController {
 	         return "중복아님";
 	   }
 
-	   @PostMapping(value = "/getAdminData.do", produces = "application/json; charset=UTF-8")
+	   @PostMapping(value = "/Adm/getAdminData", produces = "application/json; charset=UTF-8")
 	   public String getAdminData(@RequestParam("admin_id") String adminId) {
 	      Admin admin = adminMapper.getAdminById(adminId);
 	      System.out.println(admin);

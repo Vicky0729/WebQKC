@@ -129,7 +129,7 @@
         <nav class="sidebar">
             <ul>
                 <li><a href="dashboard.do">대시보드</a></li>
-                <li><a href="userManagement.do">사용자관리</a></li>
+                <li><a href="AdminList">사용자관리</a></li>
                 <li><a href="contentsManagement.do">콘텐츠관리</a></li>
                 <li><a href="productManagement.do">제품관리</a></li>
                 <li><a href="adManagement.do">광고관리</a></li>
@@ -138,7 +138,7 @@
         </nav>
 
         <main>
-            <h2>()최초 접속 시) 대쉬보드 페이지</h2>
+            <h2>(최초 접속 시) 대쉬보드 페이지</h2>
             <section class="main-content">
                 <h3>관리자 메인 페이지 콘텐츠</h3>
                 <p>이곳에서 관리자 페이지의 메인 콘텐츠를 관리할 수 있습니다.</p>

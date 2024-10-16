@@ -22,8 +22,8 @@ public class AdminHomeController {
    @Autowired
    AdminMapper adminMapper;
 
-   @GetMapping("/admin.do")
-   public String adminLogin() {
+   @GetMapping("/admin")
+   public String admin() {
 
       // 단순 페이지 이동
       // 출력데이터 가져오기
@@ -31,7 +31,7 @@ public class AdminHomeController {
       return "admin";
    }
 
-   @PostMapping("/adminMain.do")
+   @PostMapping("/Adm/Main")
    public String adminMain(@RequestParam("admin_id") String admin_id, @RequestParam("admin_pw") String admin_pw,
          HttpSession session) {
       
@@ -43,7 +43,7 @@ public class AdminHomeController {
        if (admin != null && BCrypt.checkpw(admin_pw, admin.getAdmin_pw())) {
            // 로그인 성공
            session.setAttribute("admin", admin);
-           return "adminMain"; // 로그인 성공 후 이동할 페이지
+           return "Adm/Main"; // 로그인 성공 후 이동할 페이지
        } else {
            // 로그인 실패
            return "admin"; // 로그인 실패 시 다시 로그인 페이지로 이동
@@ -51,7 +51,7 @@ public class AdminHomeController {
    }
 
 
-   @GetMapping("/userManagement.do")
+   @GetMapping("/Adm/AdminList")
    public String userManagement(Model model) {
 
       // 원래 DB에 있는 게시글 정보 가져오기
@@ -60,10 +60,10 @@ public class AdminHomeController {
       // 객체 바인딩 -> Spring에서 제공하는 Model 객체 활용
       model.addAttribute("adminList", adminList);
 
-      return "userManagement";
+      return "Adm/AdminList";
    }
 
-   @PostMapping("/addAdmin.do")
+   @PostMapping("Adm/admin/1")
    public String addAdmin(Admin admin) {
       
       // 비밀번호를 해싱
@@ -75,10 +75,10 @@ public class AdminHomeController {
        // Mapper를 통해 데이터베이스에 저장
        adminMapper.addAdmin(admin);
 
-      return "redirect:/userManagement.do";
+      return "redirect:/Adm/AdminList";
    }
 
-   @PostMapping("/updateAdmin.do")
+   @PostMapping("Adm/admin/2")
    public String updateAdmin(Admin admin) {
       
       // 현재 데이터베이스에 저장된 기존 Admin 정보 가져오기
@@ -96,13 +96,13 @@ public class AdminHomeController {
        // 수정된 Admin 정보로 업데이트
        adminMapper.updateAdmin(admin);
 
-      return "redirect:/userManagement.do";
+      return "redirect:/Adm/AdminList";
    }
    
-   @PostMapping("/deleteAdmin.do")
+   @PostMapping("Adm/admin/3")
    public String deleteAdmin(@RequestParam("admin_id") String adminId) {
        adminMapper.deleteAdminById(adminId);  // MyBatis Mapper에서 해당 admin_id 삭제
-       return "redirect:/userManagement.do";  // 삭제 후 관리자 목록 페이지로 리디렉션
+       return "redirect:/Adm/AdminList";  // 삭제 후 관리자 목록 페이지로 리디렉션
    }
 
    @GetMapping("/productManagement.do")
@@ -123,13 +123,31 @@ public class AdminHomeController {
       return "adManagement";
    }
 
-   @GetMapping("/siteEdit.do")
+   @GetMapping("Adm/AdminForm.do")
    public String siteEdit() {
 
       // 단순 페이지 이동
       // 출력데이터 가져오기
 
-      return "siteEdit";
+      return "Adm/AdminForm";
+   }
+   
+   @GetMapping("Adm/Dashboard.do")
+   public String Dashboard() {
+
+      // 단순 페이지 이동
+      // 출력데이터 가져오기
+
+      return "Adm/Dashboard";
+   }
+   
+   @GetMapping("Adm/Main.do")
+   public String admMAin() {
+
+      // 단순 페이지 이동
+      // 출력데이터 가져오기
+
+      return "Adm/Main";
    }
    
 
