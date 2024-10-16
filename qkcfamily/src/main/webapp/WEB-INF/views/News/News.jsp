@@ -296,11 +296,11 @@ footer {
 			</div>
 			<div class="navbar-actions">
 				<ul class="navbar-menu">
-					<li><a href="aboutM.jsp">About Us</a></li>
-					<li><a href="productsM.jsp">Products</a></li>
-					<li><a href="#.jsp">News</a></li>
+					<li><a href="aboutUsPage.do">About Us</a></li>
+					<li><a href="ProductsPage.do">Products</a></li>
+					<li><a href="NewsPage.do">News</a></li>
 					<li><a href="#.jsp">Business</a></li>
-					<li><a href="contactUs.jsp">Contact Us</a></li>
+					<li><a href="contactUsPage.do">Contact Us</a></li>
 				</ul>
 				<div class="navbar-search">
 					<form action="#" method="POST">
@@ -337,11 +337,11 @@ footer {
 				<li><a href="homeMain.jsp" class="irCommon">Home</a></li>
 				<li><a href="">About Us<i class="irCommon"></i></a>
 					<ul>
-					<li><a href="aboutM.jsp">About Us</a></li>
-					<li><a href="productsM.jsp">Products</a></li>
-					<li><a href="#.jsp">News</a></li>
+					<li><a href="aboutUsPage.do">About Us</a></li>
+					<li><a href="ProductsPage.do">Products</a></li>
+					<li><a href="NewsPage.do">News</a></li>
 					<li><a href="#.jsp">Business</a></li>
-					<li><a href="contactUs.jsp">Contact Us</a></li>
+					<li><a href="contactUsPage.do">Contact Us</a></li>
 					</ul>
 				</li>
 

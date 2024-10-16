@@ -21,9 +21,12 @@ public class aboutMController {
 			return "AboutUs/Oem";
 		}else if("OurBrand".equals(page)){
 			return "AboutUs/OurBrand";
+		}else if("Company".equals(page)){
+			return "AboutUs/Company";
 		}else {
 			return "error/404";
 		}
+		
 		
 		
 		

@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
- <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>contactUs</title>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
 /* 전체 적용 CSS */
 html, body {
@@ -197,7 +198,7 @@ body {
 
 
 /* 사이드 메뉴 */
-.contactMenus {
+.productsMenus {
 	display: flex;
 	flex-direction: column;
 	background-color: #F5F5F5; /* 부드러운 연한 회색 */
@@ -206,7 +207,7 @@ body {
 	padding: 10px;
 }
 
-.contactMenu {
+.productsMenu {
 	width: 150px;
 	height: 50px;
 	background-color: #FFFAF0; /* 약간 따뜻한 베이지색 */
@@ -218,41 +219,41 @@ body {
 	border: 1px solid #D3D3D3; /* 연한 회색 테두리 */
 }
 
-.contactMenu a {
+.productsMenu a {
 	text-decoration: none;
 	color: #333; /* 더 차분한 글자색 */
 	font-weight: bold;
 }
 
-.contactMenu:hover {
+.productsMenu:hover {
 	background-color: #FAF0E6; /* 좀 더 밝은 베이지색으로 변환 */
 }
 
 /* 제품 리스트 */
-.contact {
+.products {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 20px;
 }
 
-.contact {
+.product {
 	text-align: center;
 	border: 1px solid #ddd;
 	padding: 15px;
 	transition: transform 0.3s;
 }
 
-.contact:hover {
+.product:hover {
 	transform: scale(1.05);
 }
 
-.contact img {
+.product img {
 	width: 150px;
 	height: 150px;
 	object-fit: cover;
 }
 
-.contact-name {
+.product-name {
 	margin-top: 10px;
 	font-weight: bold;
 }
@@ -278,44 +279,11 @@ footer {
 	margin: 10px 0;
 	font-size: 14px;
 }
-.coninfo{
+#123{
  width: 100%;
  height: 100%
 }
 
-/*구글 맵 CSS  */
-      /* 전체 페이지 스타일 */
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        background-color: #f4f4f9;
-      }
-      h1 {
-        color: #333;
-        margin-bottom: 20px;
-        font-size: 24px;
-      }
-      /* 맵 크기 및 박스 스타일 */
-      #map {
-        height: 60vh;
-        width: 90%;
-        max-width: 1000px;
-        border: 2px solid #ccc;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-      }
-      /* 주소 스타일 */
-      .address {
-        margin: 20px;
-        font-size: 18px;
-        color: #555;
-      }
 
 
 
@@ -356,52 +324,75 @@ footer {
 	</header>
 
 
-	<!-- 컨택 info-->
+	<!-- 홍보용 이미지 -->
 	<div class="aboutPromotion" align="center">
 		<img width="100%" height="300px" alt="홍보용 이미지" src="resources/imgs/aboutus.png">
 	</div>
 
-	<!--구글 지도-->
 
- <h1>회사 찾아오시는 길</h1>
-    <div class="address">
-      서울특별시 성동구 아차산로15길 52
-    </div>
-    <!-- 맵이 표시될 div -->
-    <div id="map"></div>
 
-    <script>
-      // 지도 초기화 함수
-      function initMap() {
-        // 지정된 좌표 (서울특별시 성동구 아차산로15길 52)
-        const location = { lat: 37.548339, lng: 127.064182 };
-        // 지도 객체 생성
-        const map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 16,
-          center: location,
-        });
-        // 마커 이미지 경로 (원하는 이미지 URL 또는 파일 경로로 대체)
-        const image = "";
-        	/*  {
-          url: "img/logo.png", // 이미지 경로
-          scaledSize: new google.maps.Size(50, 50), // 이미지 크기 (가로, 세로)
-        }; */
+	<!-- 중간 메뉴버튼 -->
+	<div class="container">
+		<div class="location">
+			<ul class="wrap">
+				<li><a href="homeMain.do" class="irCommon">Home</a></li>
+				<li><a href="">About Us<i class="irCommon"></i></a>
+					<ul>
+					<li><a href="aboutUsPage.do">About Us</a></li>
+					<li><a href="ProductsPage.do">Products</a></li>
+					<li><a href="NewsPage.do">News</a></li>
+					<li><a href="#.jsp">Business</a></li>
+					<li><a href="contactUsPage.do">Contact Us</a></li>
+					</ul>
+				</li>
 
-        // 마커 표시 (사용자 지정 이미지)
-        const marker = new google.maps.Marker({
-          position: location,
-          map: map,
-          icon: image, // 사용자 정의 이미지 설정
-        });
-      }
-    </script>
 
-    <!-- Google Maps JavaScript API 로드 -->
-    <script
-      async
-      defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkMKSuFICn4ZYgCu-u50vBYzXmLSj8Tuo&callback=initMap">
-    </script>
+				<li ><a href="">소개<i class="irCommon"></i></a>
+					<ul>
+						<li><a onclick="category('Company')">회사소개</a></li>
+						<li><a onclick="category('History')">연혁</a></li>
+						<li><a onclick="category('Export')">수출사업</a></li>
+						<li><a onclick="category('Import')">수입사업</a></li>
+						<li><a onclick="category('Oem')">OEM</a></li>
+						<li><a onclick="category('OurBrand')">자사브랜드</a></li>
+					</ul></li>
+			</ul>
+		</div>
+
+		<br>
+		
+<!-- 사이드 메뉴와 제품 리스트 -->
+		<div style="display: flex;">
+			<div class="productsMenus">
+				<div class="productsMenu">
+					<a onclick="category('Company')">회사소개</a>
+				</div>
+				<div class="productsMenu">
+					<a onclick="category('History')">연혁</a>
+				</div>
+				<div class="productsMenu">
+					<a onclick="category('Export')">수출사업</a>
+				</div>
+				<div class="productsMenu">
+					<a onclick="category('Import')">수입사업</a>
+				</div>
+				<div class="productsMenu">
+					<a onclick="category('Oem')">OEM</a>
+				</div>
+				<div class="productsMenu">
+					<a onclick="category('OurBrand')">자사브랜드</a>
+				</div>
+		    </div>
+			
+			
+			
+			<section id="aboutUsCategory">
+			 	<!-- 비동기로 불러오는 공간 -->
+			</section>
+			
+			</div>
+		</div>
+
 
 
 
@@ -414,5 +405,64 @@ footer {
 				RESERVED.</p>
 		</div>
 	</footer>
+	
+<script type="text/javascript">
+//비동기로 페이지 로드하는 함수
+// aboutUs 페이지 내 카테고리 클릭 시 비동기로 로드
+function category(page) {
+    // 비동기 페이지 상태를 히스토리에 추가
+    history.pushState({ type: 'ajax', page: page }, '', '#' + page);
+
+    // Ajax로 카테고리 콘텐츠 로드
+    $.ajax({
+        url: "AboutUsPage.do/" + page,
+        type: "get",
+        success: function (data) {
+            $("#aboutUsCategory").html(data);
+        },
+        error: function () {
+            alert("통신 실패");
+        }
+    });
+}
+
+// 뒤로 가기 시 발생하는 popstate 이벤트 처리
+window.onpopstate = function (event) {
+    if (!event.state) {
+        // 히스토리 상태가 없을 때: 사용자가 homeMain에서 왔다면 homeMain으로 이동
+        if (document.referrer.includes('homeMain.do')) {
+            window.location.href = 'homeMain.do';  // 홈으로 이동
+        } else {
+            // 그렇지 않으면 브라우저 기본 뒤로 가기 기능 사용
+            history.back();
+        }
+        return;
+    }
+
+    // 비동기 카테고리 복원
+    if (event.state.type === 'ajax') {
+        category(event.state.page);
+    }
+};
+
+// aboutUs 페이지로 이동할 때 히스토리에 추가
+function goToAboutUs() {
+    // 페이지 전환 상태를 히스토리에 저장
+    history.pushState({ type: 'page', page: 'aboutUs' }, '', 'aboutUsPage.do');
+
+    // aboutUs 페이지 기본 콘텐츠 로드
+    $.ajax({
+        url: "AboutUsPage.do",
+        type: "get",
+        success: function (data) {
+            $("#aboutUsCategory").html(data);
+        },
+        error: function () {
+            alert("통신 실패");
+        }
+    });
+}
+
+</script>
 </body>
 </html>

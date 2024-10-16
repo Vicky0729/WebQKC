@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>productsM</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
 /* 전체 적용 CSS */
 html, body {
@@ -402,22 +403,36 @@ footer {
 
 		<div class="products">
 			<div class="product">
+			<a onclick="ProductCategory('mushRoom')">
 				<img
 					src="https://static.megamart.com/product/image/0615/06151089/06151089_1_960.jpg"
 					alt="새송이">
 				<div class="product-name">버섯류</div>
+			</a>	
 			</div>
 			<div class="product">
+			<a  onclick="ProductCategory('groceries')">
 				<img
 					src="https://oasisprodproduct.edge.naverncp.com/44210/detail/detail_44210_0_45595246-9e77-49da-97b8-7524b69ca371.jpg"
 					alt="양송이">
 				<div class="product-name">식료품</div>
+			</a>	
 			</div>
 			<div class="product">
+			<a  onclick="ProductCategory('snack')">
 				<img
 					src="https://oasisprodproduct.edge.naverncp.com/483/detail/detail_483_0_38056d92-3ac8-45d7-bcf8-4f39e70eb9f4.jpg"
 					alt="팽이">
 				<div class="product-name">제과류</div>
+			</a>
+			</div>
+			<div class="product">
+			<a  onclick="ProductCategory('other')">
+				<img
+					src="https://oasisprodproduct.edge.naverncp.com/483/detail/detail_483_0_38056d92-3ac8-45d7-bcf8-4f39e70eb9f4.jpg"
+					alt="팽이">
+				<div class="product-name">기타</div>
+				</a>
 			</div>
 			</div>
 		</div>
@@ -434,5 +449,38 @@ footer {
 				RESERVED.</p>
 		</div>
 	</footer>
+	
+<script type="text/javascript">
+
+function ProductCategory(page){
+	
+    // 선택된 메뉴에 따라 hash 값을 변경
+     
+    window.location.hash = page;
+
+    $.ajax({
+        url: "ProductPage.do/" + page,
+        type: "get",
+        success: function (data) {
+            $(".products").html(data);
+        },
+        error: function () {
+            alert("통신실패");
+        }
+    });
+}
+
+$(document).ready(function () {
+    var hash = window.location.hash.substring(1); // hash에서 #을 제외한 값
+    if (hash) {
+        category(hash); // hash에 해당하는 값을 category 함수로 전달
+    }
+});
+
+
+
+</script>	
+	
+	
 </body>
 </html>

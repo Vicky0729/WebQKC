@@ -57,7 +57,7 @@ public class HomeController {
 	   @GetMapping("/aboutUsPage.do")
 	   public String aboutUs(){
 		   
-		   return "AboutUs/Company";
+		   return "AboutUs/AboutUs";
 		   
 	   }
 
