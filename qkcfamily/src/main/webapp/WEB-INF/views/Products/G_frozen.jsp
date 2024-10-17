@@ -28,86 +28,6 @@ body {
 
 
 
-/* 중간 메뉴 쿼리 */
-@media only screen and (max-width: 1499px) {
-    .location .wrap {
-        width: auto;
-        padding: 0;
-    }
-
-    .wrap, .orgaWrap .wrap {
-        width: 100%;
-        padding: 60px 80px 120px;
-        box-sizing: border-box;
-    }
-}
-/* 하위에 숨겨져 있다가 나오게*/
-.location ul ul {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #fff;
-    padding: 10px;
-    border: 1px solid #e9e9e9;
-    width :120px;
-    list-style: none;
-    z-index: 10; /* 다른 요소 위에 보이도록 설정 */
-}
-
-.location ul li:hover > ul {
-    display: block;
-}
-
-/*메뉴 버튼 스타일*/
-.location > ul > li {
-	list-style: none;
-    position: relative;
-    display: inline-block;
-    padding: 10px 15px;
-    width : 120px;
-    background-color: #f6f6f6;
-    border-bottom: solid 3px #8B0000;
-    border-right: solid 0.5px #8B0000;
-
-}
-.location> ul > li:hover {
-    background: #eb1c24; /* 마우스 오버 시 배경색 변경 */
-}
-
-
-.location > ul > li a {
-	display: flex;
-	justify-content :center;
-    color: #282828;
-    font-size: 16px;
-    text-decoration: none;
-}
-
-.location > ul > li:after {
-	
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: block;
-    content: '';
-    height: 50px;
-    width: 1px;
-    background: #e9e9e9;
-}
-/* 미디어 쿼리*/
-@media only screen and (max-width: 768px) {
-    .location ul {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .location > ul > li {
-        display: block;
-        width: 100%;
-    }
-}
-
 /* 제품 리스트 */
 .products {
 	margin-left : 10%;
@@ -141,11 +61,6 @@ body {
 }
 
 
-#123{
- width: 100%;
- height: 100%
-}
-
 
 
 
@@ -162,35 +77,7 @@ body {
 
 
 
-	<!-- 중간 메뉴버튼 -->
-	<div class="container">
-		<div class="location">
-			<ul class="wrap">
-				<li><a href="homeMain.jsp" class="irCommon">Home</a></li>
-				<li><a href="productsM.jsp">Products<i class="irCommon"></i></a>
-					<ul>
-					<li><a href="aboutM.jsp">About Us</a></li>
-					<li><a href="productsM.jsp">Products</a></li>
-					<li><a href="News.jsp">News</a></li>
-					<li><a href="Business.jsp">Business</a></li>
-					<li><a href="contactUs.jsp">Contact Us</a></li>
-					</ul>
-				</li>
-
-
-				<li ><a href="productsM.jsp">카테고리<i class="irCommon"></i></a>
-					<ul>
-						<li><a href="p_mushroom.jsp">버섯류</a></li>
-						<li><a href="p_foodstuffs.jsp">식료품</a></li>
-						<li><a href="p_snack.jsp">제과</a></li>
-						<li><a href="p_etc.jsp">기타</a></li>
-						<li><a href="p_importP.jsp">수입제품</a></li>
-
-					</ul>
-				</li>
-			</ul>
-		</div>
-
+	
 		<br>
 		
 
