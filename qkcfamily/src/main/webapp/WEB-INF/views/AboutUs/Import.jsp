@@ -170,11 +170,13 @@ body {
 
 
 
+
 </style>
 </head>
 <body>
 	
-	 <jsp:include page="../Common/Header2.jsp" />
+	<jsp:include page="../Common/Header2.jsp" />
+
 
 	<!-- 홍보용 이미지 -->
 	<div class="aboutPromotion" align="center">
@@ -187,7 +189,7 @@ body {
 	<div class="container">
 		<div class="location">
 			<ul class="wrap">
-				<li><a href="homeMain.jsp" class="irCommon">Home</a></li>
+				<li><a href="homeMain.do" class="irCommon">Home</a></li>
 				<li><a href="">About Us<i class="irCommon"></i></a>
 					<ul>
 					<li><a href="aboutM.do">About Us</a></li>
@@ -244,16 +246,15 @@ body {
 			
 			<section>
 			<br>
-			<h1> <"Original Equipment Manfacturing"> </h1>
+			<h1> <자사브랜드> </h1>
 			<article class="wrap introWrap">
 
-					<img class="intro" alt="OEM" src="">
+					<img class="intro" alt="자사브랜드" src="resources/imgs/o_brand.png">
 			</article>
 			</section>
 			
 			</div>
 		</div>
-
 
 
 	<br>
