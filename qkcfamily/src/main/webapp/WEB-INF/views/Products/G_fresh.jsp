@@ -152,7 +152,10 @@ body {
 </style>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/Common/Header.jsp" />
+
+
+	<jsp:include page="../Common/Header2.jsp" />
+
 
 	<!-- 홍보용 이미지 -->
 	<div class="aboutPromotion" align="center">
@@ -217,13 +220,11 @@ body {
 			</div>
 			</div>
 		</div>
-	</div>
-
-
+	
 
 	<br>
 	
-	<jsp:include page="/WEB-INF/views/Common/Footer.jsp" />
+	<jsp:include page="../Common/Footer.jsp" />
 	
 </body>
 </html>
