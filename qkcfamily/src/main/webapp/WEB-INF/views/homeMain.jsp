@@ -35,108 +35,8 @@ body {
 	display: flex;
     flex-direction: column; /* 수직 방향으로 정렬 */
 }
-
-/* Header 부분 CSS */
-.navbar {
-	position: fixed;
-	left: 0;
-	top: 0;
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 10px 20px;
-	background-color: #8B0000;
-	color: white;
-	transition: top 0.3s ease; /* 부드러운 애니메이션 */
-	z-index: 1000; /* 다른 요소보다 위에 위치 */
-	border-bottom: solid 3px #F5F5DC;
-}
-
-.navbar-logo img {
-	height: 50px;
-	width: 200px;
-}
-
-.navbar-actions {
-	display: flex;
-	align-items: center;
-}
-
-.navbar-menu {
-	list-style: none;
-	display: flex;
-	gap: 20px;
-	margin-right: 20px;
-}
-
-.navbar-menu li {
-	margin-right: 20px;
-}
-
-.navbar-menu a {
-	color: white;
-	text-decoration: none;
-	font-size: 16px;
-	padding: 10px;
-	transition: background-color 0.3s;
-}
-
-.navbar-menu a:hover {
-	background-color: #CD5C5C; /* 밝은 붉은색 */
-	border-radius: 5px;
-}
-
-/* 검색 스타일 */
-.navbar-search {
-	position: relative;
-}
-
-.navbar-search input {
-	font-family: Pretendard-Regular, Arial, sans-serif;
-	width: 250px;
-	padding: 10px;
-	border-radius: 15px;
-	border: 1px solid #ccc;
-}
-
-.navbar-search button {
-	font-family: Pretendard-Regular, Arial, sans-serif;
-	position: absolute;
-	right: 5px;
-	top: 5px;
-	bottom: 5px;
-	background-color: white;
-	border: none;
-	cursor: pointer;
-}
-
-#search-img {
-	width: 30px;
-	height: 30px;
-	margin-right: 5px;
-	margin-bottom: 10px;
-}
-
-/* 언어 선택 스타일 */
-.navbar-language select {
-	font-family: Pretendard-Regular, Arial, sans-serif;
-	padding: 5px;
-	font-size: 14px;
-	margin-left: 20px;
-	border-radius: 5px;
-}
-
-@media ( max-width : 768px) {
-	.navbar {
-		flex-direction: column; /* 작은 화면에서는 세로 배치 */
-		align-items: flex-start;
-	}
-	.navbar-menu {
-		flex-direction: column; /* 메뉴 항목을 세로로 배치 */
-	}
-}
-
+   
+  
 /* 메인페이지 홍보 영상 부분 CSS */
 iframe {
 	width: 95%;
@@ -326,75 +226,13 @@ iframe {
 	right: 10px;
 }
 
-/* Footer 부분 CSS */
-footer {
-	background-color: #8B0000; /* 진한 붉은색 */
-	padding: 20px;
-	text-align: center;
-	color: white;
-	border-top: solid 3px #F5F5DC; /* 푸터 상단 테두리 */
-
-}
-.footer-content {
-	padding: 20px; /* 내부 여백 */
-    bottom: 0; /* 하단에 고정 */
-    left: 0; /* 좌측 정렬 */
-    width: 100%; /* 전체 너비 */
-
-}
-
-#footer-content p {
-	margin: 10px 0;
-	font-size: 14px;
-}
 </style>
 </head>
 
 
 <body>
-	<header>
-		<nav class="navbar">
-			<!-- 상단바 고정은 아직 안함 -->
-			<!-- 로고 -->
-			<!-- 회사 로고 누르면 메인페이지로 이동하게  -->
-			<div class="navbar-logo">
-				<a href="homeMain.do"><img src="resources/imgs/logo.png" alt="회사 로고"></a>
-			</div>
-			<div class="navbar-actions">
-				<!-- 메뉴 항목 -->
-				<!--메뉴버튼을 누르면 해당 페이지로 이동하도록, 마우스 가져다댈시 아래 항목뜨는건 구현 아직 못함.  -->
-				<ul class="navbar-menu">
-					<li><a href="aboutM.do">About Us</a></li>
-					<li><a href="productsM.do">Products</a></li>
-					<li><a href="#.jsp">News</a></li>
-					<li><a href="#.jsp">Business</a></li>
-					<li><a href="contactUs.do">Contact Us</a></li>
-				</ul>
-
-				<!-- 검색 -->
-				<!-- 검색어 입력 후 버튼시 검색 페이지로, 해시태그는 아직 구현 못함 -->
-				<div class="navbar-search">
-					<form action="p_search.do" method="POST" id="navSearch">
-						<input type="text" placeholder="검색어를 입력하세요" name="search_str">
-						<button type="submit">
-							<img src="resources/imgs/search-img.png" alt="돋보기" id="search-img">
-						</button>
-					</form>
-				</div>
-
-				<!-- 언어 선택 -->
-				<!--옵션에 따라 페이지가 각 언어에 맞는 페이지로 이동하게 해야함-->
-				<div class="navbar-language">
-					<select name="language">
-						<option value="korean">Korean</option>
-						<option value="english">English</option>
-						<option value="chinese">Chinese</option>
-						<option value="japanese">Japanese</option>
-					</select>
-				</div>
-			</div>
-		</nav>
-	</header>
+  <jsp:include page="Common/Header.jsp" />
+ 
 
 	<br>
 	<br>
@@ -498,15 +336,8 @@ footer {
 	<br>
 	<br>
 	<br>
-	<footer class="footer-content">
-		<div id="footer-content">
-			<p>㈜큐케이씨 | 서울특별시 성동구 아차산로 15길 52 삼환디지털벤처타워 905호</p>
-			<p>대표 : 김새한 | Tel: 070-4352-2800 | Fax: 070-8673-2808</p>
-			<p>사업자등록번호: 214-87-64337 | COPYRIGHTⓒQuali Korea Corp. ALL RIGHTS RESERVED.</p>
-		</div>
-	</footer>
-
-
+	
+	<jsp:include page="Common/Footer.jsp" />
 
 	<!-- Best 상품 슬라이더 관련 JavaScript 코드를 JSP 파일 내에 직접 포함 -->
 	<script>

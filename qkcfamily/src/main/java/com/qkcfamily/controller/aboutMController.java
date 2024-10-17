@@ -25,14 +25,14 @@ public class aboutMController {
 		
 		return "aboutM_History";
 	}
-	@GetMapping("/aboutM_Export.do")
+	@GetMapping("/AboutUs/Export")
 	public String aboutM_Export() {
 		
 		// 단순 페이지 이동 
 		// 출력데이터 가져오기
 		
 		
-		return "aboutM_Export";
+		return "AboutUs/Export";
 	}
 	@GetMapping("/aboutM_Import.do")
 	public String aboutM_Import() {
