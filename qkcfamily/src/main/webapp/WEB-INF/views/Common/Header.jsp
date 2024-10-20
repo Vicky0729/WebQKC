@@ -47,10 +47,10 @@
             border-bottom: solid 3px #F5F5DC;
         }
 
-        .navbar-logo img {
-            height: 50px;
-            width: 200px;
-        }
+       .navbar-logo img {
+		     width : 157px;
+   			 height: 60px;
+		}
 
         .navbar-menu {
             list-style: none;
@@ -86,20 +86,59 @@
                 flex-direction: column;
             }
         }
+        /* 검색 스타일 */
+.navbar-search {
+	position: relative;
+}
+
+.navbar-search input {
+	width: 250px;
+	padding: 10px;
+	border-radius: 15px;
+	border: 1px solid #ccc;
+}
+
+.navbar-search button {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	bottom: 5px;
+	background-color: white;
+	border: none;
+	cursor: pointer;
+}
+
+#search-img {
+	width: 30px;
+	height: 30px;
+	margin-right: 5px;
+	margin-bottom: 10px;
+}
+
+
+/* 언어 선택 스타일 */
+.navbar-language select {
+	padding: 5px;
+	font-size: 14px;
+	margin-left: 20px;
+	border-radius: 5px;
+}
+     
+        
     </style>
 </head>
 <body>
     <header>
         <nav class="navbar">
             <div class="navbar-logo">
-                <a href="homeMain.do"><img src="resources/imgs/logo.png" alt="회사 로고"></a>
+                <a href="${pageContext.request.contextPath}"><img src="resources/imgs/logo.png" alt="회사 로고" ></a>
             </div>
             <ul class="navbar-menu">
-                <li><a href="aboutM.do">About Us</a></li>
-                <li><a href="productsM.do">Products</a></li>
+                <li><a href="${pageContext.request.contextPath}/AboutUs/OurBrand">About Us</a></li>
+                <li><a href="${pageContext.request.contextPath}/Products/Main">Products</a></li>
                 <li><a href="#.jsp">News</a></li>
                 <li><a href="#.jsp">Business</a></li>
-                <li><a href="contactUs.do">Contact Us</a></li>
+                <li><a href="#">Contact Us</a></li>
             </ul>
             <div class="navbar-search">
                 <form action="#" method="POST">

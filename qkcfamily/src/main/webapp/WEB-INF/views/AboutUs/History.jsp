@@ -26,96 +26,6 @@ body {
     min-height: 100vh; /* 최소 높이를 100vh로 설정 */
 }
 
-
-/* Header 부분 CSS */
-.navbar {
-	display: flex;
-	left: 0;
-	top: 0;
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 10px 20px;
-	background-color: #8B0000;
-	color: white;
-	transition: top 0.3s ease; /* 부드러운 애니메이션 */
-	z-index: 1000; /* 다른 요소보다 위에 위치 */
-	border-bottom: solid 3px #F5F5DC;
-}
-
-.navbar-logo img {
-	height: 50px;
-	width: 200px;
-}
-
-.navbar-actions {
-	display: flex;
-	align-items: center;
-}
-
-.navbar-menu {
-	list-style: none;
-	display: flex;
-	gap: 20px;
-	margin-right: 20px;
-}
-
-.navbar-menu li {
-	margin-right: 20px;
-}
-
-.navbar-menu a {
-	color: white;
-	text-decoration: none;
-	font-size: 16px;
-	padding: 10px;
-	transition: background-color 0.3s;
-}
-
-.navbar-menu a:hover {
-	background-color: #CD5C5C; /* 밝은 붉은색 */
-	border-radius: 5px;
-}
-
-/* 검색 스타일 */
-.navbar-search {
-	position: relative;
-}
-
-.navbar-search input {
-	width: 250px;
-	padding: 10px;
-	border-radius: 15px;
-	border: 1px solid #ccc;
-}
-
-.navbar-search button {
-	position: absolute;
-	right: 5px;
-	top: 5px;
-	bottom: 5px;
-	background-color: white;
-	border: none;
-	cursor: pointer;
-}
-
-#search-img {
-	width: 30px;
-	height: 30px;
-	margin-right: 5px;
-	margin-bottom: 10px;
-}
-
-
-/* 언어 선택 스타일 */
-.navbar-language select {
-	padding: 5px;
-	font-size: 14px;
-	margin-left: 20px;
-	border-radius: 5px;
-}
-
 /* 중간 메뉴 쿼리 */
 @media only screen and (max-width: 1499px) {
     .location .wrap {
@@ -256,72 +166,13 @@ body {
 	margin-top: 10px;
 	font-weight: bold;
 }
-/* Footer 부분 CSS */
-footer {
-	background-color: #8B0000; /* 진한 붉은색 */
-	padding: 20px;
-	text-align: center;
-	color: white;
-	border-top: solid 3px #F5F5DC; /* 푸터 상단 테두리 */
-
-}
-
-.footer-content {
-	padding: 20px; /* 내부 여백 */
-	bottom: 0; /* 하단에 고정 */
-	left: 0; /* 좌측 정렬 */
-	width: 100%; /* 전체 너비 */
-	x
-}
-
-#footer-content p {
-	margin: 10px 0;
-	font-size: 14px;
-}
-#123{
- width: 100%;
- height: 100%
-}
-
-
 
 
 </style>
 </head>
 <body>
-	<header>
-		<nav class="navbar">
-			<div class="navbar-logo">
-				<a href="homeMain.do"><img src="resources/imgs/logo.png" alt="회사 로고"></a>
-			</div>
-			<div class="navbar-actions">
-				<ul class="navbar-menu">
-					<li><a href="aboutM.do">About Us</a></li>
-					<li><a href="productsM.do">Products</a></li>
-					<li><a href="#.jsp">News</a></li>
-					<li><a href="#.jsp">Business</a></li>
-					<li><a href="contactUs.do">Contact Us</a></li>
-				</ul>
-				<div class="navbar-search">
-					<form action="#" method="POST">
-						<input type="text" placeholder="검색어를 입력하세요" name="search_str">
-						<button type="submit">
-							<img src="resources/imgs/search-img.png" alt="돋보기" id="search-img">
-						</button>
-					</form>
-				</div>
-				<div class="navbar-language">
-					<select name="language">
-						<option value="korean">Korean</option>
-						<option value="english">English</option>
-						<option value="chinese">Chinese</option>
-						<option value="japanese">Japanese</option>
-					</select>
-				</div>
-			</div>
-		</nav>
-	</header>
-
+	
+	<jsp:include page="../Common/Header2.jsp" />
 
 	<!-- 홍보용 이미지 -->
 	<div class="aboutPromotion" align="center">
@@ -402,17 +253,9 @@ footer {
 			</div>
 		</div>
 
-
-
-
 	<br>
-	<footer>
-		<div class="footer-content">
-			<p>㈜큐케이씨 | 서울특별시 성동구 아차산로 15길 52 삼환디지털벤처타워 905호</p>
-			<p>대표 : 김새한 | Tel: 070-4352-2800 | Fax: 070-8673-2808</p>
-			<p>사업자등록번호: 214-87-64337 | COPYRIGHTⓒQuali Korea Corp. ALL RIGHTS
-				RESERVED.</p>
-		</div>
-	</footer>
+	
+	<jsp:include page="../Common/Footer.jsp" />
+	
 </body>
 </html>

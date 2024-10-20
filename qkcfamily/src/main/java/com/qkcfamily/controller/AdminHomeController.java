@@ -22,6 +22,7 @@ public class AdminHomeController {
    @Autowired
    AdminMapper adminMapper;
 
+   // 관리자 로그인 페이지
    @GetMapping("/admin")
    public String admin() {
 
@@ -31,8 +32,9 @@ public class AdminHomeController {
       return "admin";
    }
 
-   @PostMapping("/Adm/Main")
-   public String adminMain(@RequestParam("admin_id") String admin_id, @RequestParam("admin_pw") String admin_pw,
+   // 관리자 메인 페이지 틀
+   @PostMapping("/Adm/adminMain")
+   public String adminMainPage(@RequestParam("admin_id") String admin_id, @RequestParam("admin_pw") String admin_pw,
          HttpSession session) {
       
       
@@ -43,14 +45,14 @@ public class AdminHomeController {
        if (admin != null && BCrypt.checkpw(admin_pw, admin.getAdmin_pw())) {
            // 로그인 성공
            session.setAttribute("admin", admin);
-           return "Adm/Main"; // 로그인 성공 후 이동할 페이지
+           return "Adm/adminMain"; // 로그인 성공 후 이동할 페이지
        } else {
            // 로그인 실패
            return "admin"; // 로그인 실패 시 다시 로그인 페이지로 이동
        }
    }
 
-
+   // 사용자 관리 페이지
    @GetMapping("/Adm/AdminList")
    public String userManagement(Model model) {
 
@@ -63,6 +65,7 @@ public class AdminHomeController {
       return "Adm/AdminList";
    }
 
+   // 관리자 추가 기능
    @PostMapping("Adm/admin/1")
    public String addAdmin(Admin admin) {
       
@@ -78,6 +81,7 @@ public class AdminHomeController {
       return "redirect:/Adm/AdminList";
    }
 
+   // 관리자 수정 기능
    @PostMapping("Adm/admin/2")
    public String updateAdmin(Admin admin) {
       
@@ -99,56 +103,71 @@ public class AdminHomeController {
       return "redirect:/Adm/AdminList";
    }
    
+   // 관리자 삭제 기능
    @PostMapping("Adm/admin/3")
    public String deleteAdmin(@RequestParam("admin_id") String adminId) {
        adminMapper.deleteAdminById(adminId);  // MyBatis Mapper에서 해당 admin_id 삭제
        return "redirect:/Adm/AdminList";  // 삭제 후 관리자 목록 페이지로 리디렉션
    }
 
-   @GetMapping("/productManagement.do")
-   public String productManagement() {
+
+   // 대쉬보드 페이지
+   @GetMapping("/Adm/dashboard")
+   public String dashboard() {
 
       // 단순 페이지 이동
       // 출력데이터 가져오기
 
-      return "productManagement";
+      return "Adm/dashboard";
    }
 
-   @GetMapping("/adManagement.do")
-   public String adManagement() {
+
+   
+   @GetMapping("Adm/PopupList")
+   public String PopupListPage() {
 
       // 단순 페이지 이동
       // 출력데이터 가져오기
 
-      return "adManagement";
-   }
-
-   @GetMapping("Adm/AdminForm.do")
-   public String siteEdit() {
-
-      // 단순 페이지 이동
-      // 출력데이터 가져오기
-
-      return "Adm/AdminForm";
+      return "Adm/PopupList";
    }
    
-   @GetMapping("Adm/Dashboard.do")
-   public String Dashboard() {
+   @GetMapping("Adm/Popup")
+   public String PopupPage() {
 
       // 단순 페이지 이동
       // 출력데이터 가져오기
 
-      return "Adm/Dashboard";
+      return "Adm/Popup";
    }
    
-   @GetMapping("Adm/Main.do")
-   public String admMAin() {
+   @GetMapping("Adm/ProductList")
+   public String ProductListPage() {
 
       // 단순 페이지 이동
       // 출력데이터 가져오기
 
-      return "Adm/Main";
+      return "Adm/ProductList";
    }
+   
+   @GetMapping("Adm/Products")  
+   public String ProductsPage() {
+
+      // 단순 페이지 이동
+      // 출력데이터 가져오기
+
+      return "Adm/Products";
+   }
+   
+   @GetMapping("Adm/Content")   
+   public String ContentPage() {
+
+      // 단순 페이지 이동
+      // 출력데이터 가져오기
+
+      return "Adm/Content";
+   }
+   
    
 
 

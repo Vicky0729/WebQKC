@@ -46,19 +46,8 @@ public class HomeController {
 	 * }
 	 */
 	
-	@GetMapping("/contactUs.do")
-	public String contactUs() {
 
-		// 단순 페이지 이동
-		// 출력데이터 가져오기
-
-		return "contactUs";
-	}
-	
-	  
-	      
-
-	@GetMapping("/homeMain.do")
+	@GetMapping("/")
 	   public String HomeMain(Model model) {
 
 	      ArrayList<Popup> popupList = popupMapper.getPopup();

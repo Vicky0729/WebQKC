@@ -307,22 +307,22 @@ iframe {
 
 		<div class="MainProduct active-nav">
 			<p class="visualThumb">식료품</p>
-			<a href="foodstuffs.do"></a> <img alt="식료품"
+			<a href="Products/Groceries"></a> <img alt="식료품"
 				src="resources/imgs/product3.png"> <span class="grayBg"></span>
 		</div>
 		<div class="MainProduct active-nav">
 			<p class="visualThumb">제과</p>
-			<a href="snack.do"></a> <img alt="제과"
+			<a href="Products/Snack"></a> <img alt="제과"
 				src="resources/imgs/product1.png"> <span class="grayBg"></span>
 		</div>
 		<div class="MainProduct active-nav">
 			<p class="visualThumb">버섯</p>
-			<a href="mushroom.do"></a> <img alt="버섯"
+			<a href="Products/Mushroom"></a> <img alt="버섯"
 				src="resources/imgs/product2.png"> <span class="grayBg"></span>
 		</div>
 		<div class="MainProduct active-nav">
 			<p class="visualThumb">수입제품</p>
-			<a href="importBS.do"></a> <img alt="수입제품"
+			<a href="ImportBusiness/Product"></a> <img alt="수입제품"
 				src="resources/imgs/product4.png"> <span class="grayBg"></span>
 		</div>
 
@@ -341,12 +341,12 @@ iframe {
 	<!-- 메인화면에서 수출,수입, OEM제조, 브랜드 사업으로 갈 수 있는 박스(추후 버튼으로 바꿀 예정) -->
 	<div class="MainOthers">
 		<ul>
-			<li class="Othersactive"><a href="aboutM_Export.do"
+			<li class="Othersactive"><a href="AboutUs/Export"
 				class="click">수출 사업</a></li>
-			<li class="Othersactive"><a href="aboutM_Import.do"
+			<li class="Othersactive"><a href="AboutUs/Import"
 				class="click">수입 사업</a></li>
-			<li class="Othersactive"><a href="aboutM_OEM.do" class="click">OEM제조</a></li>
-			<li class="Othersactive"><a href="aboutM_O_brand.do"
+			<li class="Othersactive"><a href="AboutUs/Oem" class="click">OEM제조</a></li>
+			<li class="Othersactive"><a href="AboutUs/OurBrand"
 				class="click">브랜드사업</a></li>
 		</ul>
 	</div>

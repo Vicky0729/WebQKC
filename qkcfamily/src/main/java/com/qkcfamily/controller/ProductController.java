@@ -19,53 +19,91 @@ public class ProductController {
 	@Autowired
 	ProductMapper productMapper;
 
-	@GetMapping("/productsM.do")
-	public String Products() {
+	// 제품 메인 페이지
+	@GetMapping("/Products/Main")
+	public String pdMainPage() {
 
-		// 단순 페이지 이동
-		// 출력데이터 가져오기
-
-		return "productsM";
+		return "Products/Main";
 	}
 
-	@GetMapping("/p_mushroom.do")
-	public String p_mushroom() {
+	// 버섯 제품 페이지
+	@GetMapping("/Products/Mushroom")
+	public String MushroomPage() {
 
-		// 단순 페이지 이동
-		// 출력데이터 가져오기
-
-		return "p_mushroom";
+		return "Products/Mushroom";
 	}
 
-	@GetMapping("/p_foodstuffs.do")
-	public String p_foodstuffs() {
+	// 식료품 페이지
+	@GetMapping("/Products/Groceries")
+	public String GroceriesPage(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
 
-		// 단순 페이지 이동
-		// 출력데이터 가져오기
+		final int PAGE_SIZE = 16;
+		int offset = (page - 1) * PAGE_SIZE;
+		List<Product> List = productMapper.getGroceriesList(offset, PAGE_SIZE);
+		int Count = productMapper.getGroceriesCount();
+		int totalPages = (int) Math.ceil((double) Count / PAGE_SIZE);
 
-		return "p_foodstuffs";
+		model.addAttribute("groceriesList", List);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("totalPages", totalPages);
+
+		return "Products/Groceries";
 	}
 
-	@GetMapping("/p_frozen.do")
-	public String p_frozen() {
+	// "상온" 식료품 페이지
+	@GetMapping("/Products/G_ambient")
+	public String G_ambientPage(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
 
-		// 단순 페이지 이동
-		// 출력데이터 가져오기
+		final int PAGE_SIZE = 16;
+		int offset = (page - 1) * PAGE_SIZE;
+		List<Product> List = productMapper.getAmbientList(offset, PAGE_SIZE);
+		int Count = productMapper.getAmbientCount();
+		int totalPages = (int) Math.ceil((double) Count / PAGE_SIZE);
 
-		return "p_frozen";
+		model.addAttribute("List", List);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("totalPages", totalPages);
+
+		return "Products/G_ambient";
 	}
 
-	@GetMapping("/p_roomtemp.do")
-	public String p_roomtemp() {
+	// "냉장" 식료품 페이지
+	@GetMapping("/Products/G_fresh")
+	public String G_freshPage(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
 
-		// 단순 페이지 이동
-		// 출력데이터 가져오기
+		final int PAGE_SIZE = 16;
+		int offset = (page - 1) * PAGE_SIZE;
+		List<Product> List = productMapper.getFreshList(offset, PAGE_SIZE);
+		int Count = productMapper.getFreshCount();
+		int totalPages = (int) Math.ceil((double) Count / PAGE_SIZE);
 
-		return "p_roomtemp";
+		model.addAttribute("List", List);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("totalPages", totalPages);
+
+		return "Products/G_fresh";
 	}
 
+	// "냉장" 식료품 페이지
+	@GetMapping("/Products/G_frozen")
+	public String G_frozenPage(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+
+		final int PAGE_SIZE = 16;
+		int offset = (page - 1) * PAGE_SIZE;
+		List<Product> List = productMapper.getFrozenList(offset, PAGE_SIZE);
+		int Count = productMapper.getFrozenCount();
+		int totalPages = (int) Math.ceil((double) Count / PAGE_SIZE);
+
+		model.addAttribute("List", List);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("totalPages", totalPages);
+
+		return "Products/G_frozen";
+	}
+
+	// 제과 제품 페이지
 	@GetMapping("/Products/Snack")
-	public String getSnackList(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+	public String SnackPage(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
 
 		final int PAGE_SIZE = 16;
 		int offset = (page - 1) * PAGE_SIZE; // 페이지 번호에 맞춰 offset 계산
@@ -80,25 +118,93 @@ public class ProductController {
 		return "Products/Snack";
 	}
 
-	@GetMapping("/p_etc.do")
-	public String p_etc() {
+	// "쿠키류" 제과 페이지
+	@GetMapping("/Products/S_cookies")
+	public String S_cookiesPage(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
 
-		// 단순 페이지 이동
-		// 출력데이터 가져오기
+		final int PAGE_SIZE = 16;
+		int offset = (page - 1) * PAGE_SIZE;
+		List<Product> List = productMapper.getCookiesList(offset, PAGE_SIZE);
+		int Count = productMapper.getCookiesCount();
+		int totalPages = (int) Math.ceil((double) Count / PAGE_SIZE);
 
-		return "p_etc";
+		model.addAttribute("List", List);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("totalPages", totalPages);
+
+		return "Products/S_cookies";
 	}
 
-	@GetMapping("/p_importP.do")
-	public String p_importP() {
+	// "스낵류" 제과 페이지
+	@GetMapping("/Products/S_snacks")
+	public String S_snackPage(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
 
-		// 단순 페이지 이동
-		// 출력데이터 가져오기
+		final int PAGE_SIZE = 16;
+		int offset = (page - 1) * PAGE_SIZE;
+		List<Product> List = productMapper.getSnacksList(offset, PAGE_SIZE);
+		int Count = productMapper.getSnacksCount();
+		int totalPages = (int) Math.ceil((double) Count / PAGE_SIZE);
 
-		return "p_importP";
+		model.addAttribute("List", List);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("totalPages", totalPages);
+
+		return "Products/S_snacks";
 	}
 
-	@PostMapping("/p_search.do")
+	// "비스켓류" 제과 페이지
+	@GetMapping("/Products/S_biscuits")
+	public String S_biscuitsPage(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+
+		final int PAGE_SIZE = 16;
+		int offset = (page - 1) * PAGE_SIZE;
+		List<Product> List = productMapper.getBiscuitsList(offset, PAGE_SIZE);
+		int Count = productMapper.getBiscuitsCount();
+		int totalPages = (int) Math.ceil((double) Count / PAGE_SIZE);
+
+		model.addAttribute("List", List);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("totalPages", totalPages);
+
+		return "Products/S_biscuits";
+	}
+
+	// 기타 제품 페이지
+	@GetMapping("/Products/Etc")
+	public String EtcPage(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+
+		final int PAGE_SIZE = 16;
+		int offset = (page - 1) * PAGE_SIZE;
+		List<Product> List = productMapper.getEtcList(offset, PAGE_SIZE);
+		int Count = productMapper.getEtcCount();
+		int totalPages = (int) Math.ceil((double) Count / PAGE_SIZE);
+
+		model.addAttribute("List", List);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("totalPages", totalPages);
+
+		return "Products/Etc";
+	}
+	
+	// 수입품 페이지
+	@GetMapping("/ImportBusiness/Product")
+	public String ImportPage(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+
+		final int PAGE_SIZE = 16;
+		int offset = (page - 1) * PAGE_SIZE;
+		List<Product> List = productMapper.getImportList(offset, PAGE_SIZE);
+		int Count = productMapper.getImportCount();
+		int totalPages = (int) Math.ceil((double) Count / PAGE_SIZE);
+
+		model.addAttribute("List", List);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("totalPages", totalPages);
+
+		
+		return "ImportBusiness/Product";
+	}
+
+	@PostMapping("/p_search")
 	public String p_search(@RequestParam("search_str") String search_str, Model model) {
 
 		System.out.println(search_str);
@@ -107,5 +213,11 @@ public class ProductController {
 		model.addAttribute("SearchList", SearchList);
 
 		return "p_search";
+	}
+
+	@GetMapping("/Products/productDetail")
+	public String DetailPage() {
+
+		return "Products/productDetail";
 	}
 }

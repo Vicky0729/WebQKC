@@ -297,7 +297,7 @@ input{
 <div id="loginbox">
     <h1>관리자 로그인</h1>
     <div id="loginform">
-        <form action="Adm/Main" method="post">
+        <form action="Adm/adminMain" method="post">
             <div><input type="text" name="admin_id" class="adminLogin" placeholder="아이디를 입력해주세요" autocomplete="off"></div>           
             <div><input type="password" name="admin_pw" class="adminLogin" placeholder="비밀번호를 입력해주세요" autocomplete="off"></div>
             <div align="center"><input type="submit" value="로그인" class="submit-btn"></div>
