@@ -45,7 +45,28 @@ public class HomeController {
 	 * 
 	 * }
 	 */
-	
+     /* 10/21 homemain 상단메뉴 추가 부분*/		
+	 @GetMapping("/ImpotBusiness/Product")
+		public String impotBusiness() {
+		// 단순 페이지 이동 
+		// 출력데이터 가져오기
+		return "ImpotBusiness/Product";
+		}
+	 @GetMapping("/News/News")
+		public String news() {
+		// 단순 페이지 이동 
+		// 출력데이터 가져오기
+		return "News/News";
+		}
+	 @GetMapping("/ContactUs/contactUs")
+		public String contactUs() {
+		// 단순 페이지 이동 
+		// 출력데이터 가져오기
+		return "ContactUs/contactUs";
+		}
+	 /* 10/21 homemain 상단메뉴 추가 부분*/	
+	 
+	 
 
 	@GetMapping("/")
 	   public String HomeMain(Model model) {

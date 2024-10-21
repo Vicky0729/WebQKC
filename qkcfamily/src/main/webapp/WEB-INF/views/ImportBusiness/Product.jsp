@@ -103,8 +103,14 @@ body {
 		width: 100%;
 	}
 }
+.productBody {
+	display: flex;
+	margin-left: 10%;
+}
+
 
 /* 사이드 메뉴 */
+
 .productsMenus {
 	display: flex;
 	flex-direction: column;
@@ -114,6 +120,7 @@ body {
 	padding: 10px;
 	position: relative; /* 하위 메뉴의 위치를 올바르게 참조 */
 	z-index: 0; /* 전체 레이아웃에서 기본 z-index */
+	
 }
 
 .productsMenu {
@@ -239,43 +246,24 @@ body {
 
 	<!-- 홍보용 이미지 -->
 	<div class="aboutPromotion" align="center">
-		<img width="100%" height="300px" alt="홍보용 이미지"
-			src="../resources/imgs/productsM.jpg">
+		<img width="80%" height="200px" alt="홍보용 이미지"
+			src="../resources/imgs/importproducts.png">
 	</div>
 
-
-		<br>
-
-
+	<br>
+	<div class="productBody">
 
 	<!-- 사이드 메뉴와 제품 리스트 -->
-	<div style="display: flex;">
+	<div  style="display: flex;">
 		<div class="productsMenus">
+	
 			<div class="productsMenu">
-				<a href="Mushroom">버섯류</a>
-			</div>
-			<div class="productsMenu">
-				<a href="Groceries">식료품</a>
-				<ul class="subcategory">
-					<li><a href="G_frozen">냉동</a></li>
-					<li><a href="G_fresh">냉장</a></li>
-					<li><a href="G_ambient">상온</a></li>
-				</ul>
-			</div>
-			<div class="productsMenu">
-				<a href="Snack">제과</a>
-				<ul class="subcategory">
-                <li><a href="S_cookies">쿠키류</a></li>
-                <li><a href="S_snacks">스낵류</a></li>
-                <li><a href="S_biscuits">비스켓류</a></li>
-            	</ul>
+				<a href="../ImportBusiness/Product">수입제품</a>
 			</div>
 			<div class="productsMenu">
 				<a href="Etc">기타</a>
 			</div>
-			<div class="productsMenu">
-				<a href="../ImportBusiness/Product">수입제품</a>
-			</div>
+			
 		</div>
 
 			<div class="products">
