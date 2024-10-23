@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.qkcfamily.entity.Admin;
+import com.qkcfamily.entity.Popup;
 
 @Mapper
 public interface AdminMapper {
@@ -37,7 +38,12 @@ public interface AdminMapper {
 	   
 	   @Delete("DELETE FROM tb_admin WHERE admin_id = #{admin_id}")
 	   public int deleteAdminById(String admin_id);
+	   
+	   @Select("select * from tb_popup")
+	   public ArrayList<Popup> getPopupList();
 	
+	   @Insert("insert into tb_popup (pop_title, pop_img, start_date, end_date, created_at) values (#{pop_title},#{pop_img},#{start_date},#{end_date},default)")
+	   public void addPopup(Popup popup);
 	//추상 메소드 추가
 	
 }

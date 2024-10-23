@@ -211,10 +211,11 @@ body {
 			
 			<section>
 			<br>
-			<h1> <자사브랜드> </h1>
+			<h1> <회사소개> </h1>
 			<article class="wrap introWrap">
 
-			<img  alt="자사브랜드" src="">
+			<img  alt="자사브랜드" src="../resources/imgs/회사소개1.png">
+			<img  alt="자사브랜드" src="../resources/imgs/회사소개2.png">
 			</article>
 			</section>
 			
