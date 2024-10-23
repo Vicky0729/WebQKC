@@ -241,8 +241,6 @@ td {
 						if (response) {
 							// 서버로부터 받은 데이터를 모달에 채움
 							$("#admin_id2").val(response.admin_id); // 아이디
-							$("#admin_pw2").val(response.admin_pw); // 비밀번호
-							$("#admin_pw_check2").val(response.admin_pw); // 비밀번호 확인
 							$("#admin_name2").val(response.admin_name); // 이름
 							$("#admin_email2").val(response.admin_email); // 이메일
 

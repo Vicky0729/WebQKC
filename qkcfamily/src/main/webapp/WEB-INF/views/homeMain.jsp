@@ -285,6 +285,10 @@ iframe {
 				style="top:${status.index * 50}px; left:${status.index * 50}px;">
 				<span class="close">&times;</span> <img
 					id="popup_img_${status.index}" src="${popup.pop_img}" alt="팝업 이미지">
+				<div class="checkbox-container">
+            <input type="checkbox" id="noShowToday">
+            <label for="noShowToday">하루 동안 보지 않기</label>
+        </div>
 			</div>
 		</c:forEach>
 	</c:if>

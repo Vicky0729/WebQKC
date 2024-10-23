@@ -71,7 +71,7 @@
     </style>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
-    	/* 차후 Google Analytics 기능 사용으로 실제 방문자통계 잡히도록 해볼 수 있어요 */
+       /* 차후 Google Analytics 기능 사용으로 실제 방문자통계 잡히도록 해볼 수 있어요 */
         // Google 차트 로드
         google.charts.load('current', {'packages':['corechart']});
 

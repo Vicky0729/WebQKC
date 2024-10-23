@@ -40,6 +40,11 @@ public class AdminHomeController {
       
        // DB에서 해당 admin_id에 해당하는 관리자 정보 가져오기 (해싱된 비밀번호 포함)
        Admin admin = adminMapper.getAdminById(admin_id);
+       
+       System.out.println("DB에서 가져온 비밀번호: " + admin.getAdmin_pw());
+       System.out.println("입력한 비밀번호: " + admin_pw);
+       System.out.println("비밀번호 일치 여부: " + BCrypt.checkpw(admin_pw, admin.getAdmin_pw()));
+
 
        // DB에 사용자 정보가 있고, 입력한 비밀번호가 해싱된 비밀번호와 일치하는지 확인
        if (admin != null && BCrypt.checkpw(admin_pw, admin.getAdmin_pw())) {
@@ -48,9 +53,11 @@ public class AdminHomeController {
            return "Adm/adminMain"; // 로그인 성공 후 이동할 페이지
        } else {
            // 로그인 실패
-           return "admin"; // 로그인 실패 시 다시 로그인 페이지로 이동
+           return "redirect:/admin"; // 로그인 실패 시 다시 로그인 페이지로 이동
        }
    }
+   
+
 
    // 사용자 관리 페이지
    @GetMapping("/Adm/AdminList")
@@ -85,23 +92,24 @@ public class AdminHomeController {
    @PostMapping("Adm/admin/2")
    public String updateAdmin(Admin admin) {
       
-      // 현재 데이터베이스에 저장된 기존 Admin 정보 가져오기
-       Admin currentAdmin = adminMapper.getAdminById(admin.getAdmin_id());
-       
-       // 비밀번호가 입력된 경우에만 비밀번호를 해싱
-       if (admin.getAdmin_pw() != null && !admin.getAdmin_pw().isEmpty()) {
-           String hashedPassword = BCrypt.hashpw(admin.getAdmin_pw(), BCrypt.gensalt());
-           admin.setAdmin_pw(hashedPassword);  // 해싱된 비밀번호로 설정
-       } else {
-           // 비밀번호를 수정하지 않은 경우, 기존 비밀번호를 유지
-           admin.setAdmin_pw(currentAdmin.getAdmin_pw());
-       }
+	// 현재 데이터베이스에 저장된 기존 Admin 정보 가져오기
+	    Admin currentAdmin = adminMapper.getAdminById(admin.getAdmin_id());
 
-       // 수정된 Admin 정보로 업데이트
-       adminMapper.updateAdmin(admin);
+	    if (admin.getAdmin_pw() != null && !admin.getAdmin_pw().isEmpty()) {
+	        // 비밀번호가 입력된 경우에만 해싱 후 업데이트
+	        String hashedPassword = BCrypt.hashpw(admin.getAdmin_pw(), BCrypt.gensalt());
+	        admin.setAdmin_pw(hashedPassword);
+	    } else {
+	        // 비밀번호가 입력되지 않았으면 기존 비밀번호 유지
+	        admin.setAdmin_pw(currentAdmin.getAdmin_pw());
+	    }
 
-      return "redirect:/Adm/AdminList";
+	    // 최종 업데이트 쿼리 실행
+	    adminMapper.updateAdmin(admin);
+	    return "redirect:/Adm/AdminList";
    }
+   
+
    
    // 관리자 삭제 기능
    @PostMapping("Adm/admin/3")
@@ -112,13 +120,13 @@ public class AdminHomeController {
 
 
    // 대쉬보드 페이지
-   @GetMapping("/Adm/dashboard")
-   public String dashboard() {
+   @GetMapping("Adm/dashboard")
+   public String DashboardPage() {
 
       // 단순 페이지 이동
       // 출력데이터 가져오기
 
-      return "Adm/dashboard";
+      return "Adm/Dashboard";
    }
 
 
