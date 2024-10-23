@@ -26,6 +26,12 @@ body {
     min-height: 100vh; /* 최소 높이를 100vh로 설정 */
 }
 
+/* products body */
+.productBody {
+	display: flex;
+	margin-left: 10%;
+}
+
 /* 중간 메뉴 쿼리 */
 @media only screen and (max-width: 1499px) {
     .location .wrap {
@@ -176,66 +182,28 @@ body {
 
 	<!-- 홍보용 이미지 -->
 	<div class="aboutPromotion" align="center">
-		<img width="100%" height="300px" alt="홍보용 이미지" src="resources/imgs/aboutus.png">
+		<img width="80%" height="200px" alt="홍보용 이미지" src="../resources/imgs/aboutus.png">
 	</div>
 
-
-
-	<!-- 중간 메뉴버튼 -->
-	<div class="container">
-		<div class="location">
-			<ul class="wrap">
-				<li><a href="homeMain.do" class="irCommon">Home</a></li>
-				<li><a href="">About Us<i class="irCommon"></i></a>
-					<ul>
-					<li><a href="aboutM.do">About Us</a></li>
-					<li><a href="productsM.do">Products</a></li>
-					<li><a href="#.jsp">News</a></li>
-					<li><a href="#.jsp">Business</a></li>
-					<li><a href="contactUs.do">Contact Us</a></li>
-					</ul>
-				</li>
-
-
-				<li ><a href="">소개<i class="irCommon"></i></a>
-					<ul>
-						<li><a href="aboutM.do">회사소개</a></li>
-						<li><a href="aboutM_History.do">연혁</a></li>
-						<li><a href="aboutM_Export.do">수출사업</a></li>
-						<li><a href="aboutM_Import.do">수입사업</a></li>
-						<li><a href="aboutM_Im_pro.do">수입제품</a></li>
-						<li><a href="aboutM_OEM.do">OEM</a></li>
-						<li><a href="aboutM_O_brand.do">자사브랜드</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-
 		<br>
-		
+		<div class="productBody">
 <!-- 사이드 메뉴와 제품 리스트 -->
 		<div style="display: flex;">
 			<div class="productsMenus">
 				<div class="productsMenu">
-					<a href="aboutM.do">회사소개</a>
+					<a href="OurBrand">회사소개</a>
 				</div>
 				<div class="productsMenu">
-					<a href="aboutM_History.do">연혁</a>
+					<a href="History">연혁</a>
 				</div>
 				<div class="productsMenu">
-					<a href="aboutM_Export.do">수출사업</a>
+					<a href="Export">수출사업</a>
 				</div>
 				<div class="productsMenu">
-					<a href="aboutM_Import.do">수입사업</a>
+					<a href="Import">수입사업</a>
 				</div>
 				<div class="productsMenu">
-					<a href="aboutM_Im_pro.do">수입제품</a>
-				</div>
-				<div class="productsMenu">
-					<a href="aboutM_OEM.do">OEM</a>
-				</div>
-				<div class="productsMenu">
-					<a href="aboutM_O_brand.do">자사브랜드</a>
+					<a href="Oem">OEM</a>
 				</div>
 		    </div>
 			
@@ -246,7 +214,7 @@ body {
 			<h1> <연혁> </h1>
 			<article class="wrap introWrap">
 
-					<img id="123" alt="회사소개" src="resources/imgs/history.png">
+			<img id="#" alt="연혁" src="#">
 			</article>
 			</section>
 			
