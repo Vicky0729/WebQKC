@@ -44,7 +44,8 @@ footer {
 	text-align: center;
 	color: white;
 	border-top: solid 3px #F5F5DC; /* 푸터 상단 테두리 */
-
+	height: 150px;
+	margin-top: auto; /* footer가 페이지 하단에 붙도록 설정 */
 }
 .footer-content {
 	padding: 20px; /* 내부 여백 */

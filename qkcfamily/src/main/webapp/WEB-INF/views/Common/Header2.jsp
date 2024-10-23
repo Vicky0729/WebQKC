@@ -135,7 +135,7 @@
                 <a href="${pageContext.request.contextPath}"><img src="../resources/imgs/logo.png" alt="회사 로고" ></a>
             </div>
             <ul class="navbar-menu">
-                <li><a href="${pageContext.request.contextPath}/AboutUs/OurBrand">About Us</a></li>
+                <li><a href="${pageContext.request.contextPath}/AboutUs/Company">About Us</a></li>
                 <li><a href="${pageContext.request.contextPath}/Products/Main">Products</a></li>
                 <li><a href="${pageContext.request.contextPath}/News/News">News</a></li>
                 <li><a href="${pageContext.request.contextPath}/ImportBusiness/Product">Import Business</a></li>

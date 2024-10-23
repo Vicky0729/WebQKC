@@ -32,14 +32,17 @@ body {
 /* 10/21  products body */
 .productBody {
 	display: flex;
-	margin-left: 10%;
+	min-height: 100vh; /* 최소 높이를 100vh로 설정 */
+	margin-top: 10px;
 }
 
 /* 제품 리스트 */
 .products {
+	margin-left: 10%;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 20px;
+	height : 300px;
 }
 
 .product {
@@ -97,7 +100,7 @@ body {
 
 	<!-- 홍보용 이미지 -->
 	<div class="aboutPromotion" align="center">
-		<img width="80%" height="200px" alt="홍보용 이미지"
+		<img width="100%" height="200px" alt="홍보용 이미지"
 			src="../resources/imgs/productsM.jpg">
 	</div>
 

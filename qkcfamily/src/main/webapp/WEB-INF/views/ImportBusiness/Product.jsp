@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>productsM</title>
+<title>importBusiness</title>
 <style>
 /* 전체 적용 CSS */
 html, body {
@@ -28,106 +28,27 @@ body {
 	flex-direction: column;
 	min-height: 100vh; /* 최소 높이를 100vh로 설정 */
 }
-/* 중간 메뉴 쿼리 */
-@media only screen and (max-width: 1499px) {
-	.location .wrap {
-		width: auto;
-		padding: 0;
-	}
-	.wrap, .orgaWrap .wrap {
-		width: 100%;
-		padding: 60px 80px 120px;
-		box-sizing: border-box;
-	}
-}
-/* 하위에 숨겨져 있다가 나오게*/
-.location ul ul {
-	display: none;
-	position: absolute;
-	top: 100%;
-	left: 0;
-	background: #fff;
-	padding: 10px;
-	border: 1px solid #e9e9e9;
-	width: 120px;
-	list-style: none;
-	z-index: 10; /* 다른 요소 위에 보이도록 설정 */
-}
-
-.location ul li:hover>ul {
-	display: block;
-}
-
-/*메뉴 버튼 스타일*/
-.location>ul>li {
-	list-style: none;
-	position: relative;
-	display: inline-block;
-	padding: 10px 15px;
-	width: 120px;
-	background-color: #f6f6f6;
-	border-bottom: solid 3px #8B0000;
-	border-right: solid 0.5px #8B0000;
-}
-
-.location>ul>li:hover {
-	background: #eb1c24; /* 마우스 오버 시 배경색 변경 */
-}
-
-.location>ul>li a {
-	display: flex;
-	justify-content: center;
-	color: #282828;
-	font-size: 16px;
-	text-decoration: none;
-}
-
-.location>ul>li:after {
-	position: absolute;
-	top: 0;
-	right: 0;
-	display: block;
-	content: '';
-	height: 50px;
-	width: 1px;
-	background: #e9e9e9;
-}
-/* 미디어 쿼리*/
-@media only screen and (max-width: 768px) {
-	.location ul {
-		flex-direction: column;
-		width: 100%;
-	}
-	.location>ul>li {
-		display: block;
-		width: 100%;
-	}
-}
-.productBody {
-	display: flex;
-	margin-left: 10%;
-}
-
 
 /* 사이드 메뉴 */
 
 .productsMenus {
 	display: flex;
 	flex-direction: column;
-	background-color: #F5F5F5;
-	border: 1px solid #D3D3D3;
+	background-color: #F5F5DC;
 	margin-right: 20px;
-	padding: 10px;
+	margin-left : 5px;	
+	padding: 3px;
 	position: relative; /* 하위 메뉴의 위치를 올바르게 참조 */
 	z-index: 0; /* 전체 레이아웃에서 기본 z-index */
+	height: 100px;
 	
 }
 
 .productsMenu {
 	width: 150px; /* 상위 메뉴의 너비 */
 	height: 50px;
-	background-color: #FFFAF0;
-	margin-bottom: 10px;
+	background-color: #8B0000;
+	margin-bottom: 3px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -139,12 +60,12 @@ body {
 
 .productsMenu a {
 	text-decoration: none;
-	color: #333;
 	font-weight: bold;
+	color: white;
 }
 
 .productsMenu:hover {
-	background-color: #FAF0E6;
+	background-color: #F5F5DC;
 }
 
 /* 하위 메뉴 */
@@ -189,12 +110,13 @@ body {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 20px;
+	margin-left: 10%;
 }
 
 .product {
 	text-align: center;
 	border: 1px solid #ddd;
-	padding: 15px;
+	padding: 25px;
 	transition: transform 0.3s;
 }
 
@@ -246,8 +168,8 @@ body {
 
 	<!-- 홍보용 이미지 -->
 	<div class="aboutPromotion" align="center">
-		<img width="80%" height="200px" alt="홍보용 이미지"
-			src="../resources/imgs/importproducts.png">
+		<img width="100%" height="200px" alt="홍보용 이미지"
+			src="../resources/imgs/importbusiness.png">
 	</div>
 
 	<br>
@@ -261,7 +183,7 @@ body {
 				<a href="../ImportBusiness/Product">수입제품</a>
 			</div>
 			<div class="productsMenu">
-				<a href="Etc">기타</a>
+				<a href="">예비</a>
 			</div>
 			
 		</div>

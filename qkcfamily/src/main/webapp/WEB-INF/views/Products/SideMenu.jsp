@@ -23,26 +23,28 @@ html, body {
 body {
 	display: flex;
 	flex-direction: column;
-	min-height: 100vh; /* 최소 높이를 100vh로 설정 */
+
 }
 
 /* 사이드 메뉴 */
 .productsMenus {
 	display: flex;
 	flex-direction: column;
-	background-color: #F5F5F5;
-	border: 1px solid #D3D3D3;
+	background-color: #F5F5DC;
 	margin-right: 20px;
-	padding: 10px;
+	margin-left : 5px;	
+	padding: 3px;
 	position: relative; /* 하위 메뉴의 위치를 올바르게 참조 */
 	z-index: 0; /* 전체 레이아웃에서 기본 z-index */
+	height: 200px;
+	
 }
 
 .productsMenu {
 	width: 150px; /* 상위 메뉴의 너비 */
 	height: 50px;
-	background-color: #FFFAF0;
-	margin-bottom: 10px;
+	background-color: #8B0000;
+	margin-bottom: 3px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -54,12 +56,12 @@ body {
 
 .productsMenu a {
 	text-decoration: none;
-	color: #333;
 	font-weight: bold;
+	color: white;
 }
 
 .productsMenu:hover {
-	background-color: #FAF0E6;
+	background-color: #F5F5DC;
 }
 
 /* 하위 메뉴 */
