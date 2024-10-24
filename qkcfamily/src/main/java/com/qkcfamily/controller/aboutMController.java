@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class aboutMController {
 
 	
-	@GetMapping("/AboutUs/OurBrand")
+	@GetMapping("/AboutUs/Company")
 	public String aboutM() {
 		
 		// 단순 페이지 이동 
 		// 출력데이터 가져오기
 		
 		
-		return "AboutUs/OurBrand";
+		return "AboutUs/Company";
 	}
 	@GetMapping("/AboutUs/CEO")
 	public String aboutM_CEO() {
@@ -54,9 +54,15 @@ public class aboutMController {
 	 * return "ContactUs/contactUs"; }
 	 */
 
+	@GetMapping("/AboutUs/OurBrand")
+	public String aboutM_Ourbrand() {
+		
+		// 단순 페이지 이동 
+		// 출력데이터 가져오기		
+		
+		return "AboutUs/OurBrand";	
 	
 	
-	
-	
+	}
 	
 }

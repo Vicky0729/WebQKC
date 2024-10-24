@@ -20,23 +20,26 @@ html, body {
 	padding: 0;
 	box-sizing: border-box;
 }
+
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* 최소 높이를 100vh로 설정 */
+	display: flex;
+	flex-direction: column;
 }
 
-/* products body */
+/* 10/21  products body */
 .productBody {
 	display: flex;
-	margin-left: 10%;
+	min-height: 100vh; /* 최소 높이를 100vh로 설정 */
+	margin-top: 10px;
 }
 
 /* 제품 리스트 */
 .products {
+	margin-left: 10%;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 20px;
+	height: 300px;
 }
 
 .product {
@@ -61,23 +64,46 @@ body {
 	font-weight: bold;
 }
 
+.pagination {
+	display: flex;
+	margin-top: 20px;
+	justify-content: center;
+}
 
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+	transition: background-color .3s;
+}
 
+.pagination a.active {
+	background-color: #4CAF50;
+	color: white;
+	border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+	border-radius: 5px;
+}
 </style>
 </head>
 <body>
-	
+
 	<jsp:include page="../Common/Header2.jsp" />
-	
-	
+
+
 	<!-- 홍보용 이미지 -->
 	<div class="aboutPromotion" align="center">
-		<img width="80%" height="200px" alt="홍보용 이미지" src="../resources/imgs/productsM.jpg">
+		<img width="100%" height="200px" alt="홍보용 이미지"
+			src="../resources/imgs/productsM.jpg">
 	</div>
 
+	<br>
+	<div class="productBody">
 
-		<div class="productBody">
-		
 		<jsp:include page="../Products/SideMenu.jsp" />
 
 		<div class="products">
@@ -111,8 +137,8 @@ body {
 
 
 	<br>
-	
+
 	<jsp:include page="../Common/Footer.jsp" />
-	
+
 </body>
 </html>

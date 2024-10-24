@@ -73,7 +73,7 @@ body {
 
 	<!-- 컨택 info-->
 	<div class="aboutPromotion" align="center">
-		<img width="1000px" height="200px" alt="홍보용 이미지" src="../resources/imgs/contact.png">
+		<img width="1392px" height="200px" alt="홍보용 이미지" src="../resources/imgs/contact.png">
 	</div>
 	<br>
 	<br>
