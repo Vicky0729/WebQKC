@@ -42,7 +42,7 @@ public interface AdminMapper {
 	   @Select("select * from tb_popup")
 	   public ArrayList<Popup> getPopupList();
 	
-	   @Insert("insert into tb_popup (pop_title, pop_img, start_date, end_date, created_at) values (#{pop_title},#{pop_img},#{start_date},#{end_date},default)")
+	   @Insert("insert into tb_popup (pop_title, start_date, end_date, pop_img, created_at) values (#{pop_title},#{start_date},#{end_date},#{pop_img},default)")
 	   public void addPopup(Popup popup);
 	//추상 메소드 추가
 	

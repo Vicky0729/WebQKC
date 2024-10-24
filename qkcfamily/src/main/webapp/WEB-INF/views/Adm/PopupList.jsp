@@ -116,8 +116,8 @@ td {
 	<table>
 		<thead>
 			<tr>
-				<th>광고 ID</th>
-				<th>광고/팝업 제목</th>
+				<th>팝업 ID</th>
+				<th>팝업 이름</th>
 				<!-- 팝업? 광고? 구분 해야할 것 같아요 -->
 				<th>노출 시작일</th>
 				<th>노출 종료일</th>
@@ -139,13 +139,15 @@ td {
 				</tr>
 			</c:forEach>
 
+		</tbody>
+	</table>
 
 			<!-- 모달 창 -->
 			<div id="modal" class="modal">
 				<div class="modal-content">
 					<span class="close">&times;</span>
 					<h2>새 광고/팝업 추가</h2>
-					<form action="popup/1" id="addPopupFrom" method="post" enctype="multipart/form-data">
+					<form action="popup/1" id="addPopupFrom" method="post">
 						팝업 제목: <input type="text" id="pop_title" name="pop_title" required><br>
 						<br> 팝업 이미지 경로: <input type="text" id="pop_img"
 							name="pop_img" required><br>
@@ -161,31 +163,59 @@ td {
 
 
 
-		</tbody>
-	</table>
 
 
 
 	<script>
 	
-	// 모달 열기/닫기 기능
-	var modal = document.getElementById("modal");
-	var addBtn = document.querySelector(".btn-add");
-	var closeBtn = document.querySelector(".close");
+	$(document).ready(function() {
+	    // 모달 창 열기/닫기 기능은 그대로 유지
+	    var modal = document.getElementById("modal");
+	    var addBtn = document.querySelector(".btn-add");
+	    var closeBtn = document.querySelector(".close");
 
-	addBtn.onclick = function() {
-	    modal.style.display = "block";
-	}
+	    addBtn.onclick = function() {
+	        modal.style.display = "block";
+	    }
 
-	closeBtn.onclick = function() {
-	    modal.style.display = "none";
-	}
-
-	window.onclick = function(event) {
-	    if (event.target == modal) {
+	    closeBtn.onclick = function() {
 	        modal.style.display = "none";
 	    }
-	}
+
+	    window.onclick = function(event) {
+	        if (event.target == modal) {
+	            modal.style.display = "none";
+	        }
+	    }
+
+	    // Ajax로 폼 제출
+	    $('#addPopupFrom').on('submit', function(event) {
+	        event.preventDefault(); // 기본 폼 제출 막기
+	        
+	        // 폼 데이터 가져오기
+	        var formData = {
+	            pop_title: $('#pop_title').val(),
+	            pop_img: $('#pop_img').val(),
+	            start_date: $('#start_date').val(),
+	            end_date: $('#end_date').val()
+	        };
+
+	        // Ajax 요청
+	        $.ajax({
+	            type: 'POST',
+	            url: 'popup/1',  // 서버에서 처리하는 URL로 변경
+	            data: formData,
+	            success: function(response) {
+	                alert('팝업이 성공적으로 추가되었습니다.');
+	                modal.style.display = "none";  // 폼 제출 후 모달 닫기
+	                window.location.reload();      // 페이지 새로고침하여 목록 갱신
+	            },
+	            error: function(xhr, status, error) {
+	                alert('팝업 추가 중 오류가 발생했습니다.');
+	            }
+	        });
+	    });
+	});
 
 	
 	

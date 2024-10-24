@@ -20,12 +20,12 @@ html, body {
 	padding: 0;
 	box-sizing: border-box;
 }
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* 최소 높이를 100vh로 설정 */
-}
 
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh; /* 최소 높이를 100vh로 설정 */
+}
 /* products body */
 .productBody {
 	display: flex;
@@ -34,83 +34,78 @@ body {
 
 /* 중간 메뉴 쿼리 */
 @media only screen and (max-width: 1499px) {
-    .location .wrap {
-        width: auto;
-        padding: 0;
-    }
-
-    .wrap, .orgaWrap .wrap {
-        width: 100%;
-        padding: 60px 80px 120px;
-        box-sizing: border-box;
-    }
+	.location .wrap {
+		width: auto;
+		padding: 0;
+	}
+	.wrap, .orgaWrap .wrap {
+		width: 100%;
+		padding: 60px 80px 120px;
+		box-sizing: border-box;
+	}
 }
 /* 하위에 숨겨져 있다가 나오게*/
 .location ul ul {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #fff;
-    padding: 10px;
-    border: 1px solid #e9e9e9;
-    width :120px;
-    list-style: none;
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	background: #fff;
+	padding: 10px;
+	border: 1px solid #e9e9e9;
+	width: 120px;
+	list-style: none;
 }
 
-.location ul li:hover > ul {
-    display: block;
+.location ul li:hover>ul {
+	display: block;
 }
 
 /*메뉴 버튼 스타일*/
-.location > ul > li {
+.location>ul>li {
 	list-style: none;
-    position: relative;
-    display: inline-block;
-    padding: 10px 15px;
-    width : 120px;
-    background-color: #f6f6f6;
-    border-bottom: solid 3px #8B0000;
-    border-right: solid 0.5px #8B0000;
-
-}
-.location> ul > li:hover {
-    background: #eb1c24; /* 마우스 오버 시 배경색 변경 */
+	position: relative;
+	display: inline-block;
+	padding: 10px 15px;
+	width: 120px;
+	background-color: #f6f6f6;
+	border-bottom: solid 3px #8B0000;
+	border-right: solid 0.5px #8B0000;
 }
 
+.location>ul>li:hover {
+	background: #eb1c24; /* 마우스 오버 시 배경색 변경 */
+}
 
-.location > ul > li a {
+.location>ul>li a {
 	display: flex;
-	justify-content :center;
-    color: #282828;
-    font-size: 16px;
-    text-decoration: none;
+	justify-content: center;
+	color: #282828;
+	font-size: 16px;
+	text-decoration: none;
 }
 
-.location > ul > li:after {
-	
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: block;
-    content: '';
-    height: 50px;
-    width: 1px;
-    background: #e9e9e9;
+.location>ul>li:after {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: block;
+	content: '';
+	height: 50px;
+	width: 1px;
+	background: #e9e9e9;
 }
 /* 미디어 쿼리*/
 @media only screen and (max-width: 768px) {
-    .location ul {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .location > ul > li {
-        display: block;
-        width: 100%;
-    }
+	.location ul {
+		flex-direction: column;
+		width: 100%;
+	}
+	.location>ul>li {
+		display: block;
+		width: 100%;
+	}
 }
-
 
 /* 사이드 메뉴 */
 .productsMenus {
@@ -173,57 +168,63 @@ body {
 	font-weight: bold;
 }
 
-
+.intro {
+	width: 100%;
+	height: 100%
+}
 </style>
 </head>
 <body>
-	
 	<jsp:include page="../Common/Header2.jsp" />
+
 
 	<!-- 홍보용 이미지 -->
 	<div class="aboutPromotion" align="center">
-		<img width="80%" height="200px" alt="홍보용 이미지" src="../resources/imgs/aboutus.png">
+		<img width="80%" height="200px" alt="홍보용 이미지"
+			src="../resources/imgs/aboutus.png">
 	</div>
 
-		<br>
-		<div class="productBody">
-<!-- 사이드 메뉴와 제품 리스트 -->
+
+	<br>
+	<div class="productBody">
+		<!-- 사이드 메뉴와 제품 리스트 -->
 		<div style="display: flex;">
 			<div class="productsMenus">
+				<div class="productsMenu">
+					<a href="CEO">CEO 인사말</a>
+				</div>
 				<div class="productsMenu">
 					<a href="OurBrand">회사소개</a>
 				</div>
 				<div class="productsMenu">
-					<a href="History">연혁</a>
-				</div>
-				<div class="productsMenu">
-					<a href="Export">수출사업</a>
+					<a href="CIBrand">CI & 브랜드소개</a>
 				</div>
 				<div class="productsMenu">
 					<a href="Import">수입사업</a>
 				</div>
-				<div class="productsMenu">
-					<a href="Oem">OEM</a>
-				</div>
-		    </div>
-			
-			
-			
-			<section>
-			<br>
-			<h1> <연혁> </h1>
-			<article class="wrap introWrap">
-
-			<img id="#" alt="연혁" src="#">
-			</article>
-			</section>
-			
 			</div>
+
+
+
+			<section>
+				<br>
+				<h1> [CEO인사말] </h1>
+				<article class="wrap introWrap">
+
+				<img  alt="수입사업" src="../resources/imgs/ceo.png">
+
+				</article>
+			</section>
+
 		</div>
+	</div>
 
 	<br>
-	
+
+
 	<jsp:include page="../Common/Footer.jsp" />
-	
+
+
+
 </body>
 </html>

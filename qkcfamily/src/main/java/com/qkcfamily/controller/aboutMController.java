@@ -16,23 +16,23 @@ public class aboutMController {
 		
 		return "AboutUs/OurBrand";
 	}
-	@GetMapping("/AboutUs/Export")
-	public String aboutM_Export() {
+	@GetMapping("/AboutUs/CEO")
+	public String aboutM_CEO() {
 		
 		// 단순 페이지 이동 
 		// 출력데이터 가져오기
 		
 		
-		return "AboutUs/Export";
+		return "AboutUs/CEO";
 	}
-	@GetMapping("/AboutUs/History")
-	public String aboutM_History() {
+	@GetMapping("/AboutUs/CIBrand")
+	public String aboutM_CIBrand() {
 		
 		// 단순 페이지 이동 
 		// 출력데이터 가져오기
 		
 		
-		return "AboutUs/History";
+		return "AboutUs/CIBrand";
 	}
 	@GetMapping("/AboutUs/Import")
 	public String aboutM_Import() {
@@ -44,15 +44,6 @@ public class aboutMController {
 		return "AboutUs/Import";
 	}
 
-	@GetMapping("/AboutUs/Oem")
-	public String aboutM_OEM() {
-		
-		// 단순 페이지 이동 
-		// 출력데이터 가져오기
-		
-		
-		return "AboutUs/Oem";
-	}
 	
 	/*
 	 * @GetMapping("/ContactUs/contactUs") public String contactUsPage() {

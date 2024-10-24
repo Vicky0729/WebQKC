@@ -191,27 +191,24 @@ body {
 		<div style="display: flex;">
 			<div class="productsMenus">
 				<div class="productsMenu">
+					<a href="CEO">CEO 인사말</a>
+				</div>
+				<div class="productsMenu">
 					<a href="OurBrand">회사소개</a>
 				</div>
 				<div class="productsMenu">
-					<a href="History">연혁</a>
-				</div>
-				<div class="productsMenu">
-					<a href="Export">수출사업</a>
+					<a href="CIBrand">CI & 브랜드소개</a>
 				</div>
 				<div class="productsMenu">
 					<a href="Import">수입사업</a>
 				</div>
-				<div class="productsMenu">
-					<a href="Oem">OEM</a>
-				</div>
-		    </div>
+			</div>
 			
 			
 			
 			<section>
 			<br>
-			<h1> <회사소개> </h1>
+			<h1> [회사소개] </h1>
 			<article class="wrap introWrap">
 
 			<img  alt="자사브랜드" src="../resources/imgs/회사소개1.png">
