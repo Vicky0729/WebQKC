@@ -44,6 +44,12 @@ public interface AdminMapper {
 	
 	   @Insert("insert into tb_popup (pop_title, start_date, end_date, pop_img, created_at) values (#{pop_title},#{start_date},#{end_date},#{pop_img},default)")
 	   public void addPopup(Popup popup);
+	   
+	   @Update("UPDATE tb_popup SET pop_title=#{pop_title}, start_date=#{start_date}, end_date=#{end_date}, pop_img=#{pop_img} where pop_idx = #{pop_idx}")
+	   public void updatePopup(Popup popup);
+	   
+	   @Delete("DELETE FROM tb_popup WHERE pop_idx = #{popup_idx}")
+	   public int deletePopupById(String pop_idx);
 	//추상 메소드 추가
 	
 }

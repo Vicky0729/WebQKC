@@ -37,8 +37,7 @@ body {
 	display: flex;
 	flex-direction: column; /* 수직 방향으로 정렬 */
 }
-   
-  
+
 /* 메인페이지 홍보 영상 부분 CSS */
 iframe {
 	width: 95%;
@@ -227,51 +226,49 @@ iframe {
 
 /* 모달 스타일 */
 .modal {
-    display: none;
-    position: fixed;
-    background-color: rgba(255, 255, 255, 0.9);
-    border: 1px solid #ccc;
-    z-index: 1000;
-    overflow: hidden;
-    padding: 10px;
-    /* 기본 크기는 이미지 비율에 맞춰 조정되지만, 최대 크기를 지정 */
-    max-width: 500px;  /* 최대 너비 */
-    max-height: 500px; /* 최대 높이 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+	display: none;
+	position: fixed;
+	background-color: rgba(255, 255, 255, 0.9);
+	border: 1px solid #ccc;
+	z-index: 1000;
+	overflow: hidden;
+	padding: 10px;
+	/* 기본 크기는 이미지 비율에 맞춰 조정되지만, 최대 크기를 지정 */
+	max-width: 500px; /* 최대 너비 */
+	max-height: 500px; /* 최대 높이 */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
 }
 
 /* 팝업 이미지 스타일 */
 .modal img {
-    width: auto;
-    height: auto;
-    max-width: 100%;  /* 모달 창의 최대 너비 */
-    max-height: 100%; /* 모달 창의 최대 높이 */
-    object-fit: contain; /* 비율을 유지하면서 크기 조정 */
+	width: auto;
+	height: auto;
+	max-width: 100%; /* 모달 창의 최대 너비 */
+	max-height: 100%; /* 모달 창의 최대 높이 */
+	object-fit: contain; /* 비율을 유지하면서 크기 조정 */
 }
 
 /* 닫기 버튼 스타일 */
 .close {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    width: 25px;
-    height: 25px;
-    background-color: #f44336;
-    color: white;
-    text-align: center;
-    line-height: 20px;
-    border-radius: 50%;
-    cursor: pointer;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 25px;
+	height: 25px;
+	background-color: #f44336;
+	color: white;
+	text-align: center;
+	line-height: 20px;
+	border-radius: 50%;
+	cursor: pointer;
 }
-
-
 </style>
 </head>
 
 
 <body>
-  <jsp:include page="Common/Header.jsp" />
- 
+	<jsp:include page="Common/Header.jsp" />
+
 
 
 	<br>
@@ -285,10 +282,6 @@ iframe {
 				style="top:${status.index * 50}px; left:${status.index * 50}px;">
 				<span class="close">&times;</span> <img
 					id="popup_img_${status.index}" src="${popup.pop_img}" alt="팝업 이미지">
-				<div class="checkbox-container">
-            <input type="checkbox" id="noShowToday">
-            <label for="noShowToday">하루 동안 보지 않기</label>
-        </div>
 			</div>
 		</c:forEach>
 	</c:if>
@@ -345,10 +338,10 @@ iframe {
 	<!-- 메인화면에서 수출,수입, OEM제조, 브랜드 사업으로 갈 수 있는 박스(추후 버튼으로 바꿀 예정) -->
 	<div class="MainOthers">
 		<ul>
-			<li class="Othersactive"><a href="AboutUs/Export"
-				class="click">수출 사업</a></li>
-			<li class="Othersactive"><a href="AboutUs/Import"
-				class="click">수입 사업</a></li>
+			<li class="Othersactive"><a href="AboutUs/Export" class="click">수출
+					사업</a></li>
+			<li class="Othersactive"><a href="AboutUs/Import" class="click">수입
+					사업</a></li>
 			<li class="Othersactive"><a href="AboutUs/Oem" class="click">OEM제조</a></li>
 			<li class="Othersactive"><a href="AboutUs/OurBrand"
 				class="click">브랜드사업</a></li>
@@ -395,7 +388,7 @@ iframe {
 	<br>
 	<br>
 
-	
+
 	<jsp:include page="Common/Footer.jsp" />
 
 
@@ -514,6 +507,8 @@ iframe {
 
 
 </script>
+
+
 
 </body>
 </html>

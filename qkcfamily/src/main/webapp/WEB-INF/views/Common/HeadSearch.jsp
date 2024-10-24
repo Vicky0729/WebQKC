@@ -231,7 +231,7 @@ body {
 				<li><a href="homeMain" class="irCommon">Home</a></li>
 				<li><a href="${pageContext.request.contextPath}/Products/Main">Products<i class="irCommon"></i></a>
 					<ul>
-					<li><a href="${pageContext.request.contextPath}/AboutUs/OurBrand">About Us</a></li>
+					<li><a href="${pageContext.request.contextPath}/AboutUs/CEO">About Us</a></li>
 					<li><a href="${pageContext.request.contextPath}/Products/Main">Products</a></li>
 					<li><a href="#.jsp">News</a></li>
 					<li><a href="#.jsp">Business</a></li>

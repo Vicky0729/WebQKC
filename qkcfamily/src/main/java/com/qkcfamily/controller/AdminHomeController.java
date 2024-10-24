@@ -23,7 +23,7 @@ public class AdminHomeController {
 
 	@Autowired
 	AdminMapper adminMapper;
-	
+
 	// 관리자 로그인 페이지
 	@GetMapping("/admin")
 	public String admin() {
@@ -132,19 +132,33 @@ public class AdminHomeController {
 
 		return "Adm/PopupList";
 	}
-	
+
 	// 팝업 추가 기능
-		@PostMapping("Adm/popup/1")
-		public String addPopup(Popup popup) {
+	@PostMapping("Adm/popup/1")
+	public String addPopup(Popup popup) {
 
-			System.out.println("팝업추가진입");
-			adminMapper.addPopup(popup);
+		System.out.println("팝업추가진입");
+		adminMapper.addPopup(popup);
 
-			return "redirect:/Adm/PopupList";
+		return "redirect:/Adm/PopupList";
+	}
+
+	// 팝업 수정 기능
+	@PostMapping("Adm/popup/2")
+	public String updatePopup(Popup popup) {
+
+		// 최종 업데이트 쿼리 실행
+		adminMapper.updatePopup(popup);
+		return "redirect:/Adm/PopupList";
+	}
+	
+	
+	// 팝업 삭제 기능
+		@PostMapping("Adm/popup/3")
+		public String deletePopup(@RequestParam("pop_idx") String pop_idx) {
+			adminMapper.deletePopupById(pop_idx); // MyBatis Mapper에서 해당 admin_id 삭제
+			return "redirect:/Adm/PopupList"; // 삭제 후 관리자 목록 페이지로 리디렉션
 		}
-
-	
-	
 
 	@GetMapping("Adm/Popup")
 	public String PopupPage() {

@@ -133,33 +133,55 @@ td {
 					<td>${popup.pop_title}</td>
 					<td>${popup.start_date}</td>
 					<td>${popup.end_date}</td>
-					<td><button class="btn"
-							onclick="window.location.href='editAd.jsp?id=1'">수정</button></td>
-					<td><button class="btn btn-delete" onclick="deleteAd(1)">삭제</button></td>
+					<td><button class="btn btn-update">수정</button></td>
+					<td>
+						<form action="popup/3" method="post"
+							onsubmit="return confirm('삭제하시겠습니까?');">
+							<input type="hidden" name="pop_idx" value="${popup.pop_idx}">
+							<button type="submit" class="btn btn-delete">삭제</button>
+						</form>
+					</td>
 				</tr>
 			</c:forEach>
 
 		</tbody>
 	</table>
 
-			<!-- 모달 창 -->
-			<div id="modal" class="modal">
-				<div class="modal-content">
-					<span class="close">&times;</span>
-					<h2>새 광고/팝업 추가</h2>
-					<form action="popup/1" id="addPopupFrom" method="post">
-						팝업 제목: <input type="text" id="pop_title" name="pop_title" required><br>
-						<br> 팝업 이미지 경로: <input type="text" id="pop_img"
-							name="pop_img" required><br>
-						<br> 노출 시작일: <input type="date" id="start_date"
-							name="start_date" required><br>
-						<br> 노출 종료일: <input type="date" id="end_date" name="end_date"
-							required><br>
-						<br>
-						<button type="submit">추가</button>
-					</form>
-				</div>
-			</div>
+	<!-- 모달 창 -->
+	<div id="modal" class="modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<h2>새 광고/팝업 추가</h2>
+			<form action="popup/1" id="addPopupFrom" method="post">
+				팝업 제목: <input type="text" id="pop_title" name="pop_title" required><br>
+				<br> 팝업 이미지 경로: <input type="text" id="pop_img" name="pop_img"
+					required><br> <br> 노출 시작일: <input type="date"
+					id="start_date" name="start_date" required><br> <br>
+				노출 종료일: <input type="date" id="end_date" name="end_date" required><br>
+				<br>
+				<button type="submit">추가</button>
+			</form>
+		</div>
+	</div>
+
+	<!-- 모달 창2 -->
+<div id="modal2" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>팝업 수정</h2>
+        <form action="popup/2" id="updatePopupFrom" method="post">
+            <input type="hidden" id="pop_idx" name="pop_idx"> <!-- 팝업 ID를 전달하기 위한 hidden 필드 -->
+            팝업 제목: <input type="text" id="pop_title" name="pop_title" required><br>
+            <br> 팝업 이미지 경로: <input type="text" id="pop_img" name="pop_img" required><br>
+            <br> 노출 시작일: <input type="date" id="start_date" name="start_date" required><br>
+            <br> 노출 종료일: <input type="date" id="end_date" name="end_date" required><br>
+            <br>
+            <button type="submit">수정</button>
+        </form>
+    </div>
+</div>
+	
+
 
 
 
@@ -167,69 +189,92 @@ td {
 
 
 	<script>
-	
-	$(document).ready(function() {
-	    // 모달 창 열기/닫기 기능은 그대로 유지
-	    var modal = document.getElementById("modal");
-	    var addBtn = document.querySelector(".btn-add");
-	    var closeBtn = document.querySelector(".close");
+		$(document).ready(function() {
+			// 모달 창 열기/닫기 기능은 그대로 유지
+			var modal = document.getElementById("modal");
+			var addBtn = document.querySelector(".btn-add");
+			var closeBtn = document.querySelector(".close");
 
-	    addBtn.onclick = function() {
-	        modal.style.display = "block";
-	    }
-
-	    closeBtn.onclick = function() {
-	        modal.style.display = "none";
-	    }
-
-	    window.onclick = function(event) {
-	        if (event.target == modal) {
-	            modal.style.display = "none";
-	        }
-	    }
-
-	    // Ajax로 폼 제출
-	    $('#addPopupFrom').on('submit', function(event) {
-	        event.preventDefault(); // 기본 폼 제출 막기
-	        
-	        // 폼 데이터 가져오기
-	        var formData = {
-	            pop_title: $('#pop_title').val(),
-	            pop_img: $('#pop_img').val(),
-	            start_date: $('#start_date').val(),
-	            end_date: $('#end_date').val()
-	        };
-
-	        // Ajax 요청
-	        $.ajax({
-	            type: 'POST',
-	            url: 'popup/1',  // 서버에서 처리하는 URL로 변경
-	            data: formData,
-	            success: function(response) {
-	                alert('팝업이 성공적으로 추가되었습니다.');
-	                modal.style.display = "none";  // 폼 제출 후 모달 닫기
-	                window.location.reload();      // 페이지 새로고침하여 목록 갱신
-	            },
-	            error: function(xhr, status, error) {
-	                alert('팝업 추가 중 오류가 발생했습니다.');
-	            }
-	        });
-	    });
-	});
-
-	
-	
-	
-	
-		// 광고/팝업 삭제 확인 및 처리
-		function deleteAd(adId) {
-			if (confirm("해당 광고/팝업을 삭제하시겠습니까?")) {
-				// 서버와 연동하여 광고/팝업 삭제 처리 (Ajax 등 사용 가능)
-				alert(adId + "번 광고/팝업이 삭제되었습니다.");
-				// 페이지를 새로고침하여 목록을 갱신
-				window.location.reload();
+			addBtn.onclick = function() {
+				modal.style.display = "block";
 			}
-		}
+
+			closeBtn.onclick = function() {
+				modal.style.display = "none";
+			}
+
+			window.onclick = function(event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+
+			// Ajax로 폼 제출
+			$('#addPopupFrom').on('submit', function(event) {
+				event.preventDefault(); // 기본 폼 제출 막기
+
+				// 폼 데이터 가져오기
+				var formData = {
+					pop_title : $('#pop_title').val(),
+					pop_img : $('#pop_img').val(),
+					start_date : $('#start_date').val(),
+					end_date : $('#end_date').val()
+				};
+
+				// Ajax 요청
+				$.ajax({
+					type : 'POST',
+					url : 'popup/1', // 서버에서 처리하는 URL로 변경
+					data : formData,
+					success : function(response) {
+						alert('팝업이 성공적으로 추가되었습니다.');
+						modal.style.display = "none"; // 폼 제출 후 모달 닫기
+						window.location.reload(); // 페이지 새로고침하여 목록 갱신
+					},
+					error : function(xhr, status, error) {
+						alert('팝업 추가 중 오류가 발생했습니다.');
+					}
+				});
+			});
+		});
+
+		$(document).ready(function() {
+		    var modal2 = document.getElementById("modal2"); // 수정 모달을 가져옵니다.
+		    var closeBtn = modal2.querySelector(".close"); // 수정 모달 내 닫기 버튼을 가져옵니다.
+
+		    // 모든 .btn-update 버튼에 이벤트 리스너를 적용
+		    $('.btn-update').on('click', function() {
+		        // 클릭된 버튼이 속한 tr 행의 데이터를 가져와 모달에 표시
+		        var row = $(this).closest('tr');  // 클릭된 버튼이 속한 tr 가져오기
+		        var pop_idx = row.find('td:eq(0)').text();  // 팝업 ID
+		        var pop_title = row.find('td:eq(1)').text();  // 팝업 제목
+		        var start_date = row.find('td:eq(2)').text();  // 노출 시작일
+		        var end_date = row.find('td:eq(3)').text();  // 노출 종료일
+
+		        // 숨겨진 필드에 팝업 ID 값을 넣어줍니다.
+		        $('#updatePopupFrom #pop_idx').val(pop_idx);
+
+		        // 나머지 필드에 값을 넣어줍니다.
+		        $('#updatePopupFrom #pop_title').val(pop_title);
+		        $('#updatePopupFrom #start_date').val(start_date);
+		        $('#updatePopupFrom #end_date').val(end_date);
+
+		        // 수정 모달 창 열기
+		        modal2.style.display = "block";
+		    });
+
+		    // 모달 닫기 버튼
+		    closeBtn.onclick = function() {
+		        modal2.style.display = "none";
+		    }
+
+		    window.onclick = function(event) {
+		        if (event.target == modal2) {
+		            modal2.style.display = "none";
+		        }
+		    }
+		});
+
 	</script>
 </body>
 </html>
