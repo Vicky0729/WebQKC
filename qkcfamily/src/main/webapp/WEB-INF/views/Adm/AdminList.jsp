@@ -11,98 +11,148 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>사용자 관리</title>
 <style>
+<style>
+/* 기본 스타일 설정 */
 body {
-	font-family: 'Arial', sans-serif;
-	margin: 20px;
+   font-family: 'Arial', sans-serif;
+   margin: 0;
+   padding: 0;
+   background-color: #f9f9f9;
 }
 
+.container {
+   width: 90%;
+   max-width: 1200px;
+   margin: 20px auto;
+   padding: 20px;
+   background-color: #fff;
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+   border-radius: 8px;
+}
+
+/* 페이지 제목 스타일 */
 h2 {
-	font-size: 24px;
-	font-weight: bold;
+   font-size: 28px;
+   font-weight: bold;
+   color: #333;
+   margin-bottom: 10px;
 }
 
+p.description {
+   font-size: 16px;
+   color: #666;
+   margin-bottom: 20px;
+}
+
+/* 테이블 스타일 */
 table {
-	width: 100%;
-	border-collapse: collapse;
-	margin-top: 20px;
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 20px;
 }
 
 table, th, td {
-	border: 1px solid #ddd;
-	padding: 10px;
-	text-align: left;
+   border: 1px solid #ddd;
+   padding: 12px;
+   text-align: left;
 }
 
+/* 헤더 색상 변경 */
 th {
-	background-color: #f4f4f4;
+   background-color: #007BFF; /* 파란색 배경 */
+   color: white; /* 텍스트는 흰색 */
 }
 
 td {
-	text-align: center;
+   text-align: center;
 }
 
+tr:nth-child(even) {
+   background-color: #f9f9f9;
+}
+
+/* 버튼 스타일 */
 .btn {
-	padding: 5px 10px;
-	background-color: #4CAF50;
-	color: white;
-	border: none;
-	cursor: pointer;
-	border-radius: 5px;
+   padding: 10px 15px;
+   color: white;
+   border: none;
+   cursor: pointer;
+   border-radius: 5px;
+   font-size: 14px;
 }
 
 .btn:hover {
-	background-color: #45a049;
-}
-
-.btn-delete {
-	background-color: #f44336;
-}
-
-.btn-delete:hover {
-	background-color: #e53935;
+   opacity: 0.9;
 }
 
 .btn-add {
-	background-color: #2196F3;
-	margin-bottom: 20px;
+   background-color: #2196F3;
+   margin-bottom: 20px;
+   font-size: 16px;
+}
+
+.btn-update {
+   background-color: #4CAF50;
+}
+
+.btn-delete {
+   background-color: #f44336;
 }
 
 .btn-add:hover {
-	background-color: #1976D2;
+   background-color: #1976D2;
+}
+
+.btn-update:hover {
+   background-color: #45a049;
+}
+
+.btn-delete:hover {
+   background-color: #e53935;
 }
 
 /* 모달 창 스타일 */
 .modal {
-	display: none; /* 처음에는 숨겨둡니다. */
-	position: fixed;
-	z-index: 1;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5); /* 배경 반투명 */
+   display: none;
+   position: fixed;
+   z-index: 1;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	background-color: white;
-	padding: 20px;
-	width: 50%; /* 화면의 1/2 크기로 설정 */
-	box-shadow: 0px 0px 10px 0px #000;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   background-color: white;
+   padding: 20px;
+   width: 40%;
+   max-width: 600px;
+   border-radius: 10px;
+   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .close {
-	color: red;
-	float: right;
-	font-size: 24px;
+   color: red;
+   float: right;
+   font-size: 24px;
 }
 
 .close:hover {
-	cursor: pointer;
+   cursor: pointer;
 }
+
+/* 반응형 스타일 */
+@media screen and (max-width: 768px) {
+   .modal-content {
+      width: 80%;
+   }
+}
+</style>
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>

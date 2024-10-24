@@ -13,40 +13,53 @@
 body {
 	font-family: 'Arial', sans-serif;
 	margin: 20px;
+	background-color: #f9f9f9;
 }
 
 h2 {
-	font-size: 24px;
+	font-size: 28px;
 	font-weight: bold;
+	color: #333;
+	margin-bottom: 20px;
 }
 
 table {
 	width: 100%;
 	border-collapse: collapse;
 	margin-top: 20px;
+	background-color: #fff;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	overflow: hidden;
 }
 
-table, th, td {
+th, td {
 	border: 1px solid #ddd;
-	padding: 10px;
-	text-align: left;
-}
-
-th {
-	background-color: #f4f4f4;
-}
-
-td {
+	padding: 12px;
 	text-align: center;
 }
 
+/* 헤더 색상 변경 */
+th {
+	background-color: #007BFF;
+	color: white;
+	font-weight: bold;
+}
+
+td {
+	color: #333;
+}
+
+/* 버튼 스타일 */
 .btn {
-	padding: 5px 10px;
+	padding: 10px 15px;
 	background-color: #4CAF50;
 	color: white;
 	border: none;
 	cursor: pointer;
 	border-radius: 5px;
+	font-size: 14px;
+	transition: background-color 0.3s ease;
 }
 
 .btn:hover {
@@ -63,11 +76,23 @@ td {
 
 .btn-add {
 	background-color: #2196F3;
+	font-size: 16px;
 	margin-bottom: 20px;
 }
 
 .btn-add:hover {
 	background-color: #1976D2;
+}
+
+/* 페이지 레이아웃 및 반응형 디자인 */
+@media ( max-width : 768px) {
+	table, th, td {
+		font-size: 14px;
+	}
+	.btn {
+		font-size: 12px;
+		padding: 8px 12px;
+	}
 }
 
 /* 모달 창 스타일 */
@@ -165,22 +190,24 @@ td {
 	</div>
 
 	<!-- 모달 창2 -->
-<div id="modal2" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>팝업 수정</h2>
-        <form action="popup/2" id="updatePopupFrom" method="post">
-            <input type="hidden" id="pop_idx" name="pop_idx"> <!-- 팝업 ID를 전달하기 위한 hidden 필드 -->
-            팝업 제목: <input type="text" id="pop_title" name="pop_title" required><br>
-            <br> 팝업 이미지 경로: <input type="text" id="pop_img" name="pop_img" required><br>
-            <br> 노출 시작일: <input type="date" id="start_date" name="start_date" required><br>
-            <br> 노출 종료일: <input type="date" id="end_date" name="end_date" required><br>
-            <br>
-            <button type="submit">수정</button>
-        </form>
-    </div>
-</div>
-	
+	<div id="modal2" class="modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<h2>팝업 수정</h2>
+			<form action="popup/2" id="updatePopupFrom" method="post">
+				<input type="hidden" id="pop_idx" name="pop_idx">
+				<!-- 팝업 ID를 전달하기 위한 hidden 필드 -->
+				팝업 제목: <input type="text" id="pop_title" name="pop_title" required><br>
+				<br> 팝업 이미지 경로: <input type="text" id="pop_img" name="pop_img"
+					required><br> <br> 노출 시작일: <input type="date"
+					id="start_date" name="start_date" required><br> <br>
+				노출 종료일: <input type="date" id="end_date" name="end_date" required><br>
+				<br>
+				<button type="submit">수정</button>
+			</form>
+		</div>
+	</div>
+
 
 
 
@@ -239,42 +266,41 @@ td {
 		});
 
 		$(document).ready(function() {
-		    var modal2 = document.getElementById("modal2"); // 수정 모달을 가져옵니다.
-		    var closeBtn = modal2.querySelector(".close"); // 수정 모달 내 닫기 버튼을 가져옵니다.
+			var modal2 = document.getElementById("modal2"); // 수정 모달을 가져옵니다.
+			var closeBtn = modal2.querySelector(".close"); // 수정 모달 내 닫기 버튼을 가져옵니다.
 
-		    // 모든 .btn-update 버튼에 이벤트 리스너를 적용
-		    $('.btn-update').on('click', function() {
-		        // 클릭된 버튼이 속한 tr 행의 데이터를 가져와 모달에 표시
-		        var row = $(this).closest('tr');  // 클릭된 버튼이 속한 tr 가져오기
-		        var pop_idx = row.find('td:eq(0)').text();  // 팝업 ID
-		        var pop_title = row.find('td:eq(1)').text();  // 팝업 제목
-		        var start_date = row.find('td:eq(2)').text();  // 노출 시작일
-		        var end_date = row.find('td:eq(3)').text();  // 노출 종료일
+			// 모든 .btn-update 버튼에 이벤트 리스너를 적용
+			$('.btn-update').on('click', function() {
+				// 클릭된 버튼이 속한 tr 행의 데이터를 가져와 모달에 표시
+				var row = $(this).closest('tr'); // 클릭된 버튼이 속한 tr 가져오기
+				var pop_idx = row.find('td:eq(0)').text(); // 팝업 ID
+				var pop_title = row.find('td:eq(1)').text(); // 팝업 제목
+				var start_date = row.find('td:eq(2)').text(); // 노출 시작일
+				var end_date = row.find('td:eq(3)').text(); // 노출 종료일
 
-		        // 숨겨진 필드에 팝업 ID 값을 넣어줍니다.
-		        $('#updatePopupFrom #pop_idx').val(pop_idx);
+				// 숨겨진 필드에 팝업 ID 값을 넣어줍니다.
+				$('#updatePopupFrom #pop_idx').val(pop_idx);
 
-		        // 나머지 필드에 값을 넣어줍니다.
-		        $('#updatePopupFrom #pop_title').val(pop_title);
-		        $('#updatePopupFrom #start_date').val(start_date);
-		        $('#updatePopupFrom #end_date').val(end_date);
+				// 나머지 필드에 값을 넣어줍니다.
+				$('#updatePopupFrom #pop_title').val(pop_title);
+				$('#updatePopupFrom #start_date').val(start_date);
+				$('#updatePopupFrom #end_date').val(end_date);
 
-		        // 수정 모달 창 열기
-		        modal2.style.display = "block";
-		    });
+				// 수정 모달 창 열기
+				modal2.style.display = "block";
+			});
 
-		    // 모달 닫기 버튼
-		    closeBtn.onclick = function() {
-		        modal2.style.display = "none";
-		    }
+			// 모달 닫기 버튼
+			closeBtn.onclick = function() {
+				modal2.style.display = "none";
+			}
 
-		    window.onclick = function(event) {
-		        if (event.target == modal2) {
-		            modal2.style.display = "none";
-		        }
-		    }
+			window.onclick = function(event) {
+				if (event.target == modal2) {
+					modal2.style.display = "none";
+				}
+			}
 		});
-
 	</script>
 </body>
 </html>

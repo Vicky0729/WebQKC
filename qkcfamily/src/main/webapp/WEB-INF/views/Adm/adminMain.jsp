@@ -40,8 +40,8 @@
 
         /* 회사 로고 이미지 */
         .logo img {
-            width: 50px;
-            height: auto;
+            width: 157px;
+            height: 60px;
         }
 
         .company-name {
