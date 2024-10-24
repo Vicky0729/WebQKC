@@ -204,15 +204,16 @@ public class ProductController {
 		return "ImportBusiness/Product";
 	}
 
-	@PostMapping("/p_search")
-	public String p_search(@RequestParam("search_str") String search_str, Model model) {
+	@PostMapping("/Common/HeadSearch")
+	public String p_search(@RequestParam("search_str") String searchProduct, Model model) {
 
-		System.out.println(search_str);
-		ArrayList<Product> SearchList = productMapper.productSearch(search_str);
-		System.out.println(SearchList);
+	
+		ArrayList<Product> SearchList = productMapper.productSearch(searchProduct);
+		int SearchCount = productMapper.SearchCount(searchProduct);
 		model.addAttribute("SearchList", SearchList);
-
-		return "p_search";
+		model.addAttribute("searchProduct", searchProduct);
+		model.addAttribute("SearchCount",SearchCount);
+		return "Common/HeadSearch";
 	}
 
 	@GetMapping("/Products/productDetail")

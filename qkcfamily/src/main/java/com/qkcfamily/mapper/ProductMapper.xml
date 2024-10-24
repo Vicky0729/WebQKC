@@ -5,7 +5,7 @@
 <mapper namespace="com.qkcfamily.mapper.ProductMapper">
 
 <select id="productSearch" resultType="com.qkcfamily.entity.Product" parameterType="String">
-SELECT * FROM tb_product WHERE pd_name LIKE CONCAT('%', #{search_str}, '%');
+SELECT * FROM tb_product WHERE pd_name LIKE CONCAT('%', #{searchProduct}, '%');
 </select>
 
 <update id="updateProduct" parameterType="com.qkcfamily.entity.Product">
@@ -15,18 +15,18 @@ SELECT * FROM tb_product WHERE pd_name LIKE CONCAT('%', #{search_str}, '%');
         pd_content = #{pd_content},
         price = #{price},
         pd_img = #{pd_img},
-        category = #{category},
         item = #{item},
         spec_carton = #{spec_carton},
         carton_size = #{carton_size},
         load_qty = #{load_qty},
-        shelf_life = #{shelf_life}
+        shelf_life = #{shelf_life},
+        category_d = #{category_d}
     WHERE pd_idx = #{pd_idx}
 </update>
 
 <insert id="InsertProduct" parameterType="com.qkcfamily.entity.Product">
 
-INSERT INTO tb_product VALUES (default, #{pd_name}, #{pd_content}, #{price}, #{pd_img}, #{category}, default, #{item}, #{spec_carton}, #{carton_size}, #{load_qty}, #{shelf_life})
+INSERT INTO tb_product VALUES (default, #{pd_name}, #{pd_content}, #{price}, #{pd_img}, NULL , default, #{pd_name}, #{spec_carton}, #{carton_size}, #{load_qty}, #{shelf_life},#{category_d})
 </insert>
 
 

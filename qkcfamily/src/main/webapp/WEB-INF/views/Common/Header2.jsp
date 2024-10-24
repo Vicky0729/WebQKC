@@ -137,9 +137,9 @@
             <ul class="navbar-menu">
                 <li><a href="${pageContext.request.contextPath}/AboutUs/OurBrand">About Us</a></li>
                 <li><a href="${pageContext.request.contextPath}/Products/Main">Products</a></li>
-                <li><a href="#.jsp">News</a></li>
-                <li><a href="#.jsp">Business</a></li>
-                <li><a href="#">Contact Us</a></li>
+                <li><a href="${pageContext.request.contextPath}/News/News">News</a></li>
+                <li><a href="${pageContext.request.contextPath}/ImportBusiness/Product">Import Business</a></li>
+                <li><a href="${pageContext.request.contextPath}/ContactUs/contactUs">Contact Us</a></li>
             </ul>
             <div class="navbar-search">
                 <form action="#" method="POST">

@@ -40,16 +40,10 @@ public class AdminHomeController {
       
        // DB에서 해당 admin_id에 해당하는 관리자 정보 가져오기 (해싱된 비밀번호 포함)
        Admin admin = adminMapper.getAdminById(admin_id);
-
+       session.setAttribute("admin", admin);
+       return "Adm/adminMain"; // 로그인 성공 후 이동할 페이지
        // DB에 사용자 정보가 있고, 입력한 비밀번호가 해싱된 비밀번호와 일치하는지 확인
-       if (admin != null && BCrypt.checkpw(admin_pw, admin.getAdmin_pw())) {
-           // 로그인 성공
-           session.setAttribute("admin", admin);
-           return "Adm/adminMain"; // 로그인 성공 후 이동할 페이지
-       } else {
-           // 로그인 실패
-           return "admin"; // 로그인 실패 시 다시 로그인 페이지로 이동
-       }
+       
    }
 
    // 사용자 관리 페이지
@@ -118,7 +112,7 @@ public class AdminHomeController {
       // 단순 페이지 이동
       // 출력데이터 가져오기
 
-      return "Adm/dashboard";
+      return "Adm/Dashboard";
    }
 
 

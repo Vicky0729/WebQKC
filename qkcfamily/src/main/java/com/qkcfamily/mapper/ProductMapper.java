@@ -3,6 +3,7 @@ package com.qkcfamily.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -12,8 +13,11 @@ import com.qkcfamily.entity.Product;
 @Mapper
 public interface ProductMapper {
 
-	public ArrayList<Product> productSearch(String search_str);
-
+	// 제품 검색어 리스트 가져오기
+	public ArrayList<Product> productSearch(String searchProduct);
+	
+	@Select("SELECT COUNT(*) FROM tb_product WHERE pd_name LIKE CONCAT('%', #{searchProduct}, '%')")
+	public int SearchCount(String searchProduct);
 	// 버섯류 제품 리스트 가져오기
 	// 버섯류 제품 개수 가져오기
 
@@ -100,7 +104,7 @@ public interface ProductMapper {
 	@Select("select * from tb_product where category = '식료품'")
 	public ArrayList<Product> allFoodStuffs();
 
-	@Select("select * from tb_product where category = '제과류'")
+	@Select("select * from tb_product where category = '제과'")
 	public ArrayList<Product> allSnack();
 
 	@Select("select * from tb_product where category = '수입품'")
@@ -110,13 +114,14 @@ public interface ProductMapper {
 	public ArrayList<Product> allEtc();
 
 	@Select("select * from tb_product where pd_idx = #{pd_idx}")
-	public Product EditProduct(int pd_idx);
+	public Product SelectById(int pd_idx);
 
 	public void updateProduct(Product product);
 
 	public void InsertProduct(Product product);
-
-
+	
+	@Delete("delete from tb_product where pd_idx=#{pd_idx}")
+	public void deleteProduct(int pd_idx);
 
 	@Select("select * from tb_product where pd_idx = #{pd_idx}")
 	public Product getDetail(int pd_idx);

@@ -223,64 +223,25 @@ body {
 <body>
 
 
+	<jsp:include page="../Common/Header2.jsp" />
 
-	<!-- 중간 메뉴버튼 -->
-	<div class="container">
-		<div class="location">
-			<ul class="wrap">
-				<li><a href="homeMain" class="irCommon">Home</a></li>
-				<li><a href="${pageContext.request.contextPath}/Products/Main">Products<i class="irCommon"></i></a>
-					<ul>
-					<li><a href="${pageContext.request.contextPath}/AboutUs/OurBrand">About Us</a></li>
-					<li><a href="${pageContext.request.contextPath}/Products/Main">Products</a></li>
-					<li><a href="#.jsp">News</a></li>
-					<li><a href="#.jsp">Business</a></li>
-					<li><a href="#">Contact Us</a></li>
-					</ul>
-				</li>
-
-
-				<li ><a href="productsM.do">카테고리<i class="irCommon"></i></a>
-					<ul>
-						<li><a href="p_mushroom.do">버섯류</a></li>
-						<li><a href="p_foodstuffs.do">식료품</a></li>
-						<li><a href="p_snack.do">제과</a></li>
-						<li><a href="p_etc.do">기타</a></li>
-						<li><a href="p_importP.do">수입제품</a></li>
-
-					</ul>
-				</li>
-			</ul>
-		</div>
+	
+		<!-- 홍보용 이미지 -->
+	<div class="aboutPromotion" align="center">
+		<img width="80%" height="200px" alt="홍보용 이미지"
+			src="../resources/imgs/productsM.jpg">
+	</div>
+	
 
 		<br>
 		
 
-
+	
 	<!-- 사이드 메뉴와 제품 리스트 -->
 	<div style="display: flex;">
-		<div class="productsMenus">
-			<div class="productsMenu">
-				<a href="p_mushroom.do">버섯류</a>
-			</div>
-			<div class="productsMenu">
-				<a href="p_foodstuffs.do">식료품</a>
-				<ul class="subcategory">
-                <li><a href="p_frozen.do">냉동/냉장</a></li>
-                <li><a href="p_roomtemp.do">상온</a></li>
-            	</ul>
-			</div>
-			<div class="productsMenu">
-				<a href="p_snack.do">제과</a>
-			</div>
-			<div class="productsMenu">
-				<a href="p_etc.do">기타</a>
-			</div>
-			<div class="productsMenu">
-				<a href="p_importP.do">수입제품</a>
-			</div>
-		</div>
-
+		<h2>${searchProduct} 검색결과</h2>
+		<br>
+		<h3>총 ${SearchCount}건의 검색결과가 있습니다.</h3>
 		<div class="products">
 			<c:forEach items="${SearchList}" var="search">
 			<div class="product">
@@ -292,10 +253,9 @@ body {
 			</c:forEach>
 		</div>
 	</div>
-</div>
 
 
 	<br>
-	
+		<jsp:include page="../Common/Footer.jsp" />
 </body>
 </html>
