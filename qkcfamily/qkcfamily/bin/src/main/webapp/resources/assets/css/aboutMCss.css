@@ -1,0 +1,211 @@
+/* 전체 적용 CSS  */
+html, body {
+	width: 100%;
+	font-family: Pretendard-Regular;
+	font-size: 16px;
+	line-height: 1.5;
+	color: #333;
+}
+* {
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Header부분 CSS */
+/* 네비게이션 바 스타일 */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* 로고와 메뉴 항목, 검색 및 언어 선택 사이 간격 */
+    align-items: center; /* 수직 중앙 정렬 */
+    padding: 10px;
+    background-color: #333; /* 배경색 */
+    padding: 10px 20px;
+
+}
+
+/* 로고 스타일 */
+.navbar-logo, .navbar-logo img {
+    float: left;
+    border: 1px solid black; /* 메뉴 사이즈 확인을 위한 임시 박스테두리 */
+}
+.navbar-logo{
+	height: 100px auto; /* 로고 크기 조정 */
+    width: 100px auto; /* 로고 크기 조정 */
+    margin-top : 10px;
+    margin-left : 20px;
+    margin-right : 20px;
+    margin-bottom : 20px;
+}
+
+/* 메뉴와 검색과 언어 선택을 하나로 묶기 */
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* 메뉴 스타일 */
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    gap: 20px; /* 메뉴 항목 간 간격 */
+    margin-top : 20px;
+    width : 800px;
+    justify-content: center;
+    
+}
+
+.navbar-menu li {
+   margin-right: 20px;
+    
+}
+
+.navbar-menu a {
+    color : black;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+   
+    border: 1px solid black; /* 메뉴 사이즈 확인을 위한 임시 박스테두리 */
+}
+
+.navbar-menu a:hover {
+    background-color: #575757; /* 호버 효과 */
+    border-radius: 5px;
+}
+
+
+
+/* 검색 스타일 */
+#navSearch{
+    width: 300px;
+    height: 50px;
+    position: relative;
+    display: flex;
+    margin-right: 20px;
+}
+.navbar-search{
+	width: 300px;
+    height: 50px;
+    position: relative;
+    
+}
+
+.navbar-search input {
+    width: 100%;
+    border-radius: 15px;
+ 	margin-right: 5px;
+
+}
+
+.navbar-search button {
+	position: absolute;
+    padding: 5px 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    top: 5px;
+    bottom: 5px;
+    right: 5px;
+    border-radius: 15px;
+    
+}
+
+.navbar-search button:hover {
+    background-color: #f0f0f0;
+}
+
+/* 언어 선택 스타일 */
+.navbar-language{
+	width: 100px;
+    height: 50px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+}
+.navbar-language select {
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-rigft: 20px;
+    
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* 작은 화면에서는 세로 배치 */
+        align-items: flex-start;
+    }
+    .navbar-menu {
+        flex-direction: column; /* 메뉴 항목을 세로로 배치 */
+    }
+}
+
+/* 메인페이지 상품 버튼(식료품, 제과, 버섯, 수입) 부분 CSS */
+.aboutMenus {
+	  display: flex;
+	  justify-content: center;
+	  border: 1px solid black;
+	  margin: 1px;
+	  padding: 10px;
+
+	  
+}
+
+.aboutMenu {
+	  display: inline-block;
+	  width: 150px;
+	  height: 50px;
+	  background-color: skyblue;
+	  border: 1px solid black;
+	  align-content: center;
+	}
+
+
+/* footer부분 CSS : 위부터 순서대로 하단고정, 회색배경, width 및 위치 고정, 마진, 글자색 크기 */
+footer{
+  position : relative;
+  transform : translateY(-100%);
+}
+#footer{
+    clear: both;
+    background-color: #787878;
+    margin-top: 40px;
+}
+.footer{
+	display: flex;
+	justify-content: center;
+	background-color: #787878; 
+	max-width: 1200px auto;
+    margin: 0 auto;
+    text-align: left;
+}
+.finfo{
+	margin-left: 40px;
+}
+ul.footer li {
+    float: left;
+    font-size: 16px;
+    color: #d7d7d7;
+    line-height: 16px;
+    padding: 3px 0;
+}
+ul, ol, li, a {
+    list-style: none;
+    vertical-align: top;
+}
+ul.footer {
+    padding: 24px 0;
+    overflow: hidden;
+}
+ul.footer li label {
+    margin-right: 14px;
+}
+ul.footer p.copyright {
+    font-size: 10px;
+    color: #ccc;
+    padding-top: 12px;
+}

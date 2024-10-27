@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.qkcfamily.mapper.ProductMapper">
+
+<select id="productSearch" resultType="com.qkcfamily.entity.Product" parameterType="String">
+SELECT * FROM tb_product WHERE pd_name LIKE CONCAT('%', #{search_str}, '%');
+</select>
+
+<update id="updateProduct" parameterType="com.qkcfamily.entity.Product">
+    UPDATE tb_product
+    SET 
+        pd_name = #{pd_name},
+        pd_content = #{pd_content},
+        price = #{price},
+        pd_img = #{pd_img},
+        category = #{category},
+        item = #{item},
+        spec_carton = #{spec_carton},
+        carton_size = #{carton_size},
+        load_qty = #{load_qty},
+        shelf_life = #{shelf_life}
+    WHERE pd_idx = #{pd_idx}
+</update>
+
+<insert id="InsertProduct" parameterType="com.qkcfamily.entity.Product">
+
+INSERT INTO tb_product VALUES (default, #{pd_name}, #{pd_content}, #{price}, #{pd_img}, #{category}, default, #{item}, #{spec_carton}, #{carton_size}, #{load_qty}, #{shelf_life})
+</insert>
+
+
+</mapper>
