@@ -143,10 +143,11 @@ textarea {
 			<label for="content">콘텐츠 내용</label>
 			<textarea id="content" name="pd_content" rows="10" required>${productOne.pd_content}</textarea>
 		</div>
-
+		
+		<input type="hidden" name="pd_idx" value="${productOne.pd_idx}">
 		<input type="submit" class="btn" value="제품 수정">
 		<button type="button" class="btn btn-cancel"
-			onclick="window.location.href='productManagement.jsp'">취소</button>
+			onclick="window.location.href='Content'">취소</button>
 	</form>
 
 	<script>

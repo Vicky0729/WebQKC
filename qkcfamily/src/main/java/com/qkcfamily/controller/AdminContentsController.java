@@ -92,7 +92,7 @@ public class AdminContentsController {
 		productMapper.InsertProduct(product);
 		
 		
-		return "Adm/Content";
+		return "redirect:/Adm/Content?success=true";
 	}
 	
 	@GetMapping("Adm/updateProductPage")
@@ -113,7 +113,7 @@ public class AdminContentsController {
 		productMapper.updateProduct(product);
 		
 		
-		return "Adm/Content";
+		return "redirect:/Adm/Content?updated=true";
 	}
 	
 	

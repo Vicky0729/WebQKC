@@ -102,19 +102,30 @@ textarea {
 		</div>
 		
 		<div class="form-group">
-			<label for="category">카테고리</label> <select id="category" name="category_d" required>
+			<label for="category">카테고리</label> <select id="category" name="category" required>
 				<option value="">카테고리 선택</option>
-				<option value="버섯">버섯</option>
-				<option value="상온">상온</option>
-				<option value="쿠키류">쿠키류</option>
-				<option value="스낵류">스낵류</option>
-				<option value="냉장">냉장</option>
-				<option value="냉동">냉동</option>
+				<option value="버섯류">버섯류</option>
+				<option value="제과">제과</option>
 				<option value="식료품">식료품</option>
 				<option value="수입품">수입품</option>
 				<option value="기타">기타</option>
 			</select>
 		</div>
+		
+		<div class="form-group">
+			<label for="category">세부카테고리</label> <select id="category_d" name="category_d" required>
+				<option value="">카테고리 선택</option>
+				<option value="버섯">버섯</option>
+				<option value="상온">상온</option>
+				<option value="냉동">냉동</option>
+				<option value="냉장">냉장</option>
+				<option value="쿠키류">쿠키류</option>
+				<option value="스낵류">스낵류</option>
+				<option value="수입품">수입품</option>
+				<option value="기타">기타</option>
+			</select>
+		</div>
+		
 		<div class="form-group">
 			<label for="productStock">spec_carton</label> <input type="text"
 				id="productStock" name="spec_carton">
@@ -136,7 +147,7 @@ textarea {
 
 		<input type="submit" class="btn" value="제품 추가">
 		<button type="button" class="btn btn-cancel"
-			onclick="window.location.href='productManagement.jsp'">취소</button>
+			onclick="window.location.href='Content'">취소</button>
 	</form>
 
 
@@ -161,6 +172,44 @@ textarea {
 			// 선택된 파일 읽기 시작
 			reader.readAsDataURL(event.target.files[0]);
 		}
+		
+		
+		document.getElementById("category").addEventListener("change", function() {
+	        const category = this.value;
+	        const category_d = document.getElementById("category_d");
+
+	        // 모든 옵션 초기화
+	        category_d.innerHTML = '<option value="">카테고리 선택</option>';
+
+	        // 카테고리별 옵션 설정
+	        let options = [];
+
+	        switch (category) {
+	            case "버섯류":
+	                options = ["버섯"];
+	                break;
+	            case "제과":
+	                options = ["쿠키류", "스낵류"];
+	                break;
+	            case "식료품":
+	                options = ["상온", "냉동", "냉장"];
+	                break;
+	            case "수입품":
+	                options = ["수입품"];
+	                break;
+	            case "기타":
+	                options = ["기타"];
+	                break;
+	        }
+
+	        // 동적으로 옵션 추가
+	        options.forEach(function(option) {
+	            const newOption = document.createElement("option");
+	            newOption.value = option;
+	            newOption.text = option;
+	            category_d.appendChild(newOption);
+	        });
+	    });
 	</script>
 </body>
 </html>

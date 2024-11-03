@@ -105,20 +105,19 @@ h2 {
 
 	<h1>페이지설정</h1>
 
-	<form action="AdminProduct" method="post">
-		<label for="pageSelect">수정할 페이지를 선택하세요</label> <select id="pageSelect"
-			name="selectedPage">
-			<option value="">페이지 선택</option>
-			<option value="edit_mushroom">버섯</option>
-			<option value="edit_snack">제과</option>
-			<option value="edit_foodstuffs">식료품</option>
-			<option value="edit_import">수입제품</option>
-			<option value="edit_etc">기타</option>
+	<form id="pageForm" action="AdminProduct" method="post">
+	<label for="pageSelect">수정할 페이지를 선택하세요</label> 
+    <select id="pageSelect" name="selectedPage">
+		<option value="">페이지 선택</option>
+		<option value="edit_mushroom">버섯</option>
+		<option value="edit_snack">제과</option>
+		<option value="edit_foodstuffs">식료품</option>
+		<option value="edit_import">수입제품</option>
+		<option value="edit_etc">기타</option>
+	</select>
+	<button type="button" onclick="validateAndSubmit()">찾기</button>
+</form>
 
-
-		</select> <input type="submit" value="찾기">
-
-	</form>
 	<button class="btn btn-add" onclick="addProduct()">새 제품 추가</button>
 
 
@@ -301,8 +300,31 @@ h2 {
 	   
    }
    
-   
-   
+
+	function validateAndSubmit() {
+		const pageSelect = document.getElementById("pageSelect").value;
+		if (pageSelect === "") {
+			alert("수정할 페이지를 선택하세요.");
+		} else {
+			document.getElementById("pageForm").submit(); // 폼 제출
+		}
+	}
+
+	
+	 const urlParams = new URLSearchParams(window.location.search);
+     const success = urlParams.get('success');
+     const updated = urlParams.get('updated');
+
+     if (success === 'true') {
+         alert("제품이 성공적으로 추가되었습니다!");
+     }
+     
+     if (updated === 'true') {
+         alert("제품이 성공적으로 수정되었습니다!");
+     }
+    
+    
+
    
 </script>
 
