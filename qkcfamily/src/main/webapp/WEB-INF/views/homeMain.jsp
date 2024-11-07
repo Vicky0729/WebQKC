@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -171,7 +171,11 @@ iframe {
 
 /* BEST 상품 슬라이더 */
 .slider-section {
-	margin-top: 30px;
+  position: relative;
+  width: 100%;
+  max-width: 600px; /* 슬라이더 폭 설정 */
+  margin: auto;
+  overflow: hidden;
 }
 
 .slider-container {
@@ -186,11 +190,14 @@ iframe {
 	width: 100%;
 	display: flex;
 	overflow: hidden;
+	
+	
 }
 
 .slides {
 	display: flex;
-	transition: transform 0.5s ease-in-out;
+	width: 100%;
+	transition: transform 0.3s ease-in-out;
 }
 
 .slide {
@@ -200,7 +207,7 @@ iframe {
 
 .slider-container img {
 	width: 100%;
-	border-radius: 10px;
+  display: block;
 }
 
 .slider-container button {
@@ -213,6 +220,7 @@ iframe {
 	padding: 10px;
 	cursor: pointer;
 	font-size: 18px;
+	z-index: 10;
 }
 
 .slider-container button.prev {
@@ -384,32 +392,63 @@ iframe {
 
 	<!-- Best 상품 슬라이더 관련 JavaScript 코드를 JSP 파일 내에 직접 포함 -->
 	<script>
-   document.addEventListener("DOMContentLoaded", function () {
-        const slidesContainer = document.querySelector('.slider .slides');  // '.slider .slides'를 정확히 선택
-        const slides = document.querySelectorAll('.slider .slide');
-        const prevBtn = document.querySelector('.prev');
-        const nextBtn = document.querySelector('.next');
+	document.addEventListener("DOMContentLoaded", function () {
+		  const slider = document.querySelector('.slides'); // 전체 슬라이드를 감싸는 컨테이너
+		  const slides = document.querySelectorAll('.slide'); // 개별 슬라이드 요소
+		  let currentSlide = 0; // 초기 슬라이드 인덱스 설정
+		  const totalSlides = slides.length; // 슬라이드 개수 확인
+		  let sliderInterval; // 자동 슬라이더를 제어할 변수
 
-        let currentIndex = 0;
-        const totalSlides = slides.length;
+		  // 슬라이드 이동 함수
+		  function showSlide(index) {
+		    currentSlide = parseInt(index);
 
-        // 다음 버튼 클릭 이벤트
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % totalSlides; // 마지막 슬라이드에서 첫 슬라이드로 순환
-            updateSlidePosition();
-        });
+		    // 인덱스가 슬라이드 범위를 벗어나지 않도록 조정
+		    if (currentSlide >= totalSlides) {
+		      currentSlide = 0;
+		    }
+		    if (currentSlide < 0) {
+		      currentSlide = totalSlides - 1;
+		    }
 
-        // 이전 버튼 클릭 이벤트
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; // 첫 슬라이드에서 마지막 슬라이드로 순환
-            updateSlidePosition();
-        });
+		    const translateXValue = -currentSlide * 100;
+		    slider.style.transform = "translateX(" + translateXValue + "%)";
+		    
+		  }
 
-        // 슬라이드 위치 업데이트 함수
-        function updateSlidePosition() {
-            slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`; // 현재 인덱스에 따라 슬라이드 이동
-        }
-    });
+		  // 자동 슬라이더 시작 함수
+		  function startSlider() {
+		    sliderInterval = setInterval(() => {
+		      showSlide(currentSlide + 1);
+		    }, 3000);
+		  }
+
+		  // 자동 슬라이더 멈추는 함수
+		  function stopSlider() {
+		    clearInterval(sliderInterval);
+		  }
+
+		  // 다음 버튼 클릭 이벤트
+		  document.querySelector('.next').addEventListener('click', () => {
+		    showSlide(currentSlide + 1);
+		  });
+
+		  // 이전 버튼 클릭 이벤트
+		  document.querySelector('.prev').addEventListener('click', () => {
+		    showSlide(currentSlide - 1);
+		  });
+
+		  // 버튼에 마우스를 올리면 자동 슬라이더 멈춤
+		  document.querySelector('.next').addEventListener('mouseover', stopSlider);
+		  document.querySelector('.prev').addEventListener('mouseover', stopSlider);
+
+		  // 버튼에서 마우스를 떼면 자동 슬라이더 시작
+		  document.querySelector('.next').addEventListener('mouseleave', startSlider);
+		  document.querySelector('.prev').addEventListener('mouseleave', startSlider);
+
+		  // 페이지 로드 시 자동 슬라이더 시작
+		  startSlider();
+		});
     
     </script>
 
@@ -496,21 +535,6 @@ iframe {
 	};
 	
 	
-	let autoPlay = setInterval(() => {
-	    nextBtn.click(); // 다음 버튼을 자동 클릭
-	}, 3000); // 3초마다 자동 이동
-
-	// 마우스를 올리면 자동 재생 중지
-	document.querySelector('.slider-container').addEventListener('mouseenter', () => {
-	    clearInterval(autoPlay);
-	});
-
-	// 마우스를 치우면 자동 재생 재개
-	document.querySelector('.slider-container').addEventListener('mouseleave', () => {
-	    autoPlay = setInterval(() => {
-	        nextBtn.click();
-	    }, 3000);
-	});
 
 
 </script>

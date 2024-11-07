@@ -68,6 +68,7 @@ td {
 .btn-add:hover {
 	background-color: #1976D2;
 }
+
 label {
 	display: block;
 	margin: 10px 0 5px;
@@ -82,6 +83,7 @@ input[type="text"], input[type="number"], input[type="file"] {
 	border-radius: 4px;
 	box-sizing: border-box;
 }
+
 textarea {
 	width: 100%; /* 부모 요소에 맞춰 가로 크기를 조정 */
 	max-width: 800px; /* 최대 가로 크기 제한 */
@@ -90,6 +92,22 @@ textarea {
 	border-radius: 4px;
 	resize: both; /* 사용자가 크기를 조정할 수 있도록 설정 */
 	box-sizing: border-box; /* 패딩과 보더 포함한 크기 계산 */
+}
+
+#dropZone {
+	width: 100%;
+	padding: 20px;
+	border: 2px dashed #4CAF50;
+	border-radius: 5px;
+	text-align: center;
+	color: #aaa;
+	margin-bottom: 20px;
+	cursor: pointer;
+}
+
+#dropZone.dragover {
+	background-color: #e0f7e9;
+	color: #4CAF50;
 }
 </style>
 </head>
@@ -109,14 +127,17 @@ textarea {
 
 		<!-- 새 이미지 업로드 -->
 		<div class="form-group">
-			<label for="productImage">새 이미지 선택</label> <input type="file"
-				id="productImage" name="pd_img" accept="image/*"
-				onchange="previewImage(event)">
+			<label for="productImage">새 이미지 선택</label>
+			<div id="dropZone">여기에 이미지를 드롭하거나 클릭하여 업로드하세요</div>
+			<input type="file" id="pd_img" name="pd_img" accept="image/*"
+				style="display: none;" onchange="previewImage(event)">
+			<div id="root"></div>
 		</div>
 
 		<div class="form-group">
 			<label for="productName">제품명</label> <input type="text"
-				id="productName" name="pd_name" value="${productOne.pd_name}" required>
+				id="productName" name="pd_name" value="${productOne.pd_name}"
+				required>
 		</div>
 
 		<div class="form-group">
@@ -124,10 +145,11 @@ textarea {
 				id="productPrice" name="price" value="${productOne.price}" required>
 		</div>
 
-		
+
 		<div class="form-group">
 			<label for="productStock">spec_carton</label> <input type="text"
-				id="productStock" name="spec_carton"  value="${productOne.spec_carton}">
+				id="productStock" name="spec_carton"
+				value="${productOne.spec_carton}">
 		</div>
 
 		<div class="form-group">
@@ -143,7 +165,7 @@ textarea {
 			<label for="content">콘텐츠 내용</label>
 			<textarea id="content" name="pd_content" rows="10" required>${productOne.pd_content}</textarea>
 		</div>
-		
+
 		<input type="hidden" name="pd_idx" value="${productOne.pd_idx}">
 		<input type="submit" class="btn" value="제품 수정">
 		<button type="button" class="btn btn-cancel"
@@ -151,15 +173,42 @@ textarea {
 	</form>
 
 	<script>
-		// 이미지 미리보기 함수
-		function previewImage(event) {
-			const reader = new FileReader();
-			reader.onload = function() {
-				const output = document.getElementById('currentImagePreview');
-				output.src = reader.result;
-			};
-			reader.readAsDataURL(event.target.files[0]);
-		}
+	// 이미지 미리보기 함수
+	function previewImage(event) {
+	    const reader = new FileReader();
+	    reader.onload = function () {
+	        const output = document.getElementById('currentImagePreview');
+	        output.src = reader.result;
+	    };
+	    reader.readAsDataURL(event.target.files[0]);
+	}
+
+	const dropZone = document.getElementById('dropZone');
+	const productImageInput = document.getElementById('pd_img');
+
+	// 드롭존 클릭 시 파일 선택 트리거
+	dropZone.addEventListener('click', () => productImageInput.click());
+
+	// 드래그 앤 드롭 이벤트 핸들러
+	dropZone.addEventListener('dragover', (event) => {
+	    event.preventDefault();
+	    dropZone.classList.add('dragover');
+	});
+
+	dropZone.addEventListener('dragleave', () => {
+	    dropZone.classList.remove('dragover');
+	});
+
+	dropZone.addEventListener('drop', (event) => {
+	    event.preventDefault();
+	    dropZone.classList.remove('dragover');
+
+	    const file = event.dataTransfer.files[0];
+	    if (file && file.type.startsWith('image/')) {
+	        productImageInput.files = event.dataTransfer.files; // 파일 입력 설정
+	        previewImage({ target: { files: [file] } });
+	    }
+	});
 	</script>
 </body>
 </html>

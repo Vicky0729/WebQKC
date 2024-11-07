@@ -223,82 +223,43 @@ h2 {
 	}
 	
   
-   function addScrap(productIdx){
-	   
-	   console.log("addJs",productIdx)
-	   
-	   $.ajax({
-			url:"addScrap/"+productIdx,
-			type: "get",
-			success: function(){
-				
-				console.log("스크랩 추가 성공");
+	function addScrap(productIdx) {
+	       $.ajax({
+	           url: "addScrap/" + productIdx,
+	           type: "get",
+	           success: function () {
+	               console.log("스크랩 추가 성공");
 
-	            // 기존 <a> 태그 전체를 찾고 새로운 요소로 교체
-	            const newElement = ` 	
-	                <a href="javascript:void(0)" onclick="deleteScrap(${productIdx})">
-	                    <img class="scimg" id="scimg-${productIdx}" 
-	                         src="../resources/imgs/scrap_icon1.png" alt="스크랩 아이콘">
-	                </a>`;
+	               // img 태그의 src 속성만 변경
+	               $("#scimg-" + productIdx).attr("src", "../resources/imgs/scrap_icon1.png");
+	               
+	               // 클릭 시 deleteScrap 함수를 호출하도록 변경
+	               $("#scimg-" + productIdx).parent().attr("onclick", `deleteScrap(${productIdx})`);
+	           },
+	           error: function () {
+	               alert("통신실패");
+	           }
+	       });
+	   }
 
-	            // 기존 <a> 태그를 정확히 찾아서 교체
-	            $(`#scimg-${productIdx}`).closest('a').replaceWith(newElement);
-				
-				
-		            
-			},
-		   	error:function(){
-		   		
-		   		alert("통신실패")
-		   		
-		   	}
-		  
-		   
-		   
-		   
-		   
-	   })
-	   
-	   
-	   
-   }
-   
- function deleteScrap(productIdx){
-	   
-	   
-	   $.ajax({
-			url:"deleteScrap/"+productIdx,
-			type: "delete",
-			success: function(){
-				
-				
-				console.log("스크랩 추가 성공");
+	   function deleteScrap(productIdx) {
+	       $.ajax({
+	           url: "deleteScrap/" + productIdx,
+	           type: "delete",
+	           success: function () {
+	               console.log("스크랩 삭제 성공");
 
-	            // 기존 <a> 태그 전체를 찾고 새로운 요소로 교체
-	            const newElement = ` 	
-	                <a href="javascript:void(0)" onclick="addScrap(${productIdx})">
-	                    <img class="scimg" id="scimg-${productIdx}" 
-	                         src="../resources/imgs/scrap_icon2.png" alt="스크랩 아이콘">
-	                </a>`;
-
-	            // 기존 <a> 태그를 정확히 찾아서 교체
-	            $(`#scimg-${productIdx}`).closest('a').replaceWith(newElement);
-			},
-		   	error:function(){
-		   		
-		   		alert("통신실패")
-		   		
-		   	}
-		  
-		   
-		   
-		   
-		   
-	   })
-	   
-	   
-	   
-   }
+	               // img 태그의 src 속성만 변경
+	               $("#scimg-" + productIdx).attr("src", "../resources/imgs/scrap_icon2.png");
+	               
+	               // 클릭 시 addScrap 함수를 호출하도록 변경
+	               $("#scimg-" + productIdx).parent().attr("onclick", `addScrap(${productIdx})`);
+	           },
+	           error: function () {
+	               alert("통신실패");
+	           }
+	       });
+	   }
    
 
 	function validateAndSubmit() {

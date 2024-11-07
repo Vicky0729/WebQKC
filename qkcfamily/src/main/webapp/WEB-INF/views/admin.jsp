@@ -300,6 +300,7 @@ input{
         <form action="Adm/adminMain" method="post">
             <div><input type="text" name="admin_id" class="adminLogin" placeholder="아이디를 입력해주세요" autocomplete="off"></div>           
             <div><input type="password" name="admin_pw" class="adminLogin" placeholder="비밀번호를 입력해주세요" autocomplete="off"></div>
+            <span id="pwd_hint" style="color: red;"></span>
             <div align="center"><input type="submit" value="로그인" class="submit-btn"></div>
         </form>
     </div>
@@ -317,5 +318,18 @@ input{
             RESERVED.</p>
       </div>
    </footer>
+   
+   <script type="text/javascript">
+    document.querySelector('input[name=admin_pw]').addEventListener('keyup', function(e) {
+        const pwdHint = document.getElementById('pwd_hint');
+        
+        if (e.getModifierState && e.getModifierState('CapsLock')) {
+            pwdHint.innerHTML = 'CAPS LOCK 켜져 있습니다.';
+            pwdHint.style.display = 'block';
+        } else {
+            pwdHint.style.display = 'none';
+        }
+    });
+</script>
 </body>
 </html>

@@ -61,6 +61,21 @@ input[type="text"], input[type="number"], input[type="file"] {
 	margin-bottom: 15px;
 }
 
+#dropZone {
+    width: 100%;
+    padding: 20px;
+    border: 2px dashed #4CAF50;
+    border-radius: 5px;
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+#dropZone.dragover {
+    background-color: #e0f7e9;
+    color: #4CAF50;
+}
 #preview {
 	margin-top: 10px;
 	max-width: 300px;
@@ -77,8 +92,6 @@ textarea {
 	resize: both; /* 사용자가 크기를 조정할 수 있도록 설정 */
 	box-sizing: border-box; /* 패딩과 보더 포함한 크기 계산 */
 }
-
-
 </style>
 </head>
 <body>
@@ -87,10 +100,11 @@ textarea {
 
 	<form action="insertProduct" method="post">
 		<div class="form-group">
-			<label for="productImage">제품 이미지</label> <input type="file"
-				id="productImage" name="pd_img" accept="image/*"
-				onchange="previewImage(event)"> <img id="preview"
-				alt="이미지 미리 보기">
+			<label for="productImage">제품 이미지</label>
+			<input type="file" id="productImage" name="pd_img" accept="image/*"
+				style="display: none;" onchange="previewImage(event)"> <img
+				id="preview" alt="이미지 미리 보기">
+				<div id="dropZone">여기에 이미지를 드롭하거나 클릭하여 업로드하세요</div>
 		</div>
 		<div id="root"></div>
 
@@ -103,9 +117,10 @@ textarea {
 			<label for="productPrice">가격</label> <input type="number"
 				id="productPrice" name="price" required>
 		</div>
-		
+
 		<div class="form-group">
-			<label for="category">카테고리</label> <select id="category" name="category" required>
+			<label for="category">카테고리</label> <select id="category"
+				name="category" required>
 				<option value="">카테고리 선택</option>
 				<option value="버섯류">버섯류</option>
 				<option value="제과">제과</option>
@@ -114,9 +129,10 @@ textarea {
 				<option value="기타">기타</option>
 			</select>
 		</div>
-		
+
 		<div class="form-group">
-			<label for="category">세부카테고리</label> <select id="category_d" name="category_d" required>
+			<label for="category">세부카테고리</label> <select id="category_d"
+				name="category_d" required>
 				<option value="">카테고리 선택</option>
 				<option value="버섯">버섯</option>
 				<option value="상온">상온</option>
@@ -127,10 +143,10 @@ textarea {
 				<option value="비스켓">비스켓</option>
 				<option value="수입품">수입품</option>
 				<option value="기타">기타</option>
-				
+
 			</select>
 		</div>
-		
+
 		<div class="form-group">
 			<label for="productStock">spec_carton</label> <input type="text"
 				id="productStock" name="spec_carton">
@@ -165,56 +181,87 @@ textarea {
 
 
 	<script type="text/javascript">
-		function previewImage(event) {
-			const reader = new FileReader();
-			const preview = document.getElementById('preview');
+	const dropZone = document.getElementById('dropZone');
+    const productImageInput = document.getElementById('productImage');
+    const preview = document.getElementById('preview');
 
-			reader.onload = function() {
-				preview.src = reader.result;
-				preview.style.display = 'block'; // 이미지 표시
-			};
+    // 드롭존 클릭 시 파일 선택 트리거
+    dropZone.addEventListener('click', () => productImageInput.click());
 
-			// 선택된 파일 읽기 시작
-			reader.readAsDataURL(event.target.files[0]);
-		}
+    // 드래그 앤 드롭 이벤트 핸들러
+    dropZone.addEventListener('dragover', (event) => {
+        event.preventDefault();
+        dropZone.classList.add('dragover');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+        dropZone.classList.remove('dragover');
+    });
+
+    dropZone.addEventListener('drop', (event) => {
+        event.preventDefault();
+        dropZone.classList.remove('dragover');
+
+        const file = event.dataTransfer.files[0];
+        if (file && file.type.startsWith('image/')) {
+            productImageInput.files = event.dataTransfer.files;
+            previewImage({ target: { files: [file] } });
+        }
+    });
+
+    // 이미지 미리보기
+    function previewImage(event) {
+        const reader = new FileReader();
+
+        reader.onload = function() {
+            preview.src = reader.result;
+            preview.style.display = 'block';
+        };
+
+        reader.readAsDataURL(event.target.files[0]);
+    }
+    
+    
+
+		document.getElementById("category").addEventListener("change",
+				function() {
+					const category = this.value;
+					const category_d = document.getElementById("category_d");
+
+					// 모든 옵션 초기화
+					category_d.innerHTML = '<option value="">카테고리 선택</option>';
+
+					// 카테고리별 옵션 설정
+					let options = [];
+
+					switch (category) {
+					case "버섯류":
+						options = [ "버섯" ];
+						break;
+					case "제과":
+						options = [ "쿠키류", "스낵류", "비스켓" ];
+						break;
+					case "식료품":
+						options = [ "상온", "냉동", "냉장" ];
+						break;
+					case "수입품":
+						options = [ "수입품" ];
+						break;
+					case "기타":
+						options = [ "기타" ];
+						break;
+					}
+
+					// 동적으로 옵션 추가
+					options.forEach(function(option) {
+						const newOption = document.createElement("option");
+						newOption.value = option;
+						newOption.text = option;
+						category_d.appendChild(newOption);
+					});
+				});
 		
 		
-		document.getElementById("category").addEventListener("change", function() {
-	        const category = this.value;
-	        const category_d = document.getElementById("category_d");
-
-	        // 모든 옵션 초기화
-	        category_d.innerHTML = '<option value="">카테고리 선택</option>';
-
-	        // 카테고리별 옵션 설정
-	        let options = [];
-
-	        switch (category) {
-	            case "버섯류":
-	                options = ["버섯"];
-	                break;
-	            case "제과":
-	                options = ["쿠키류", "스낵류","비스켓"];
-	                break;
-	            case "식료품":
-	                options = ["상온", "냉동", "냉장"];
-	                break;
-	            case "수입품":
-	                options = ["수입품"];
-	                break;
-	            case "기타":
-	                options = ["기타"];
-	                break;
-	        }
-
-	        // 동적으로 옵션 추가
-	        options.forEach(function(option) {
-	            const newOption = document.createElement("option");
-	            newOption.value = option;
-	            newOption.text = option;
-	            category_d.appendChild(newOption);
-	        });
-	    });
 	</script>
 </body>
 </html>
