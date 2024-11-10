@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>News</title>
+<title>News - Card View</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/style.css">
 <style>
-/* 전체 적용 CSS */
-
 html, body {
 	width: 100%;
 	font-family: Pretendard-Regular, Arial, sans-serif;
@@ -25,119 +27,88 @@ html, body {
 body {
 	display: flex;
 	flex-direction: column;
-	
-}
-.newscontant{
 	min-height: 100vh; /* 최소 높이를 100vh로 설정 */
 }
 
-.newsTitle {
-	text-align: center;
-	margin-bottom: 20px; /* 제목과 테이블 간 여백 */
-	font-size: 24px;
-	color: #333;
+.news-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3열 고정 */
+    gap: 20px; /* 카드 간의 간격 */
+    padding: 20px;
 }
 
-table {
-	width: 80%;
-	border-collapse: collapse;
-	margin-left:auto; 
-    margin-right:auto;
+.news-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    height: 450px;
+    overflow: hidden;
+    transition: 0.3s;
 }
 
-th, td {
-	border: 1px solid #dddddd;
-	padding: 8px;
-	text-align: center;
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
-th {
-	background-color: #f2f2f2;
+.news-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
 }
 
-tr:nth-child(even) {
-	background-color: #f9f9f9;
+.news-content {
+    padding: 15px;
+    font-size: 1em;
 }
 
-tr:hover {
-	background-color: #f1f1f1;
+.news-title {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.news-summary {
+    color: #555;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 본문 요약 3줄 제한 */
+    -webkit-box-orient: vertical;
+}
+
+.news-date {
+    font-size: 0.9em;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.read-more {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.read-more:hover {
+    text-decoration: underline;
 }
 </style>
 </head>
 <body>
-
-	<jsp:include page="../Common/Header2.jsp" />
-
-	<!-- 홍보용 이미지 -->
-	<div class="aboutPromotion" align="center">
-		<img width="100%" height="200px" alt="홍보용 이미지"
-			src="../resources/imgs/news.png">
+<jsp:include page="../Common/Header2.jsp" />
+	<div class="news-container">
+		<c:forEach var="news" items="${newsList}">
+			<div class="news-card">
+				<img src="${news.news_img}" alt="News Image" class="news-image">
+				<div class="news-content">
+					<h3 class="news-title">${news.news_title}</h3>
+					<p class="news-summary">${fn:substring(news.news_content, 0, 100)}...</p>
+					<p class="news-date">등록일: ${news.created_at}</p>
+					<a href="${pageContext.request.contextPath}/news/detail/${news.news_idx}" class="read-more">자세히보기</a>
+				</div>
+			</div>
+		</c:forEach>
 	</div>
-
-	<br>
-	<div class="newscontant">
-	<h2 class="newsTitle">뉴스</h2>
-
-	<table>
-		<thead>
-			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>작성일</th>
-				<th>조회수</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>1</td>
-				<td>첫 번째 뉴스</td>
-				<td>김나혜</td>
-				<td>2024-10-20</td>
-				<td>15</td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td>두 번째 뉴스</td>
-				<td>전정훈</td>
-				<td>2024-10-22</td>
-				<td>30</td>
-			</tr>
-			<tr>
-				<td>3</td>
-				<td>세 번째 뉴스</td>
-				<td>김예원</td>
-				<td>2024-10-21</td>
-				<td>25</td>
-			</tr>
-						<tr>
-				<td>1</td>
-				<td>네 번째 뉴스</td>
-				<td>송근주</td>
-				<td>2024-10-22</td>
-				<td>25</td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td>다섯 번째 뉴스</td>
-				<td>김나혜</td>
-				<td>2024-10-20</td>
-				<td>35</td>
-			</tr>
-			<tr>
-				<td>3</td>
-				<td>여섯 번째 뉴스</td>
-				<td>신충용</td>
-				<td>2024-10-23</td>
-				<td>1</td>
-			</tr>
-			
-		</tbody>
-	</table>
-</div>
-
-	<br>
-
 	<jsp:include page="../Common/Footer.jsp" />
 
 </body>

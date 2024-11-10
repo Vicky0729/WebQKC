@@ -1,6 +1,8 @@
 package com.qkcfamily.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,14 +17,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.qkcfamily.entity.Admin;
 import com.qkcfamily.entity.Popup;
+import com.qkcfamily.entity.Visit;
 import com.qkcfamily.mapper.AdminMapper;
 import com.qkcfamily.mapper.PopupMapper;
+import com.qkcfamily.mapper.VisitMapper;
 
 @Controller
 public class AdminHomeController {
 
 	@Autowired
 	AdminMapper adminMapper;
+	
+	@Autowired
+    private VisitMapper visitMapper;
 
 	// 관리자 로그인 페이지
 	@GetMapping("/admin")
@@ -116,10 +123,16 @@ public class AdminHomeController {
 
 	// 대쉬보드 페이지
 	@GetMapping("Adm/dashboard")
-	public String DashboardPage() {
+	public String DashboardPage(Model model) {
+		System.out.println("조회수 메소드 진입");
 
-		// 단순 페이지 이동
-		// 출력데이터 가져오기
+		Date today = Calendar.getInstance().getTime();
+		java.sql.Date sqlDate = new java.sql.Date(today.getTime());
+		Visit todayVisit = visitMapper.selectVisitByDate(sqlDate);
+
+		int visitCount = (todayVisit != null) ? todayVisit.getVisit_count() : 0;
+		model.addAttribute("visitCount", visitCount);
+		System.out.println("오늘 날짜 방문자 데이터: " + todayVisit);
 
 		return "Adm/Dashboard";
 	}
@@ -151,14 +164,13 @@ public class AdminHomeController {
 		adminMapper.updatePopup(popup);
 		return "redirect:/Adm/PopupList";
 	}
-	
-	
+
 	// 팝업 삭제 기능
-		@PostMapping("Adm/popup/3")
-		public String deletePopup(@RequestParam("pop_idx") String pop_idx) {
-			adminMapper.deletePopupById(pop_idx); // MyBatis Mapper에서 해당 admin_id 삭제
-			return "redirect:/Adm/PopupList"; // 삭제 후 관리자 목록 페이지로 리디렉션
-		}
+	@PostMapping("Adm/popup/3")
+	public String deletePopup(@RequestParam("pop_idx") String pop_idx) {
+		adminMapper.deletePopupById(pop_idx); // MyBatis Mapper에서 해당 admin_id 삭제
+		return "redirect:/Adm/PopupList"; // 삭제 후 관리자 목록 페이지로 리디렉션
+	}
 
 	@GetMapping("Adm/Popup")
 	public String PopupPage() {

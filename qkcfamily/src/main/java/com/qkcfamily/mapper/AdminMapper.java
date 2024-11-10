@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.qkcfamily.entity.Admin;
+import com.qkcfamily.entity.News;
 import com.qkcfamily.entity.Popup;
 
 @Mapper
@@ -50,6 +51,8 @@ public interface AdminMapper {
 	   
 	   @Delete("DELETE FROM tb_popup WHERE pop_idx = #{popup_idx}")
 	   public int deletePopupById(String pop_idx);
-	//추상 메소드 추가
+	   
+	  
+	
 	
 }

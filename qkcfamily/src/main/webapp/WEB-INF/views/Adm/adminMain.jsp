@@ -141,7 +141,8 @@
                 <li><a href="dashboard" target="contentFrame">🏠 대시보드</a></li>
                 <li><a href="AdminList" target="contentFrame">👥 사용자 관리</a></li>
                 <li><a href="Content" target="contentFrame">📄 콘텐츠 관리</a></li>
-                <li><a href="PopupList" target="contentFrame">📢 광고 관리</a></li>
+                <li><a href="PopupList" target="contentFrame">📢 팝업 관리</a></li>
+                <li><a href="NavBar" target="contentFrame">✒️ 상단바 관리</a></li>
             </ul>
         </nav>
 

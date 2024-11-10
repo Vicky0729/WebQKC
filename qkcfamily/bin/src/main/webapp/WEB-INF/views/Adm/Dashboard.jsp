@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -136,8 +138,8 @@
 
         <div class="stats">
             <div class="card">
-                <h2>1500</h2>
-                <p>총 방문자 수</p>
+                <h2>${visitCount}</h2>
+                <p>오늘 방문자 수</p>
             </div>
             <div class="card">
                 <h2>4500</h2>
