@@ -140,7 +140,7 @@
             <div class="card">
                 <h2>${visitCount}
                 </h2>
-                <p>총 방문자 수</p>
+                <p>오늘 총 방문자 수</p>
             </div>
             <div class="card">
                 <h2>4500</h2>
@@ -148,7 +148,7 @@
             </div>
             <div class="card">
                 <h2>300</h2>
-                <p>활동 중인 유저</p>
+                <p>관리자 수</p>
             </div>
         </div>
 

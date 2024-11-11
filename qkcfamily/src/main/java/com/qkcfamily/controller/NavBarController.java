@@ -68,19 +68,24 @@ public class NavBarController {
     public String updateNews(@RequestParam("news_idx") int newsIdx,
                              @RequestParam("news_title") String newsTitle,
                              @RequestParam("news_content") String newsContent,
-                             @RequestParam("news_img") String newsImg) {
+                             @RequestParam(value = "news_img", required = false) String newsImg) {
 
-        // 기존 뉴스 정보 불러오기 (선택사항)
+        // 기존 뉴스 정보 불러오기
         News news = newsMapper.getNewsById(newsIdx);
         news.setNews_title(newsTitle);
         news.setNews_content(newsContent);
-        news.setNews_img(newsImg);
+
+        // 새로운 이미지가 제공되지 않았으면 기존 이미지 유지
+        if (newsImg != null && !newsImg.isEmpty()) {
+            news.setNews_img(newsImg);
+        }
 
         // 뉴스 업데이트
         newsMapper.updateNews(news);
         
         return "redirect:/Adm/NavBar";
     }
+    
     
     @PostMapping("Adm/deleteNews/{news_idx}")
     public String deleteNews(@PathVariable("news_idx") int newsIdx) {
