@@ -1,6 +1,7 @@
 package com.qkcfamily.mapper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -12,6 +13,7 @@ import org.apache.ibatis.annotations.Update;
 import com.qkcfamily.entity.Admin;
 import com.qkcfamily.entity.News;
 import com.qkcfamily.entity.Popup;
+import com.qkcfamily.entity.Visit;
 
 @Mapper
 public interface AdminMapper {
@@ -52,7 +54,11 @@ public interface AdminMapper {
 	   @Delete("DELETE FROM tb_popup WHERE pop_idx = #{popup_idx}")
 	   public int deletePopupById(String pop_idx);
 	   
-	  
+	   @Select("SELECT visit_date, visit_count FROM tb_visit WHERE visit_date BETWEEN #{startDate} AND #{endDate} ORDER BY visit_date")
+	   List<Visit> getVisitorsByDateRange(@Param("startDate") String startDate, @Param("endDate") String endDate);
+	   
+	   @Select("SELECT COUNT(*) FROM tb_admin")
+	   public int getAdminCount();
 	
 	
 }

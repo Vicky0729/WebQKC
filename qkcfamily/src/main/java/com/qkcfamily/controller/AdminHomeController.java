@@ -1,8 +1,13 @@
 package com.qkcfamily.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +20,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qkcfamily.entity.Admin;
 import com.qkcfamily.entity.Popup;
 import com.qkcfamily.entity.Visit;
@@ -27,9 +34,9 @@ public class AdminHomeController {
 
 	@Autowired
 	AdminMapper adminMapper;
-	
+
 	@Autowired
-    private VisitMapper visitMapper;
+	private VisitMapper visitMapper;
 
 	// 관리자 로그인 페이지
 	@GetMapping("/admin")
@@ -123,8 +130,9 @@ public class AdminHomeController {
 
 	// 대쉬보드 페이지
 	@GetMapping("Adm/dashboard")
-	public String DashboardPage(Model model) {
-		System.out.println("조회수 메소드 진입");
+	public String DashboardPage(Model model) throws JsonProcessingException {
+		int num = adminMapper.getAdminCount();
+		model.addAttribute("adminNum", num);
 
 		Date today = Calendar.getInstance().getTime();
 		java.sql.Date sqlDate = new java.sql.Date(today.getTime());
@@ -133,6 +141,46 @@ public class AdminHomeController {
 		int visitCount = (todayVisit != null) ? todayVisit.getVisit_count() : 0;
 		model.addAttribute("visitCount", visitCount);
 		System.out.println("오늘 날짜 방문자 데이터: " + todayVisit);
+
+		// 7일간 방문자 수 설정
+		LocalDate today1 = LocalDate.now();
+		LocalDate startDate = today1.minusDays(6); // 최근 7일
+
+		// 2. 날짜 리스트 생성
+		List<String> dateList = new ArrayList<>();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		for (int i = 0; i < 7; i++) {
+		    dateList.add(startDate.plusDays(i).format(formatter));
+		}
+
+		// 3. 데이터베이스에서 해당 기간의 방문자 수 가져오기
+		List<Map<String, Object>> rawData = visitMapper.getVisitorsByDateRange(startDate.format(formatter), today1.format(formatter));
+
+		// 4. 날짜를 키로 하고 방문자 수를 값으로 하는 맵 생성
+		Map<String, Integer> visitorMap = new HashMap<>();
+		for (Map<String, Object> data : rawData) {
+		    String date = data.get("date").toString();
+		    int count = Integer.parseInt(data.get("count").toString());
+		    visitorMap.put(date, count);
+		}
+
+		// 5. 기간 내의 날짜 리스트와 방문자 수 맵을 사용하여 최종 데이터 생성
+		List<Map<String, Object>> dailyVisitors = new ArrayList<>();
+		for (String date : dateList) {
+		    Map<String, Object> map = new HashMap<>();
+		    map.put("date", date);
+		    map.put("count", visitorMap.getOrDefault(date, 0)); // 방문자 수가 없으면 0
+		    dailyVisitors.add(map);
+		}
+
+		// 6. 모델에 데이터 추가
+		ObjectMapper objectMapper = new ObjectMapper();
+		String dailyVisitorsJson = objectMapper.writeValueAsString(dailyVisitors);
+		model.addAttribute("dailyVisitors", dailyVisitorsJson);
+		
+		 // 누적 방문자 수 가져오기
+        Integer totalVisitors = visitMapper.getTotalVisitCount();
+        model.addAttribute("totalVisitors", totalVisitors != null ? totalVisitors : 0);
 
 		return "Adm/Dashboard";
 	}
