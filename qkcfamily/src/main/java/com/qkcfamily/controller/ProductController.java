@@ -235,4 +235,6 @@ public class ProductController {
        
        return "Products/productDetail";
     }
+
 }
+

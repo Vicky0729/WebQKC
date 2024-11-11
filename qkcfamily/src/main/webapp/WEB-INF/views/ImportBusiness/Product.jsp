@@ -157,6 +157,11 @@ body {
 	background-color: #ddd;
 	border-radius: 5px;
 }
+
+a {
+	text-decoration: none; /* 기본 링크 밑줄 없애기 */
+	color : black;
+	}
 </style>
 </head>
 <body>
@@ -186,8 +191,11 @@ body {
 			<div class="products">
 				<c:forEach var="product" items="${List}">
 					<div class="product">
-						<img src="${product.pd_img}" alt="제품이미지">
+						<a href="productDetail/${product.pd_idx}"> <img
+						src="${product.pd_img}" alt="제품이미지">
+					</a> <a href="productDetail/${product.pd_idx}">
 						<div class="product-name">${product.pd_name}</div>
+					</a>
 					</div>
 				</c:forEach>
 

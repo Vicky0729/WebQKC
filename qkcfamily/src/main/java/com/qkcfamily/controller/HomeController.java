@@ -2,6 +2,10 @@ package com.qkcfamily.controller;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import java.util.Calendar;
+import java.util.Date;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +19,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.qkcfamily.entity.News;
 import com.qkcfamily.entity.Popup;
 import com.qkcfamily.entity.Product;
+
+import com.qkcfamily.entity.Visit;
+
 import com.qkcfamily.mapper.NewsMapper;
 import com.qkcfamily.mapper.PopupMapper;
 import com.qkcfamily.mapper.ProductMapper;
+import com.qkcfamily.mapper.VisitMapper;
 
 @Controller
 public class HomeController {
@@ -27,6 +35,9 @@ public class HomeController {
 
 	@Autowired
 	PopupMapper popupMapper;
+
+	@Autowired
+	VisitMapper visitMapper;
 
 	@Autowired
 	NewsMapper newsMapper;
@@ -67,14 +78,14 @@ public class HomeController {
 		return "News/News";
 	}
 
+
 	@GetMapping("/news/detail/{news_idx}")
 	   public String getNewsDetail(@PathVariable("news_idx") int news_idx, Model model) {
 	       News news = newsMapper.getNewsById(news_idx); // Mapper 호출
 	       model.addAttribute("news", news); // Model에 데이터 추가
 	       return "News/NewsDetail"; // NewsDetail.jsp 반환
 	   }
-	
-	
+
 	@GetMapping("/ContactUs/contactUs")
 	public String contactUs() {
 		// 단순 페이지 이동
@@ -89,6 +100,28 @@ public class HomeController {
 		ArrayList<Product> bestList = productMapper.bestProduct();
 
 		ArrayList<Popup> popupList = popupMapper.getPopup();
+
+		// 오늘 날짜를 java.sql.Date로 변환
+		Date today = Calendar.getInstance().getTime();
+		java.sql.Date sqlDate = new java.sql.Date(today.getTime());
+
+		// 오늘의 방문자 수 조회 (존재 여부 확인)
+		Visit todayVisit = visitMapper.selectVisitByDate(sqlDate);
+		System.out.println("조회 결과: " + todayVisit);
+
+		if (todayVisit == null) {
+			// 오늘 날짜에 해당하는 데이터가 없을 경우에만 새로 추가
+			todayVisit = new Visit();
+			todayVisit.setVisit_date(sqlDate);
+			todayVisit.setVisit_count(1);
+			visitMapper.insertVisit(todayVisit);
+		} else {
+			// 이미 존재할 경우 방문자 수 업데이트만 수행
+			int updatedCount = todayVisit.getVisit_count() + 1;
+			visitMapper.updateVisitCount(sqlDate, updatedCount);
+		}
+
+
 		model.addAttribute("popupList", popupList);
 		model.addAttribute("bestList", bestList);
 		return "homeMain";
