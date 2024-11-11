@@ -24,6 +24,8 @@ public class AdminHomeController {
 	@Autowired
 	AdminMapper adminMapper;
 
+	@Autowired
+	private VisitMapper visitMapper;
 	// 관리자 로그인 페이지
 	@GetMapping("/admin")
 	public String admin() {
@@ -115,15 +117,75 @@ public class AdminHomeController {
 	}
 
 	// 대쉬보드 페이지
-	@GetMapping("Adm/dashboard")
-	public String DashboardPage() {
+		@GetMapping("Adm/dashboard")
+		public String DashboardPage(Model model) throws JsonProcessingException {
+			int num = adminMapper.getAdminCount();
+			model.addAttribute("adminNum", num);
 
-		// 단순 페이지 이동
-		// 출력데이터 가져오기
+			Date today = Calendar.getInstance().getTime();
+			java.sql.Date sqlDate = new java.sql.Date(today.getTime());
+			Visit todayVisit = visitMapper.selectVisitByDate(sqlDate);
 
-		return "Adm/Dashboard";
-	}
+			int visitCount = (todayVisit != null) ? todayVisit.getVisit_count() : 0;
+			model.addAttribute("visitCount", visitCount);
+			System.out.println("오늘 날짜 방문자 데이터: " + todayVisit);
 
+			// 7일간 방문자 수 설정
+			LocalDate today1 = LocalDate.now();
+			LocalDate startDate = today1.minusDays(6); // 최근 7일
+
+			// 2. 날짜 리스트 생성
+			List<String> dateList = new ArrayList<>();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			for (int i = 0; i < 7; i++) {
+			    dateList.add(startDate.plusDays(i).format(formatter));
+			}
+
+			// 3. 데이터베이스에서 해당 기간의 방문자 수 가져오기
+			List<Map<String, Object>> rawData = visitMapper.getVisitorsByDateRange(startDate.format(formatter), today1.format(formatter));
+
+			// 4. 날짜를 키로 하고 방문자 수를 값으로 하는 맵 생성
+			Map<String, Integer> visitorMap = new HashMap<>();
+			for (Map<String, Object> data : rawData) {
+			    String date = data.get("date").toString();
+			    int count = Integer.parseInt(data.get("count").toString());
+			    visitorMap.put(date, count);
+			}
+
+			// 5. 기간 내의 날짜 리스트와 방문자 수 맵을 사용하여 최종 데이터 생성
+			List<Map<String, Object>> dailyVisitors = new ArrayList<>();
+			for (String date : dateList) {
+			    Map<String, Object> map = new HashMap<>();
+			    map.put("date", date);
+			    map.put("count", visitorMap.getOrDefault(date, 0)); // 방문자 수가 없으면 0
+			    dailyVisitors.add(map);
+			}
+
+			// 6. 모델에 데이터 추가
+			ObjectMapper objectMapper = new ObjectMapper();
+			String dailyVisitorsJson = objectMapper.writeValueAsString(dailyVisitors);
+			model.addAttribute("dailyVisitors", dailyVisitorsJson);
+			
+			 // 누적 방문자 수 가져오기
+	        Integer totalVisitors = visitMapper.getTotalVisitCount();
+	        model.addAttribute("totalVisitors", totalVisitors != null ? totalVisitors : 0);
+	        
+	     // 월별 방문자 수 데이터 가져오기
+	        List<Map<String, Object>> monthlyVisitors = visitMapper.getMonthlyVisitors();
+
+	        // 데이터를 JSON 형식으로 변환하여 JSP에 전달
+	        ObjectMapper objectMapper1 = new ObjectMapper();
+	        String monthlyVisitorsJson = "";
+	        try {
+	            monthlyVisitorsJson = objectMapper1.writeValueAsString(monthlyVisitors);
+	        } catch (JsonProcessingException e) {
+	            e.printStackTrace();
+	        }
+
+	        model.addAttribute("monthlyVisitors", monthlyVisitorsJson);
+
+			return "Adm/Dashboard";
+		}
 	@GetMapping("Adm/PopupList")
 	public String PopupListPage(Model model) {
 

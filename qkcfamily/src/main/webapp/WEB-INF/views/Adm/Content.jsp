@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -9,63 +8,81 @@
 <title>contentsManagement</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style type="text/css">
+/* 기본 레이아웃 및 폰트 스타일 */
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f9f9f9;
+	margin: 0;
+	padding: 20px;
+}
+
+h1 {
+	font-size: 26px;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 20px;
+}
+
+h2 {
+	font-size: 24px;
+	font-weight: bold;
+	color: #444;
+}
+
 /* pageEditor의 고정된 크기와 스타일 설정 */
 #pageEditor {
-	border: 1px solid black;
+	border: 1px solid #ddd;
 	width: 1000px;
 	height: 800px;
-	overflow: auto; /* 스크롤 허용 */
+	overflow: auto;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background-color: #fff;
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+	margin: 0 auto;
+	border-radius: 8px;
 }
 
-/* div 내부의 컨텐츠 크기 조정 */
-#pageEditor img {
-	max-width: 100%;
-	max-height: 100%;
-	object-fit: contain; /* 이미지를 div 크기에 맞춤 */
-}
-
-#pageEditor p {
-	margin: 0;
-	padding: 10px;
-	text-align: center;
-	word-wrap: break-word; /* 텍스트가 넘치지 않도록 자동 줄바꿈 */
-}
-
-#pageEditor div {
-	width: 100%;
-	height: 100%;
-}
-
+/* 테이블 및 버튼 스타일 */
 table {
 	width: 100%;
 	border-collapse: collapse;
 	margin-top: 20px;
+	background-color: #fff;
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	overflow: hidden;
 }
 
 table, th, td {
 	border: 1px solid #ddd;
-	padding: 10px;
+	padding: 15px;
 	text-align: left;
 }
 
 th {
-	background-color: #f4f4f4;
+	background-color: #f5f5f5;
+	color: #333;
+	font-weight: 600;
 }
 
 td {
 	text-align: center;
+	font-size: 14px;
+	color: #555;
 }
 
+/* 버튼 스타일 */
 .btn {
-	padding: 5px 10px;
+	padding: 8px 12px;
 	background-color: #4CAF50;
 	color: white;
 	border: none;
 	cursor: pointer;
 	border-radius: 5px;
+	font-size: 14px;
+	transition: background-color 0.3s ease;
 }
 
 .btn:hover {
@@ -83,20 +100,47 @@ td {
 .btn-add {
 	background-color: #2196F3;
 	margin-bottom: 20px;
+	display: inline-block;
+	padding: 10px 20px;
+	font-size: 16px;
 }
 
 .btn-add:hover {
 	background-color: #1976D2;
 }
 
-h2 {
-	font-size: 24px;
-	font-weight: bold;
+/* select 및 폼 요소 스타일 */
+#pageForm {
+	margin-bottom: 20px;
 }
 
+label {
+	font-size: 16px;
+	color: #333;
+	margin-right: 10px;
+}
+
+select, button[type="button"] {
+	font-size: 14px;
+	padding: 8px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+
+select {
+	margin-right: 10px;
+}
+
+/* 이미지 크기 조정 */
 .scimg {
-	width: 30px;
-	height: 30px;
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+	transition: transform 0.2s ease;
+}
+
+.scimg:hover {
+	transform: scale(1.1);
 }
 </style>
 </head>
@@ -106,20 +150,19 @@ h2 {
 	<h1>페이지설정</h1>
 
 	<form id="pageForm" action="AdminProduct" method="post">
-	<label for="pageSelect">수정할 페이지를 선택하세요</label> 
-    <select id="pageSelect" name="selectedPage">
-		<option value="">페이지 선택</option>
-		<option value="edit_mushroom">버섯</option>
-		<option value="edit_snack">제과</option>
-		<option value="edit_foodstuffs">식료품</option>
-		<option value="edit_import">수입제품</option>
-		<option value="edit_etc">기타</option>
-	</select>
-	<button type="button" onclick="validateAndSubmit()">찾기</button>
-</form>
+		<label for="pageSelect">수정할 페이지를 선택하세요</label> 
+		<select id="pageSelect" name="selectedPage">
+			<option value="">페이지 선택</option>
+			<option value="edit_mushroom">버섯</option>
+			<option value="edit_snack">제과</option>
+			<option value="edit_foodstuffs">식료품</option>
+			<option value="edit_import">수입제품</option>
+			<option value="edit_etc">기타</option>
+		</select>
+		<button type="button" onclick="validateAndSubmit()">찾기</button>
+	</form>
 
 	<button class="btn btn-add" onclick="addProduct()">새 제품 추가</button>
-
 
 	<table>
 		<thead>
@@ -141,7 +184,6 @@ h2 {
 					<td>${product.pd_name}</td>
 					<td>${product.price}</td>
 					<td>${product.pd_content}</td>
-					<!-- a태그에서 변경해야될 것 같아서 온클릭함수 넣어서 만듦 -->
 					<td><button class="btn"
 							onclick="updateProduct(${product.pd_idx})">수정</button></td>
 					<td><button class="btn btn-delete"
@@ -150,7 +192,7 @@ h2 {
 							<c:when test="${product.scrapped == 0}">
 								<a href="javascript:void(0)"
 									onclick="addScrap(${product.pd_idx})"> <img
-									class = "scimg"
+									class="scimg"
 									id="scimg-${product.pd_idx}"
 									src="../resources/imgs/scrap_icon2.png" alt="스크랩 아이콘">
 								</a>
@@ -158,7 +200,7 @@ h2 {
 							<c:when test="${product.scrapped == 1}">
 								<a href="javascript:void(0)"
 									onclick="deleteScrap(${product.pd_idx})"> <img
-									class = "scimg"
+									class="scimg"
 									id="scimg-${product.pd_idx}"
 									src="../resources/imgs/scrap_icon1.png" alt="스크랩 아이콘">
 								</a>
@@ -169,126 +211,71 @@ h2 {
 						</c:choose></td>
 				</tr>
 			</c:forEach>
-
-			<!-- 더 많은 제품 정보가 추가될 수 있음 -->
 		</tbody>
 	</table>
 
-
-
-
-
-
 	<script>
-
-	function deleteProduct(productIdx) {
-		console.log(productIdx)
-        if (confirm("해당 제품을 삭제하시겠습니까?")) {
-        	
-        	$.ajax({
-        		url:"deleteProduct/"+productIdx,
-        		type :"delete",
-        		success:function(){
-        			
-        			alert("제품이 삭제되었습니다")
-        			 window.location.reload();
-        			
-        		},
-        		error:function(){
-        			
-        			
-        			alert("통신실패")
-        		}
-        		
-        		
-        	})
-        	
-   
-            
-           
-        }
-    }
-	
-	
-	function addProduct(){
-		
-		
-		window.location.href = "addProductPage";
-	}
-	
-	function updateProduct(productIdx){
-		
-		window.location.href = "updateProductPage?pd_idx=" + productIdx;
-		
-	}
-	
-  
-	function addScrap(productIdx) {
-	       $.ajax({
-	           url: "addScrap/" + productIdx,
-	           type: "get",
-	           success: function () {
-	               console.log("스크랩 추가 성공");
-
-	               // img 태그의 src 속성만 변경
-	               $("#scimg-" + productIdx).attr("src", "../resources/imgs/scrap_icon1.png");
-	               
-	               // 클릭 시 deleteScrap 함수를 호출하도록 변경
-	               $("#scimg-" + productIdx).parent().attr("onclick", `deleteScrap(${productIdx})`);
-	           },
-	           error: function () {
-	               alert("통신실패");
-	           }
-	       });
-	   }
-
-	   function deleteScrap(productIdx) {
-	       $.ajax({
-	           url: "deleteScrap/" + productIdx,
-	           type: "delete",
-	           success: function () {
-	               console.log("스크랩 삭제 성공");
-
-	               // img 태그의 src 속성만 변경
-	               $("#scimg-" + productIdx).attr("src", "../resources/imgs/scrap_icon2.png");
-	               
-	               // 클릭 시 addScrap 함수를 호출하도록 변경
-	               $("#scimg-" + productIdx).parent().attr("onclick", `addScrap(${productIdx})`);
-	           },
-	           error: function () {
-	               alert("통신실패");
-	           }
-	       });
-	   }
-   
-
-	function validateAndSubmit() {
-		const pageSelect = document.getElementById("pageSelect").value;
-		if (pageSelect === "") {
-			alert("수정할 페이지를 선택하세요.");
-		} else {
-			document.getElementById("pageForm").submit(); // 폼 제출
+		function deleteProduct(productIdx) {
+			if (confirm("해당 제품을 삭제하시겠습니까?")) {
+				$.ajax({
+					url: "deleteProduct/" + productIdx,
+					type: "delete",
+					success: function() {
+						alert("제품이 삭제되었습니다");
+						window.location.reload();
+					},
+					error: function() {
+						alert("통신실패");
+					}
+				});
+			}
 		}
-	}
+		
+		function addProduct() {
+			window.location.href = "addProductPage";
+		}
 
-	
-	 const urlParams = new URLSearchParams(window.location.search);
-     const success = urlParams.get('success');
-     const updated = urlParams.get('updated');
+		function updateProduct(productIdx) {
+			window.location.href = "updateProductPage?pd_idx=" + productIdx;
+		}
 
-     if (success === 'true') {
-         alert("제품이 성공적으로 추가되었습니다!");
-     }
-     
-     if (updated === 'true') {
-         alert("제품이 성공적으로 수정되었습니다!");
-     }
-    
-    
+		function addScrap(productIdx) {
+			$.ajax({
+				url: "addScrap/" + productIdx,
+				type: "get",
+				success: function() {
+					$("#scimg-" + productIdx).attr("src", "../resources/imgs/scrap_icon1.png");
+					$("#scimg-" + productIdx).parent().attr("onclick", `deleteScrap(${productIdx})`);
+				},
+				error: function() {
+					alert("통신실패");
+				}
+			});
+		}
 
-   
-</script>
+		function deleteScrap(productIdx) {
+			$.ajax({
+				url: "deleteScrap/" + productIdx,
+				type: "delete",
+				success: function() {
+					$("#scimg-" + productIdx).attr("src", "../resources/imgs/scrap_icon2.png");
+					$("#scimg-" + productIdx).parent().attr("onclick", `addScrap(${productIdx})`);
+				},
+				error: function() {
+					alert("통신실패");
+				}
+			});
+		}
 
+		function validateAndSubmit() {
+			const pageSelect = document.getElementById("pageSelect").value;
+			if (pageSelect === "") {
+				alert("수정할 페이지를 선택하세요.");
+			} else {
+				document.getElementById("pageForm").submit();
+			}
+		}
+	</script>
 
 </body>
 </html>

@@ -40,15 +40,15 @@ body {
 /* Footer 부분 CSS */
 footer {
 	background-color: #8B0000; /* 진한 붉은색 */
-	padding: 20px;
+	padding: 10px;
 	text-align: center;
 	color: white;
 	border-top: solid 3px #F5F5DC; /* 푸터 상단 테두리 */
-	height: 150px;
+	height: 100px;
 	margin-top: auto; /* footer가 페이지 하단에 붙도록 설정 */
 }
 .footer-content {
-	padding: 20px; /* 내부 여백 */
+	
     bottom: 0; /* 하단에 고정 */
     left: 0; /* 좌측 정렬 */
     width: 100%; /* 전체 너비 */
@@ -56,7 +56,7 @@ footer {
 }
 
 #footer-content p {
-	margin: 10px 0;
+	margin: 5px 0;
 	font-size: 14px;
 }
 </style>

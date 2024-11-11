@@ -40,7 +40,7 @@ body {
 	padding: 3px;
 	position: relative; /* 하위 메뉴의 위치를 올바르게 참조 */
 	z-index: 0; /* 전체 레이아웃에서 기본 z-index */
-	height: 100px;
+	height: 55px;
 	
 }
 
@@ -53,7 +53,6 @@ body {
 	justify-content: center;
 	align-items: center;
 	transition: background-color 0.3s;
-	border: 1px solid #D3D3D3;
 	position: relative; /* 하위 메뉴가 이 요소를 기준으로 배치됨 */
 	z-index: 1; /* 상위 메뉴와 하위 메뉴 간의 겹침 방지 */
 }
@@ -115,7 +114,6 @@ body {
 
 .product {
 	text-align: center;
-	border: 1px solid #ddd;
 	padding: 25px;
 	transition: transform 0.3s;
 }
@@ -125,8 +123,8 @@ body {
 }
 
 .product img {
-	width: 150px;
-	height: 150px;
+	width: 200px;
+	height: 200px;
 	object-fit: cover;
 }
 
@@ -181,9 +179,6 @@ body {
 	
 			<div class="productsMenu">
 				<a href="../ImportBusiness/Product">수입제품</a>
-			</div>
-			<div class="productsMenu">
-				<a href="">예비</a>
 			</div>
 			
 		</div>

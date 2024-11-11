@@ -6,10 +6,10 @@
     <title>header</title>
     <style type="text/css">
         @font-face {
-            font-family: 'Pretendard-Regular';
+            font-family: 'Pretendard-Bold';
             src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
             format('woff');
-            font-weight: 400;
+            font-weight: bold;
             font-style: normal;
         }
 
@@ -36,15 +36,17 @@
             position: fixed;
             left: 0;
             top: 0;
-            width: 100%;
+  			width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
-            background-color: #8B0000;
-            color: white;
+            background-color: white;
+            color: black;
             z-index: 1000;
-            border-bottom: solid 3px #F5F5DC;
+			padding-left: 200px;
+			padding-right: 200px;
+          
         }
 
        .navbar-logo img {
@@ -55,13 +57,15 @@
         .navbar-menu {
             list-style: none;
             display: flex;
-            gap: 20px;
+       
         }
 
         .navbar-menu a {
-            color: white;
+            color: black;
             text-decoration: none;
             padding: 10px;
+            white-space: nowrap;
+            font-size: 18px;
         }
 
         .navbar-search input {
@@ -70,13 +74,10 @@
             border-radius: 15px;
             border: 1px solid #ccc;
         }
-
-        .navbar-language select {
-            padding: 5px;
-            font-size: 14px;
-            margin-left: 20px;
-            border-radius: 5px;
+        .navbar-menu :hover{
+        color:red; 
         }
+
 
         @media (max-width: 768px) {
             .navbar {
@@ -86,7 +87,54 @@
                 flex-direction: column;
             }
         }
-        /* 검색 스타일 */
+ .navbar-menu > li {
+        position: relative;
+        margin: 0 5px;
+    }
+
+    .navbar-menu > li > a {
+        text-decoration: none;
+        color: #333;
+        font-size: 18px;
+        padding: 10px;
+        font-weight: bold;
+        
+    }
+
+    /* 드롭다운 메뉴 스타일 */
+    .dropdown-menu {
+        display: none; /* 기본적으로 숨김 */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 10px 0;
+        list-style: none;
+        min-width: 180px;
+        z-index: 10;
+    }
+
+    .dropdown-menu li {
+        padding: 8px 20px;
+    }
+
+    .dropdown-menu li a {
+        text-decoration: none;
+        color: #333;
+        font-size: 16px;
+    }
+
+    .dropdown-menu li a:hover {
+        color:red;
+    }
+
+    /* 마우스를 올렸을 때 드롭다운 메뉴 표시 */
+    .navbar-menu > li:hover .dropdown-menu {
+        display: block;
+    }
+        
+/* 검색 스타일 */
 .navbar-search {
 	position: relative;
 }
@@ -116,13 +164,7 @@
 }
 
 
-/* 언어 선택 스타일 */
-.navbar-language select {
-	padding: 5px;
-	font-size: 14px;
-	margin-left: 20px;
-	border-radius: 5px;
-}
+
      
         
     </style>
@@ -134,11 +176,30 @@
                 <a href="${pageContext.request.contextPath}"><img src="resources/imgs/logo.png" alt="회사 로고" ></a>
             </div>
             <ul class="navbar-menu">
-                <li><a href="${pageContext.request.contextPath}/AboutUs/CEO">About Us</a></li>
-                <li><a href="${pageContext.request.contextPath}/Products/Main">Products</a></li>
-                <li><a href="${pageContext.request.contextPath}/News/News">News</a></li>
-                <li><a href="${pageContext.request.contextPath}/ImportBusiness/Product">Import Business</a></li>
-                <li><a href="${pageContext.request.contextPath}/ContactUs/contactUs">Contact Us</a></li>
+                <li class="dropdown"><a href="${pageContext.request.contextPath}/AboutUs/CEO">About Us</a>
+                <ul class="dropdown-menu">
+                    <li><a href="${pageContext.request.contextPath}/AboutUs/CEO">CEO 인사말</a></a></li>
+                    <li><a href="${pageContext.request.contextPath}/AboutUs/OurBrand">회사소개</a></li>
+                    <li><a href="${pageContext.request.contextPath}/AboutUs/CIBrand">CI & 브랜드소개</a></li>
+                    <li><a href="${pageContext.request.contextPath}/AboutUs/Import">수입사업</a></li>
+                </ul>
+                </li>
+                <li class="dropdown"><a href="${pageContext.request.contextPath}/Products/Main">Products</a>
+                 <ul class="dropdown-menu">
+                    <li><a href="${pageContext.request.contextPath}/Products/Mushroom">버섯류</a></li>
+                    <li><a href="${pageContext.request.contextPath}/Products/Groceries">식료품</a></li>
+                    <li><a href="${pageContext.request.contextPath}/Products/Snack">제과</a></li>
+                    <li><a href="${pageContext.request.contextPath}/Products/Etc">기타</a></li>
+                </ul>
+                </li>
+                <li class="dropdown"><a href="${pageContext.request.contextPath}/News/News">News</a>
+                </li>
+                <li class="dropdown"><a href="${pageContext.request.contextPath}/ImportBusiness/Product">Import Business</a>
+                 <ul class="dropdown-menu">
+                    <li><a href="ImportBusiness/Product">수입제품</a></li>
+                </ul>
+                </li>
+                <li class="dropdown"><a href="${pageContext.request.contextPath}/ContactUs/contactUs">Contact Us</a></li>
             </ul>
             <div class="navbar-search">
                 <form action="${pageContext.request.contextPath}/Common/HeadSearch" method="POST">
@@ -148,14 +209,7 @@
                     </button>
                 </form>
             </div>
-            <div class="navbar-language">
-                <select name="language">
-                    <option value="korean">Korean</option>
-                    <option value="english">English</option>
-                    <option value="chinese">Chinese</option>
-                    <option value="japanese">Japanese</option>
-                </select>
-            </div>
+           
         </nav>
     </header>
 </body>

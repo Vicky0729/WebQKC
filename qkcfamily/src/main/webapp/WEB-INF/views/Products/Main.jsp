@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>productMain</title>
 <style>
-/* 전체 적용 CSS */
+/* 전체 적용 CSS  */
 html, body {
 	width: 100%;
 	font-family: Pretendard-Regular, Arial, sans-serif;
@@ -26,17 +26,19 @@ body {
 	flex-direction: column;
 }
 
+
 /* products body */
 .productBody {
 	display: flex;
 	min-height: 100vh; /* 최소 높이를 100vh로 설정 */
-	margin-top: 10px;
+	margin-top: 30px;
+	margin-left : 13%;
 }
 
 /* 제품 리스트 */
 .products {
 	margin-left: 10%;
-	height: 224px;
+	height: 300px;
 	display : flex;
 	gap: 80px;
 }
@@ -44,17 +46,14 @@ body {
 .product {
 	margin-top: 2px;
 	text-align: center;
-	border: 1px solid #ddd;
 	padding: 15px;
 	transition: transform 0.3s;
 	position: relative; /* position relative 추가 */
-
 }
 
-
 .product img {
-	width: 150px;
-	height: 150px;
+	width: 200px;
+	height: 200px;
 	object-fit: cover;
 }
 
@@ -107,7 +106,7 @@ a {
 
 .products a:after {
 	width: 2px;
-	height: 100%;
+	height: 90%;
 	right: 0; /* 오른쪽 */
 	top: 0; /* 상단 */
 	transform: translateY(-100%);
@@ -126,7 +125,7 @@ a {
 	height: 100%;
 	left: 0; /* 왼쪽 */
 	bottom: 0; /* 하단 */
-	transform: translateY(100%);
+	transform: translateY(110%);
 }
 
 .products a:hover:before,
@@ -163,9 +162,12 @@ a {
 			src="../resources/imgs/productsM.png">
 	</div>
 	<br>
-	<div class="productBody">
+
+
 		<jsp:include page="../Products/SideMenu.jsp" />
 
+		
+	<div class="productBody">
 		<div class="products">
 			<a href="Mushroom">
 				<p class="product">

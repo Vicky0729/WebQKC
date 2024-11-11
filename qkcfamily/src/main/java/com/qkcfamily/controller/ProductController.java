@@ -225,4 +225,14 @@ public class ProductController {
        
        return "Products/productDetail";
     }
+	
+	
+	@GetMapping("/ImportBusiness/productDetail/{pd_idx}")
+    public String importDetailPage(@PathVariable("pd_idx") int pd_idx, Model model) {
+
+        Product product = productMapper.getDetail(pd_idx);
+        model.addAttribute("product", product);
+       
+       return "Products/productDetail";
+    }
 }
