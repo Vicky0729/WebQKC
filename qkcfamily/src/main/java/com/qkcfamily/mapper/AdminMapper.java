@@ -57,6 +57,7 @@ public interface AdminMapper {
 	   @Select("SELECT visit_date, visit_count FROM tb_visit WHERE visit_date BETWEEN #{startDate} AND #{endDate} ORDER BY visit_date")
 	   List<Visit> getVisitorsByDateRange(@Param("startDate") String startDate, @Param("endDate") String endDate);
 	   
+	   // 관리자 수 
 	   @Select("SELECT COUNT(*) FROM tb_admin")
 	   public int getAdminCount();
 	

@@ -181,6 +181,20 @@ public class AdminHomeController {
 		 // 누적 방문자 수 가져오기
         Integer totalVisitors = visitMapper.getTotalVisitCount();
         model.addAttribute("totalVisitors", totalVisitors != null ? totalVisitors : 0);
+        
+     // 월별 방문자 수 데이터 가져오기
+        List<Map<String, Object>> monthlyVisitors = visitMapper.getMonthlyVisitors();
+
+        // 데이터를 JSON 형식으로 변환하여 JSP에 전달
+        ObjectMapper objectMapper1 = new ObjectMapper();
+        String monthlyVisitorsJson = "";
+        try {
+            monthlyVisitorsJson = objectMapper1.writeValueAsString(monthlyVisitors);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        model.addAttribute("monthlyVisitors", monthlyVisitorsJson);
 
 		return "Adm/Dashboard";
 	}

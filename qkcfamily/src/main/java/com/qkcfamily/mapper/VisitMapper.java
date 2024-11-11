@@ -29,14 +29,17 @@ public interface VisitMapper {
     @Update("UPDATE tb_visit SET visit_count = #{visit_count} WHERE visit_date = #{visit_date}")
     void updateVisitCount(@Param("visit_date") Date visit_date, @Param("visit_count") int visit_count);
     
-	
+	// 일주일 방문자 수 조회
     @Select("SELECT visit_date AS date, visit_count AS count " +
             "FROM tb_visit " +
             "WHERE visit_date BETWEEN #{startDate} AND #{endDate} " +
             "ORDER BY visit_date")
     List<Map<String, Object>> getVisitorsByDateRange(@Param("startDate") String startDate, @Param("endDate") String endDate);
     
+    // 누적 방문자 수 조회
     @Select("SELECT SUM(visit_count) FROM tb_visit")
     Integer getTotalVisitCount();
 
+    @Select("SELECT DATE_FORMAT(visit_date, '%Y-%m') AS month, SUM(visit_count) AS count FROM tb_visit GROUP BY month ORDER BY month")
+    List<Map<String, Object>> getMonthlyVisitors();
 }
