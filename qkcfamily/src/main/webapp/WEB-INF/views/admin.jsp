@@ -268,18 +268,18 @@ input{
 </style>
 </head>
 <body>
-   <header>
+    <header>
       <nav class="navbar">
          <div class="navbar-logo">
-            <a href="homeMain"><img src="resources/imgs/logo.png" alt="회사 로고"></a>
+            <a href="${pageContext.request.contextPath}"><img src="resources/imgs/logo.png" alt="회사 로고"></a>
          </div>
          <div class="navbar-actions">
             <ul class="navbar-menu">
-               <li><a href="aboutM.do">About Us</a></li>
-               <li><a href="productsM.do">Products</a></li>
-               <li><a href="#.jsp">News</a></li>
-               <li><a href="#.jsp">Business</a></li>
-               <li><a href="contactUs.do">Contact Us</a></li>
+               <li><a href="${pageContext.request.contextPath}/AboutUs/CEO">About Us</a></li>
+               <li><a href="${pageContext.request.contextPath}/Products/Main">Products</a></li>
+               <li><a href="${pageContext.request.contextPath}/News/News">News</a></li>
+               <li><a href="${pageContext.request.contextPath}/ImportBusiness/Product">Business</a></li>
+               <li><a href="${pageContext.request.contextPath}/ContactUs/contactUs">Contact Us</a></li>
             </ul>
             <div class="navbar-language">
                <select name="language">
@@ -292,6 +292,7 @@ input{
          </div>
       </nav>
    </header>
+
 
 
 <div id="loginbox">

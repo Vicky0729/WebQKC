@@ -94,20 +94,22 @@ body {
 	
 	<!-- 사이드 메뉴와 제품 리스트 -->
 	<div class ="searchContents">
-		<h2> <span style="color: blue;">${searchProduct}</span> <검색결과></h2>
-		<br>
-		<h3>총 <span style="color: blue;">${SearchCount}</span> 건의 검색결과가 있습니다.</h3>
-		<div class="products">
-			<c:forEach items="${SearchList}" var="search">
-			<div class="product">
-				<img
-					src="${search.pd_img}"
-					alt="새송이">
-				<div class="product-name">${search.pd_name}</div>
-			</div>
-			</c:forEach>
-		</div>
-	</div>
+      <h2> <span style="color: blue;">${searchProduct}</span> <검색결과></h2>
+      <br>
+      <h3>총 <span style="color: blue;">${SearchCount}</span> 건의 검색결과가 있습니다.</h3>
+      <div class="products">
+         <c:forEach items="${SearchList}" var="search">
+         <div class="product">
+            <a href="${pageContext.request.contextPath}/Products/productDetail/${search.pd_idx}"> <img
+                  src="${search.pd_img}" alt="제품이미지">
+               </a> <a href="${pageContext.request.contextPath}/Products/productDetail/${search.pd_idx}">
+                  <div class="product-name">${search.pd_name}</div>
+               </a>
+         </div>
+         </c:forEach>
+      </div>
+   </div>
+
 
 
 	<br>

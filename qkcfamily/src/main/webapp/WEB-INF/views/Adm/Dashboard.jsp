@@ -172,37 +172,6 @@ h1 {
 		<div class="chart-container">
 			<div id="monthly_visitors_chart"></div>
 		</div>
-
-		<div class="recent-visitors">
-			<h2>최근 방문자</h2>
-			<table>
-				<tr>
-					<th>날짜</th>
-					<th>IP 주소</th>
-					<th>위치</th>
-				</tr>
-				<tr>
-					<td>2024-10-07</td>
-					<td>192.168.0.1</td>
-					<td>서울, 대한민국</td>
-				</tr>
-				<tr>
-					<td>2024-10-07</td>
-					<td>192.168.0.2</td>
-					<td>부산, 대한민국</td>
-				</tr>
-				<tr>
-					<td>2024-10-06</td>
-					<td>192.168.0.3</td>
-					<td>인천, 대한민국</td>
-				</tr>
-				<tr>
-					<td>2024-10-06</td>
-					<td>192.168.0.4</td>
-					<td>대구, 대한민국</td>
-				</tr>
-			</table>
-		</div>
 	</div>
 </body>
 </html>

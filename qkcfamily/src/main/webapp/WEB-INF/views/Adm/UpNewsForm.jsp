@@ -12,11 +12,64 @@
 body {
     font-family: 'Arial', sans-serif;
     margin: 20px;
+    background-color: #f9f9f9;
+    color: #333;
 }
 
 h2 {
     font-size: 24px;
     font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    max-width: 500px;
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin: 8px 0 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"], input[type="file"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+textarea {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    box-sizing: border-box;
+    min-height: 150px;
+}
+
+#dropZone {
+    width: 100%;
+    padding: 20px;
+    border: 2px dashed #4CAF50;
+    border-radius: 5px;
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 15px;
+    cursor: pointer;
+    background-color: #f1f1f1;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#dropZone.dragover {
+    background-color: #e0f7e9;
+    color: #4CAF50;
 }
 
 table {
@@ -33,81 +86,44 @@ table, th, td {
 
 th {
     background-color: #f4f4f4;
+    font-weight: bold;
+    color: #666;
 }
 
 td {
     text-align: center;
+    color: #666;
 }
 
 .btn {
-    padding: 5px 10px;
+    padding: 8px 16px;
+    font-size: 14px;
     background-color: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    transition: background-color 0.2s;
+    width: 100px;
 }
 
 .btn:hover {
     background-color: #45a049;
 }
 
-.btn-delete {
-    background-color: #f44336;
+.btn-cancel {
+    background-color: #9E9E9E;
 }
 
-.btn-delete:hover {
-    background-color: #e53935;
+.btn-cancel:hover {
+    background-color: #757575;
 }
 
-.btn-add {
-    background-color: #2196F3;
-    margin-bottom: 20px;
-}
-
-.btn-add:hover {
-    background-color: #1976D2;
-}
-
-label {
-    display: block;
-    margin: 10px 0 5px;
-    font-weight: bold;
-}
-
-input[type="text"], input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-textarea {
-    width: 100%;
-    max-width: 800px;
-    min-width: 300px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    resize: both;
-    box-sizing: border-box;
-}
-
-#dropZone {
-    width: 100%;
-    padding: 20px;
-    border: 2px dashed #4CAF50;
-    border-radius: 5px;
-    text-align: center;
-    color: #aaa;
-    margin-bottom: 20px;
-    cursor: pointer;
-}
-
-#dropZone.dragover {
-    background-color: #e0f7e9;
-    color: #4CAF50;
+.btn-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: flex-start;
 }
 </style>
 </head>
@@ -117,8 +133,9 @@ textarea {
     <!-- 뉴스 수정 폼 -->
     <form action="${pageContext.request.contextPath}/Adm/updateNews" method="post">
         <div class="form-group">
-            <label for="currentImage">현재 이미지</label><br> 
-            <img id="currentImagePreview" src="${newsOne.news_img}" alt="현재 이미지" style="max-width: 200px; max-height: 200px;">
+            <label for="currentImage">현재 이미지</label>
+            <img id="currentImagePreview" src="${newsOne.news_img}" alt="현재 이미지"
+                style="max-width: 100%; border: 1px solid #ddd; border-radius: 5px; margin-top: 5px;">
         </div>
 
         <!-- 새 이미지 업로드 -->
@@ -139,8 +156,10 @@ textarea {
         </div>
 
         <input type="hidden" name="news_idx" value="${newsOne.news_idx}">
-        <input type="submit" class="btn" value="뉴스 수정">
-        <button type="button" class="btn btn-cancel" onclick="history.back()">취소</button>
+        <div class="btn-container">
+            <input type="submit" class="btn" value="뉴스 수정">
+            <button type="button" class="btn btn-cancel" onclick="history.back()">취소</button>
+        </div>
     </form>
 
     <script>

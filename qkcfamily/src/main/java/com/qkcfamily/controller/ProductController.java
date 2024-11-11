@@ -29,8 +29,9 @@ public class ProductController {
 
 	// 버섯 제품 페이지
 	@GetMapping("/Products/Mushroom")
-	public String MushroomPage() {
-
+	public String MushroomPage(Model model) {
+		ArrayList<Product> mushRoomList = productMapper.allGetMushroom();
+		model.addAttribute("mushRoomList", mushRoomList);
 		return "Products/Mushroom";
 	}
 
@@ -186,7 +187,7 @@ public class ProductController {
 
 		return "Products/Etc";
 	}
-	
+
 	// 수입품 페이지
 	@GetMapping("/ImportBusiness/Product")
 	public String ImportPage(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
@@ -201,40 +202,36 @@ public class ProductController {
 		model.addAttribute("currentPage", page);
 		model.addAttribute("totalPages", totalPages);
 
-		
 		return "ImportBusiness/Product";
 	}
 
 	@PostMapping("/Common/HeadSearch")
 	public String p_search(@RequestParam("search_str") String searchProduct, Model model) {
 
-	
 		ArrayList<Product> SearchList = productMapper.productSearch(searchProduct);
 		int SearchCount = productMapper.SearchCount(searchProduct);
 		model.addAttribute("SearchList", SearchList);
 		model.addAttribute("searchProduct", searchProduct);
-		model.addAttribute("SearchCount",SearchCount);
+		model.addAttribute("SearchCount", SearchCount);
 		return "Common/HeadSearch";
 	}
 
 	@GetMapping("/Products/productDetail/{pd_idx}")
-    public String DetailPage(@PathVariable("pd_idx") int pd_idx, Model model) {
+	public String DetailPage(@PathVariable("pd_idx") int pd_idx, Model model) {
 
-        Product product = productMapper.getDetail(pd_idx);
-        model.addAttribute("product", product);
-       
-       return "Products/productDetail";
-    }
-	
-	
+		Product product = productMapper.getDetail(pd_idx);
+		model.addAttribute("product", product);
+
+		return "Products/productDetail";
+	}
+
 	@GetMapping("/ImportBusiness/productDetail/{pd_idx}")
-    public String importDetailPage(@PathVariable("pd_idx") int pd_idx, Model model) {
+	public String importDetailPage(@PathVariable("pd_idx") int pd_idx, Model model) {
 
-        Product product = productMapper.getDetail(pd_idx);
-        model.addAttribute("product", product);
-       
-       return "Products/productDetail";
-    }
+		Product product = productMapper.getDetail(pd_idx);
+		model.addAttribute("product", product);
+
+		return "Products/productDetail";
+	}
 
 }
-

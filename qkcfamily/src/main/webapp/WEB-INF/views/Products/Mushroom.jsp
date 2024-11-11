@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +35,6 @@ body {
 	min-height: 120vh;
 	margin-top: 30px;
 	margin-right: 50px;
-
 }
 
 /* 제품 리스트 */
@@ -93,28 +94,27 @@ body {
 
 a {
 	text-decoration: none; /* 기본 링크 밑줄 없애기 */
-	color : black;
-	}
-	
+	color: black;
+}
+
 /* 반응형 디자인 */
-@media (max-width: 1200px) {
+@media ( max-width : 1200px) {
 	.products {
 		grid-template-columns: repeat(3, 1fr); /* 3열로 변경 */
 	}
 }
 
-@media (max-width: 768px) {
+@media ( max-width : 768px) {
 	.products {
 		grid-template-columns: repeat(2, 1fr); /* 2열로 변경 */
 	}
 }
 
-@media (max-width: 480px) {
+@media ( max-width : 480px) {
 	.products {
 		grid-template-columns: 1fr; /* 1열로 변경 */
 	}
-	
-	
+}
 </style>
 </head>
 <body>
@@ -132,30 +132,15 @@ a {
 	<br>
 	<div class="productBody">
 		<div class="products">
-			<div class="product">
-				<img
-					src="https://static.megamart.com/product/image/0615/06151089/06151089_1_960.jpg"
-					alt="새송이">
-				<div class="product-name">새송이 버섯</div>
-			</div>
-			<div class="product">
-				<img
-					src="https://oasisprodproduct.edge.naverncp.com/44210/detail/detail_44210_0_45595246-9e77-49da-97b8-7524b69ca371.jpg"
-					alt="양송이">
-				<div class="product-name">양송이 버섯</div>
-			</div>
-			<div class="product">
-				<img
-					src="https://oasisprodproduct.edge.naverncp.com/483/detail/detail_483_0_38056d92-3ac8-45d7-bcf8-4f39e70eb9f4.jpg"
-					alt="팽이">
-				<div class="product-name">팽이 버섯</div>
-			</div>
-			<div class="product">
-				<img
-					src="https://img-cf.kurly.com/hdims/resize/%3E720x/quality/90/src/shop/data/goodsview/20220901/gv00000419017_1.jpg"
-					alt="표고">
-				<div class="product-name">표고 버섯</div>
-			</div>
+			<c:forEach var="product" items="${mushRoomList}">
+				<div class="product">
+					<a href="productDetail/${product.pd_idx}"> <img
+						src="${product.pd_img}" alt="제품이미지">
+					</a> <a href="productDetail/${product.pd_idx}">
+						<div class="product-name">${product.pd_name}</div>
+					</a>
+				</div>
+			</c:forEach>
 		</div>
 	</div>
 
