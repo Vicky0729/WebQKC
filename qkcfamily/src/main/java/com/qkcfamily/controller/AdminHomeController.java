@@ -48,27 +48,24 @@ public class AdminHomeController {
       return "admin";
    }
 
-   // 관리자 메인 페이지 틀
+// 관리자 메인 페이지 틀
    @PostMapping("/Adm/adminMain")
    public String adminMainPage(@RequestParam("admin_id") String admin_id, @RequestParam("admin_pw") String admin_pw,
-         HttpSession session) {
+                               HttpSession session) {
 
-      // DB에서 해당 admin_id에 해당하는 관리자 정보 가져오기 (해싱된 비밀번호 포함)
-      Admin admin = adminMapper.getAdminById(admin_id);
-
-      System.out.println("DB에서 가져온 비밀번호: " + admin.getAdmin_pw());
-      System.out.println("입력한 비밀번호: " + admin_pw);
-      System.out.println("비밀번호 일치 여부: " + BCrypt.checkpw(admin_pw, admin.getAdmin_pw()));
-
-      // DB에 사용자 정보가 있고, 입력한 비밀번호가 해싱된 비밀번호와 일치하는지 확인
-      if (admin != null && BCrypt.checkpw(admin_pw, admin.getAdmin_pw())) {
-         // 로그인 성공
-         session.setAttribute("admin", admin);
-         return "Adm/adminMain"; // 로그인 성공 후 이동할 페이지
-      } else {
-         // 로그인 실패
-         return "redirect:/admin"; // 로그인 실패 시 다시 로그인 페이지로 이동
-      }
+       // DB에서 해당 admin_id에 해당하는 관리자 정보 가져오기 (해싱된 비밀번호 포함)
+       Admin admin = adminMapper.getAdminById(admin_id);
+       if (admin == null) {
+           // ID가 존재하지 않는 경우
+           return "redirect:/admin?error=idnotfound";
+       } else if (!BCrypt.checkpw(admin_pw, admin.getAdmin_pw())) {
+           // 비밀번호가 일치하지 않는 경우
+           return "redirect:/admin?error=loginfail";
+       } else {
+           // 로그인 성공
+           session.setAttribute("admin", admin);
+           return "Adm/adminMain"; // 로그인 성공 후 이동할 페이지
+       }
    }
 
    // 사용자 관리 페이지
