@@ -39,11 +39,10 @@ body {
 }
 
 /* 메인페이지 홍보 영상 부분 CSS */
-iframe {
-	width : 100%;
-	height : 432px;
-	max-width: 768px;
+.homeimg {
 	justify-content: center;
+	width: 864px;
+	height: 661px;
 }
 
 /* 메인페이지 상품 버튼(식료품, 제과, 버섯, 수입) 부분 CSS */
@@ -296,11 +295,7 @@ iframe {
 	<!-- 메인페이지 홍보 영상 코딩 -->
 	<div class="MainPromotion" align="center">
 		<!-- 아무영상이나 퍼가기로 연습해본 예시  -->
-		<iframe 
-			src="https://www.youtube.com/embed/Ql-U70qBjE0?si=ReVHxVKqvStKv0So"
-			title="YouTube video player" frameborder="0"
-			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-			referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+		<img class="homeimg" alt="홍보영상" src="http://qkcfamily.dothome.co.kr/pic/home.gif">
 	</div>
 
 	<br>
@@ -380,8 +375,6 @@ iframe {
 			<button class="next">▶</button>
 		</div>
 	</div>
-
-	<br>
 	<br>
 	<br>
 	<br>

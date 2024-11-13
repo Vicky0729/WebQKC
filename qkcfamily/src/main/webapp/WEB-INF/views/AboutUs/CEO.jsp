@@ -27,30 +27,20 @@ body {
 	flex-direction: column;
 }
 
-/* 가로 정렬을 위한 수정 */
-.productsMenus-container {
+/* 사이드 메뉴 */
+.productsMenus-container {  
 	display: flex;
-	justify-content: center; /* 전체 div 가운데 정렬 */
+	justify-content: center; 
 	margin-left: 20px;
 }
 
-/* products body */
-.productBody {
-	display: flex;
-	justify-content: center; /* 전체 div 가운데 정렬 */
-	min-height: 150vh;
-	margin-top: 30px;
-	margin-right: 50px;
-}
-
-/* 사이드 메뉴 */
 .productsMenus {
 	display: flex;
 	flex-direction: row; /* 가로로 정렬 */
 	padding: 5px;
 	position: relative;
 	z-index: 1;
-	justify-content: center; /* 가운데 정렬 (필요에 따라 변경 가능) */
+	justify-content: center; 
 	height: 60px;
 }
 
@@ -77,6 +67,15 @@ body {
 	background-color: #d80000;
 }
 
+
+/* products body */
+.productBody {
+	display: flex;
+	justify-content: center; /* 전체 div 가운데 정렬 */
+	min-height: 150vh;
+	margin-top: 30px;
+}
+
 .innercontant {
 	margin-left: 30px;
 }
@@ -88,7 +87,6 @@ body {
 </head>
 <body>
 	<jsp:include page="../Common/Header2.jsp" />
-
 
 	<!-- 홍보용 이미지 -->
 	<div class="aboutPromotion" align="center">
@@ -118,14 +116,11 @@ body {
 		</div>
 	</div>
 
-
-	
-
+	<br>
+	<h1 align="center">[CEO인사말]</h1>
+	<br>
 	<div class="productBody">
-
 		<section class="innercontant">
-			<br>
-			<h1>[CEO인사말]</h1>
 			<br>
 			<article class="introWrap">
 
@@ -136,13 +131,10 @@ body {
 
 	</div>
 
-
 	<br>
 
 	<jsp:include page="../Common/ScrollToTopBtn.jsp" />
 	<jsp:include page="../Common/Footer.jsp" />
-
-
 
 </body>
 </html>

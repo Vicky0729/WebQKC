@@ -5,6 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>contactUs</title>
+    <!-- Font Awesome 추가 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMqDkw5Q3YhvmS5w5x5lIvG5IymE+o4u2zpTG15" crossorigin="anonymous">
     <style>
         /* 전체 적용 CSS */
         html, body {
@@ -54,7 +56,7 @@
             width: 50%;    /* 지도와 동일한 너비 */
             max-width: 480px;
             padding: 20px;
-            background-color: #fff;
+            background-color: #f9f9f9; /* 밝은 배경색 추가 */
             border: 2px solid #ccc;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
@@ -62,12 +64,34 @@
             color: #555;
             line-height: 1.6;
             text-align: center; /* 텍스트 가운데 정렬 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 텍스트를 가운데 정렬 */
+            align-items: center; /* 텍스트와 아이콘을 가로로도 가운데 정렬 */
         }
 
         .Contact-Us h2 {
             color: #333;
             font-size: 20px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Contact-Us의 아이콘과 텍스트 스타일 */
+        .Contact-Us p {
+            margin: 10px 0;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #ddd; /* 각 줄에 밑줄 추가 */
+            padding-bottom: 8px;
+            width: 100%; /* 밑줄이 전체 너비에 걸쳐지도록 설정 */
+        }
+
+        .Contact-Us i {
+            margin-right: 8px;
+            color: #2980b9; /* 아이콘 색상 */
+            font-size: 18px;
         }
     </style>
 </head>
@@ -94,10 +118,10 @@
         <!-- 회사 소개 섹션 -->
         <div class="Contact-Us">
             <h2>Contact Us</h2>
-            <p>123 Anywhere St., Any City, ST 12345</p>
-            <p>123-456-7890</p>
-            <p>hello@reallygreatsite.com</p>
-            <p>www.reallygreatsite.com</p>
+            <p><i class="fas fa-map-marker-alt"></i>123 Anywhere St., Any City, ST 12345</p>
+            <p><i class="fas fa-phone-alt"></i>123-456-7890</p>
+            <p><i class="fas fa-envelope"></i>hello@reallygreatsite.com</p>
+            <p><i class="fas fa-globe"></i>www.reallygreatsite.com</p>
         </div>
     </div>
 
@@ -127,4 +151,4 @@
     <jsp:include page="../Common/Footer.jsp" />
 
 </body>
-</html>
+</html> 

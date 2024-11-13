@@ -27,32 +27,20 @@ body {
 	flex-direction: column;
 }
 
-/* 가로 정렬을 위한 수정 */
-.productsMenus-container {
-	display: flex;
-	justify-content: center; /* 전체 div 가운데 정렬 */
-	margin-left: 20px;
-}
-
-/* products body */
-.productBody {
-	display: flex;
-	flex-direction : column;
-	min-height: 150vh;
-	margin-left: 150px;
-}
-h1{
-	margin-left: 30px;
-}
 
 /* 사이드 메뉴 */
+.productsMenus-container {  
+	display: flex;
+	justify-content: center; 
+	margin-left: 20px;
+}
 .productsMenus {
 	display: flex;
 	flex-direction: row; /* 가로로 정렬 */
 	padding: 5px;
 	position: relative;
 	z-index: 1;
-	justify-content: center; /* 가운데 정렬 (필요에 따라 변경 가능) */
+	justify-content: center; 
 	height: 60px;
 }
 
@@ -79,13 +67,24 @@ h1{
 	background-color: #d80000;
 }
 
-.innercontant {
+
+/* products body */
+.productBody {
 	display: flex;
 	justify-content: center; /* 전체 div 가운데 정렬 */
+	min-height: 150vh;
+}
+.introWrap {
+    display: flex;
+    flex-direction: column; /* 세로 정렬 */
+    align-items: center; /* 중앙 정렬 */
+    margin: 20px 0; /* 위아래 여백 */
+    gap: 10px; /* 이미지 간 간격 추가 */
 }
 
-.introWrap {
-	margin-left: 30px;
+.introWrap img {
+    max-width: 100%; /* 화면 너비에 맞게 반응형 조정 */
+    height: auto;
 }
 </style>
 </head>
@@ -123,21 +122,18 @@ h1{
 
 
 	<br>
-
+	<h1 align="center">[회사소개]</h1>
+	<br>
 	<div class="productBody">
 		<section class="productBody">
 			<br>
-			<h1>[회사소개]</h1>
-			<br>
 			<article class="introWrap">
-				<img alt="자사브랜드" src="../resources/imgs/회사소개1.png">
-				<img alt="자사브랜드" src="../resources/imgs/회사소개2.png">
+				<img alt="자사브랜드" src="../resources/imgs/회사소개1.png"> <img
+					alt="자사브랜드" src="../resources/imgs/회사소개2.png">
 			</article>
 		</section>
 
 	</div>
-
-
 
 	<br>
 	<jsp:include page="../Common/ScrollToTopBtn.jsp" />

@@ -27,94 +27,6 @@ body {
 	min-height: 100vh; /* 최소 높이를 100vh로 설정 */
 }
 
-/* Header 부분 CSS */
-.navbar {
-	display: flex;
-	left: 0;
-	top: 0;
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 10px 20px;
-	background-color: #8B0000;
-	color: white;
-	transition: top 0.3s ease; /* 부드러운 애니메이션 */
-	z-index: 1000; /* 다른 요소보다 위에 위치 */
-	border-bottom: solid 3px #F5F5DC;
-}
-
-.navbar-logo img {
-	height: 50px;
-	width: 200px;
-}
-
-.navbar-actions {
-	display: flex;
-	align-items: center;
-}
-
-.navbar-menu {
-	list-style: none;
-	display: flex;
-	gap: 20px;
-	margin-right: 20px;
-}
-
-.navbar-menu li {
-	margin-right: 20px;
-}
-
-.navbar-menu a {
-	color: white;
-	text-decoration: none;
-	font-size: 16px;
-	padding: 10px;
-	transition: background-color 0.3s;
-}
-
-.navbar-menu a:hover {
-	background-color: #CD5C5C; /* 밝은 붉은색 */
-	border-radius: 5px;
-}
-
-/* 검색 스타일 */
-.navbar-search {
-	position: relative;
-}
-
-.navbar-search input {
-	width: 250px;
-	padding: 10px;
-	border-radius: 15px;
-	border: 1px solid #ccc;
-}
-
-.navbar-search button {
-	position: absolute;
-	right: 5px;
-	top: 5px;
-	bottom: 5px;
-	background-color: white;
-	border: none;
-	cursor: pointer;
-}
-
-#search-img {
-	width: 30px;
-	height: 30px;
-	margin-right: 5px;
-	margin-bottom: 10px;
-}
-
-/* 언어 선택 스타일 */
-.navbar-language select {
-	padding: 5px;
-	font-size: 14px;
-	margin-left: 20px;
-	border-radius: 5px;
-}
-
 /* 중간 메뉴 쿼리 */
 @media only screen and (max-width: 1499px) {
 	.location .wrap {
@@ -195,26 +107,6 @@ body {
 	margin-top: 10px;
 	font-weight: bold;
 }
-/* Footer 부분 CSS */
-footer {
-	background-color: #8B0000; /* 진한 붉은색 */
-	padding: 20px;
-	text-align: center;
-	color: white;
-	border-top: solid 3px #F5F5DC; /* 푸터 상단 테두리 */
-}
-
-.footer-content {
-	padding: 20px; /* 내부 여백 */
-	bottom: 0; /* 하단에 고정 */
-	left: 0; /* 좌측 정렬 */
-	width: 100%; /* 전체 너비 */
-}
-
-#footer-content p {
-	margin: 10px 0;
-	font-size: 14px;
-}
 
 .adminLogin {
 	width: 100%;
@@ -245,12 +137,10 @@ footer {
 	border-radius: 25px; /* 둥근 모서리 */
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 */
 	transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-input {
 	margin-top: 50px;
 	font-size: 20px;
 }
+
 </style>
 </head>
 <script type="text/javascript">
@@ -265,70 +155,44 @@ input {
 	}
 </script>
 <body>
-	<header>
-		<nav class="navbar">
-			<div class="navbar-logo">
-				<a href="${pageContext.request.contextPath}"><img
-					src="resources/imgs/logo.png" alt="회사 로고"></a>
-			</div>
-			<div class="navbar-actions">
-				<ul class="navbar-menu">
-					<li><a href="${pageContext.request.contextPath}/AboutUs/CEO">About
-							Us</a></li>
-					<li><a href="${pageContext.request.contextPath}/Products/Main">Products</a></li>
-					<li><a href="${pageContext.request.contextPath}/News/News">News</a></li>
-					<li><a
-						href="${pageContext.request.contextPath}/ImportBusiness/Product">Business</a></li>
-					<li><a
-						href="${pageContext.request.contextPath}/ContactUs/contactUs">Contact
-							Us</a></li>
-				</ul>
-				<div class="navbar-language">
-					<select name="language">
-						<option value="korean">Korean</option>
-						<option value="english">English</option>
-						<option value="chinese">Chinese</option>
-						<option value="japanese">Japanese</option>
-					</select>
-				</div>
-			</div>
-		</nav>
-	</header>
+	<jsp:include page="Common/Header.jsp" />
 
-
-
+	<br>
 	<div id="loginbox">
-		<h1>관리자 로그인</h1>
-		<div id="loginform">
+		<h1 style="font-size: 24px; color: #333; margin-bottom: 20px;">관리자
+			로그인</h1>
+		<div id="loginform"
+			style="width: 100%; max-width: 400px; padding: 40px; background-color: #fff; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
 			<form action="Adm/adminMain" method="post">
 				<div>
 					<input type="text" name="admin_id" class="adminLogin"
-						placeholder="아이디를 입력해주세요" autocomplete="off">
+						placeholder="아이디를 입력해주세요" autocomplete="off"
+						style="width: 100%; padding: 12px 15px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; outline: none; transition: border-color 0.3s;">
 				</div>
 				<div>
 					<input type="password" name="admin_pw" class="adminLogin"
-						placeholder="비밀번호를 입력해주세요" autocomplete="off">
+						placeholder="비밀번호를 입력해주세요" autocomplete="off"
+						style="width: 100%; padding: 12px 15px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; outline: none; transition: border-color 0.3s;">
 				</div>
-				<span id="pwd_hint" style="color: red;"></span>
+				<span id="pwd_hint"
+					style="color: #d9534f; font-size: 14px; display: none; margin-top: 5px;">CAPS
+					LOCK 켜져 있습니다.</span>
 				<div align="center">
-					<input type="submit" value="로그인" class="submit-btn">
+					<input type="submit" value="로그인" class="submit-btn"
+						style="background-color: #8B0000; color: white; width: 100%; padding: 12px; font-size: 16px; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;">
 				</div>
 			</form>
 		</div>
 	</div>
-
-
-
+		<h3 align="center"> 🧑‍✈️ 지정된 관리자만 로그인 가능합니다.</h3>
 
 	<br>
-	<footer>
-		<div class="footer-content">
-			<p>㈜큐케이씨 | 서울특별시 성동구 아차산로 15길 52 삼환디지털벤처타워 905호</p>
-			<p>대표 : 김새한 | Tel: 070-4352-2800 | Fax: 070-8673-2808</p>
-			<p>사업자등록번호: 214-87-64337 | COPYRIGHTⓒQuali Korea Corp. ALL RIGHTS
-				RESERVED.</p>
-		</div>
-	</footer>
+	<br>
+	<br>
+	<jsp:include page="Common/ScrollToTopBtn.jsp" />
+
+	<jsp:include page="Common/Footer.jsp" />
+
 
 	<script type="text/javascript">
 		document.querySelector('input[name=admin_pw]').addEventListener(

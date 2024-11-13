@@ -29,79 +29,90 @@ body {
 	min-height: 100vh; /* 최소 높이를 100vh로 설정 */
 }
 
-/* 사이드 메뉴 */
+/* products body */
+.productBody {
+	display: flex;
+	justify-content: center; /* 전체 div 가운데 정렬 */
+	min-height: 150vh;
+	margin-top: 30px;
+}
+
+
+/* 가로 정렬을 위한 수정 */
+.productsMenus-container {
+    display: flex;
+    justify-content: center; /* 전체 div 가운데 정렬 */
+    margin-left: 20px;
+}
 
 .productsMenus {
-	display: flex;
-	flex-direction: column;
-	background-color: #F5F5DC;
-	margin-right: 20px;
-	margin-left : 5px;	
-	padding: 3px;
-	position: relative; /* 하위 메뉴의 위치를 올바르게 참조 */
-	z-index: 0; /* 전체 레이아웃에서 기본 z-index */
-	height: 55px;
-	
+    display: flex;
+    flex-direction: row; /* 가로로 정렬 */
+    padding: 5px;
+    position: relative;
+    z-index: 1;
+    justify-content: center; /* 가운데 정렬 (필요에 따라 변경 가능) */
+    height : 60px;
 }
 
 .productsMenu {
-	width: 150px; /* 상위 메뉴의 너비 */
-	height: 50px;
-	background-color: #8B0000;
-	margin-bottom: 3px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	transition: background-color 0.3s;
-	position: relative; /* 하위 메뉴가 이 요소를 기준으로 배치됨 */
-	z-index: 1; /* 상위 메뉴와 하위 메뉴 간의 겹침 방지 */
+    width: 150px;
+    height: 50px;
+    background-color: #8B0000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+    border: 1px solid white;
+    position: relative;
+    z-index: 1;
 }
 
 .productsMenu a {
-	text-decoration: none;
-	font-weight: bold;
-	color: white;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
 }
 
 .productsMenu:hover {
-	background-color: #d80000;
+    background-color: #d80000;
 }
 
 /* 하위 메뉴 */
 .subcategory {
-	display: none; /* 기본적으로 숨김 */
-	position: absolute; /* 상위 메뉴를 기준으로 절대 위치 */
-	top: 0; /* 상위 메뉴 바로 아래에 위치 */
-	left: 100%; /* 상위 메뉴의 오른쪽으로 이동 */
-	width: 150px; /* 하위 메뉴 너비를 상위 메뉴와 동일하게 설정 */
-	background-color: #fff;
-	list-style: none;
-	padding-left: 0;
-	margin: 0;
-	border: 1px solid #D3D3D3;
-	z-index: 10; /* 하위 메뉴가 상위 메뉴 위로 오도록 설정 */
-	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    display: none;
+    position: absolute;
+    top: 100%; /* 상위 메뉴 바로 아래에 위치 */
+    left: 0;
+    width: 150px;
+    background-color: #fff;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    border: 1px solid #D3D3D3;
+    z-index: 10;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .productsMenu:hover .subcategory {
-	display: block; /* 상위 항목에 마우스를 올렸을 때 하위 메뉴 표시 */
+    display: block; /* 상위 항목에 마우스를 올렸을 때 하위 메뉴 표시 */
 }
 
 .subcategory li {
-	margin: 0;
-	padding: 5px 15px;
+    margin: 0;
+    padding: 5px 15px;
 }
 
 .subcategory li a {
-	text-decoration: none;
-	color: #555;
-	display: block;
-	padding: 10px;
+    text-decoration: none;
+    color: #555;
+    display: block;
+    padding: 10px;
 }
 
 .subcategory li a:hover {
-	background-color: #f0f0f0; /* 하위 메뉴 항목에 마우스를 올렸을 때 배경색 변경 */
-	color: #000; /* 하위 메뉴 항목에 마우스를 올렸을 때 색상 변경 */
+    background-color: #f0f0f0;
+    color: #000;
 }
 
 /* 제품 리스트 */
@@ -132,7 +143,7 @@ body {
 	margin-top: 10px;
 	font-weight: bold;
 }
-
+/* 페이징 */
 .pagination {
 	display: flex;
 	margin-top: 20px;
@@ -148,7 +159,7 @@ body {
 }
 
 .pagination a.active {
-	background-color: #4CAF50;
+	background-color: #8B0000;
 	color: white;
 	border-radius: 5px;
 }
@@ -179,13 +190,11 @@ a {
 	<div class="productBody">
 
 	<!-- 사이드 메뉴와 제품 리스트 -->
-	<div  style="display: flex;">
+	<div>
 		<div class="productsMenus">
-	
 			<div class="productsMenu">
 				<a href="../ImportBusiness/Product">수입제품</a>
 			</div>
-			
 		</div>
 
 			<div class="products">

@@ -27,23 +27,13 @@ body {
 	flex-direction: column;
 }
 
-/* 가로 정렬을 위한 수정 */
+/* 사이드 메뉴 */
 .productsMenus-container {
 	display: flex;
-	justify-content: center; /* 전체 div 가운데 정렬 */
+	justify-content: center; 
 	margin-left: 20px;
 }
 
-/* products body */
-.productBody {
-	display: flex;
-	justify-content: center; /* 전체 div 가운데 정렬 */
-	min-height: 150vh;
-	margin-top: 30px;
-	margin-right: 50px;
-}
-
-/* 사이드 메뉴 */
 .productsMenus {
 	display: flex;
 	flex-direction: row; /* 가로로 정렬 */
@@ -77,13 +67,16 @@ body {
 	background-color: #d80000;
 }
 
-.innercontant {
-	margin-left: 30px;
+/* products body */
+.productBody {
+	display: flex;
+	justify-content: center; /* 전체 div 가운데 정렬 */
+	min-height: 150vh;
+	margin-top: 30px;
+	margin-right: 50px;
 }
 
-.introWrap {
-	margin-left: 30px;
-}
+
 </style>
 </head>
 <body>
@@ -118,11 +111,11 @@ body {
 		</div>
 	</div>
 
-
+	<br>
+	<h1 align="center">[수입사업]</h1>
+	<br>
 	<div class="productBody">
 		<section class="innercontant">
-			<br>
-			<h1>[수입사업]</h1>
 			<br>
 			<article class="introWrap">
 				<img alt="수입사업" src="../resources/imgs/import.png">
@@ -130,7 +123,7 @@ body {
 		</section>
 
 	</div>
-	
+
 	<br>
 	<jsp:include page="../Common/ScrollToTopBtn.jsp" />
 	<jsp:include page="../Common/Footer.jsp" />

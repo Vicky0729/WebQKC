@@ -33,14 +33,12 @@ body {
 .productBody {
 	display: flex;
 	justify-content: center; /* 전체 div 가운데 정렬 */
-	min-height: 170vh;
+	min-height: 150vh;
 	margin-top: 30px;
-	margin-right: 50px;
 }
 
 /* 제품 리스트 */
 .products {
-	margin-left: 10%;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 20px;

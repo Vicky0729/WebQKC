@@ -30,14 +30,13 @@ body {
 /* products body */
 .productBody {
 	display: flex;
-	min-height: 100vh; /* 최소 높이를 100vh로 설정 */
+	justify-content: center; /* 전체 div 가운데 정렬 */
+	min-height: 100vh;
 	margin-top: 30px;
-	margin-left : 13%;
 }
 
 /* 제품 리스트 */
 .products {
-	margin-left: 10%;
 	height: 300px;
 	display : flex;
 	gap: 80px;
@@ -125,7 +124,7 @@ a {
 	height: 100%;
 	left: 0; /* 왼쪽 */
 	bottom: 0; /* 하단 */
-	transform: translateY(110%);
+	transform: translateY(115%);
 }
 
 .products a:hover:before,
@@ -144,11 +143,11 @@ a {
 }
 
 .product:hover .product-name:before {
-	transition-delay: 0.6s; /* 아래쪽 애니메이션 지연 */
+	transition-delay: 0.5s; /* 아래쪽 애니메이션 지연 */
 }
 
 .product:hover .product-name:after {
-	transition-delay: 0.9s; /* 왼쪽 애니메이션 지연 */
+	transition-delay: 0.7s; /* 왼쪽 애니메이션 지연 */
 }
 </style>
 </head>

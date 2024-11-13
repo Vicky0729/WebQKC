@@ -37,9 +37,10 @@ body {
 /* products body */
 .productBody {
 	display: flex;
+	justify-content: center; /* 전체 div 중앙 정렬 */
 	min-height: 150vh;
-	margin-left: 80px;
-	margin-right: 50px;
+	width : 100%;
+	margin: 0 auto;
 }
 
 /* 사이드 메뉴 */
@@ -77,22 +78,31 @@ body {
 }
 
 .innercontant {
-	margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 세로 방향으로 중앙 정렬 */
+    width: 100%;
 }
 
 .introWrap {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr); /* 2개의 열로 설정 */
-	gap: 10px;  
-	max-width: 600px; /* 그리드의 최대 너비 */
-	margin: 0 auto; /* 가운데 정렬 */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2개의 열로 설정 */
+    gap: 20px; /* 간격을 좀 더 넓힘 */
+    width: 80%; /* 그리드 전체 너비를 조정 */
+    margin: 0 auto;
+    justify-items: center;
+    align-items: center;
 }
 
 .ciImg {
-	width: 100%;
-	min-width: 598px;
-	min-height: 240px;
-	border : 2px solid black;
+    width: 100%; /* 그리드 셀의 너비에 맞춤 */
+    height: auto;
+    border: 2px solid black;
+    aspect-ratio: 2 / 1; /* 이미지 비율 유지 */
+}
+
+
+
 </style>
 </head>
 <body>
@@ -109,7 +119,7 @@ body {
 
 	<!-- 사이드 메뉴와 제품 리스트 -->
 	<div class="productsMenus-container">
-		<div style="display: flex;">
+		<div>
 			<div class="productsMenus">
 				<div class="productsMenu">
 					<a href="CEO">CEO 인사말</a>
@@ -129,17 +139,12 @@ body {
 
 
 	<br>
-
+	<h1 align="center">[CI & Brand]</h1>
+	<br>
 	<div class="productBody">
-
-
-
 		<section class="innercontant">
 			<br>
-			<h1>[CI & Brand]</h1>
-			<br>
 			<article class="introWrap">
-
 				<img class="ciImg" alt="ci" src="../resources/imgs/ci1.png"> <img
 					class="ciImg" alt="ci" src="../resources/imgs/ci2.png"> <img
 					class="ciImg" alt="ci" src="../resources/imgs/ci3.png"> <img
@@ -148,7 +153,6 @@ body {
 		</section>
 
 	</div>
-
 
 	<br>
 	<jsp:include page="../Common/ScrollToTopBtn.jsp" />

@@ -8,11 +8,11 @@
 <title>뉴스 디테일 보기</title>
 <style>
 @font-face {
-	font-family: 'Pretendard-Regular';
+	font-family: 'Pretendard-Bold';
 	src:
 		url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
 		format('woff');
-	font-weight: 400;
+	font-weight: bold;
 	font-style: normal;
 }
 
@@ -36,24 +36,24 @@ body {
 }
 
 .navbar {
+	width : 100%;
 	position: fixed;
 	left: 0;
 	top: 0;
-	width: 100%;
+	justify-content: center;
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
-	padding: 10px 20px;
+	padding: 10px 20% 10px 20%;
 	background-color: white;
 	color: black;
 	z-index: 1000;
-	padding-left: 200px;
-	padding-right: 200px;
+
 }
 
 .navbar-logo img {
 	width: 157px;
 	height: 60px;
+	margin-right: 10px;
 }
 
 .navbar-menu {
@@ -74,6 +74,7 @@ body {
 	padding: 10px;
 	border-radius: 15px;
 	border: 1px solid #ccc;
+	margin-left: 10px;
 }
 
 .navbar-menu :hover {
@@ -91,7 +92,7 @@ body {
 
 .navbar-menu>li {
 	position: relative;
-	margin: 0 15px;
+	margin: 0 5px;
 }
 
 .navbar-menu>li>a {
@@ -99,6 +100,7 @@ body {
 	color: #333;
 	font-size: 18px;
 	padding: 10px;
+	font-weight: bold;
 }
 
 /* 드롭다운 메뉴 스타일 */
@@ -162,7 +164,7 @@ body {
 	margin-right: 5px;
 	margin-bottom: 10px;
 }
-
+/* 내부 항목 */
 .detail-container {
 	width: 80%;
 	margin: 20px auto;

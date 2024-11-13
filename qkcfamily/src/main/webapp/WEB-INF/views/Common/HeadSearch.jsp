@@ -25,7 +25,7 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* 최소 높이를 100vh로 설정 */
+    min-height: 150vh; 
 }
 
 
@@ -38,9 +38,9 @@ body {
 
 .product {
 	text-align: center;
-	border: 1px solid #ddd;
 	padding: 15px;
 	transition: transform 0.3s;
+
 }
 
 .product:hover {
@@ -48,31 +48,51 @@ body {
 }
 
 .product img {
-	width: 150px;
-	height: 150px;
+	width: 200px;
+	height: 200px;
 	object-fit: cover;
 }
 
 .product-name {
-	margin-top: 10px;
+
 	font-weight: bold;
+	margin-top: 10px;
+	font-size: 18px;
+	
 }
 
+.product a {
+	color: black;
+	padding: 8px 16px;
+	text-decoration: none;
+	transition: background-color .3s;
+}
 
 .searchContents{
 	display: inline-block;
 	justify-items: center;
 	width : 840px;
-	margin-left: 15%;
+	margin-left: 25%;
 	}
 
+/* 반응형 디자인 */
+@media ( max-width : 1200px) {
+	.products {
+		grid-template-columns: repeat(3, 1fr); /* 3열로 변경 */
+	}
+}
 
+@media ( max-width : 768px) {
+	.products {
+		grid-template-columns: repeat(2, 1fr); /* 2열로 변경 */
+	}
+}
 
-
-
-
-
-
+@media ( max-width : 480px) {
+	.products {
+		grid-template-columns: 1fr; /* 1열로 변경 */
+	}
+}
 </style>
 </head>
 <body>
