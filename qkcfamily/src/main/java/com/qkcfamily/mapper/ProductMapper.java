@@ -20,7 +20,11 @@ public interface ProductMapper {
 	public int SearchCount(String searchProduct);
 
 	// 버섯류 제품 리스트 가져오기
+	@Select("select * from tb_product where category='버섯류' ORDER BY pd_idx DESC LIMIT #{offset}, #{pageSize}")
+	public List<Product> allGetMushroom(@Param("offset") int offset, @Param("pageSize") int pageSize);
 	// 버섯류 제품 개수 가져오기
+	@Select("SELECT COUNT(*) FROM tb_product where category='버섯류'")
+	public int getMushroomCount();
 
 	// 식료품 제품 리스트 가져오기
 	@Select("SELECT * FROM tb_product where category='식료품' ORDER BY pd_idx DESC LIMIT #{offset}, #{pageSize}")
@@ -133,6 +137,5 @@ public interface ProductMapper {
 
 	public ArrayList<Product> bestProduct();
 
-	@Select("select * from tb_product where category='버섯류'")
-	public ArrayList<Product> allGetMushroom();
+	
 }

@@ -71,12 +71,19 @@ public class HomeController {
 	}
 
 	@GetMapping("/News/News")
-	public String news(Model model) {
-		List<News> newsList = newsMapper.getAllNews();
-		System.out.println("News List: " + newsList);
-		model.addAttribute("newsList", newsList);
-		return "News/News";
-	}
+	   public String news(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+	      final int PAGE_SIZE = 9;
+	      int offset = (page - 1) * PAGE_SIZE;
+	      
+	      List<News> newsList = newsMapper.getAllNewsP(offset, PAGE_SIZE);
+	      int Count = productMapper.getMushroomCount();
+	      int totalPages = (int) Math.ceil((double) Count / PAGE_SIZE);
+
+	      model.addAttribute("newsList", newsList);
+	      model.addAttribute("currentPage", page);
+	      model.addAttribute("totalPages", totalPages);
+	      return "News/News";
+	   }
 
 
 	@GetMapping("/news/detail/{news_idx}")

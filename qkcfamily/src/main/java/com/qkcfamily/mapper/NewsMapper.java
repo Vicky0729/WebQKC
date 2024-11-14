@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -17,6 +18,9 @@ public interface NewsMapper {
 
    @Select("select * from tb_news")
    public List<News> getAllNews();
+   
+   @Select("select * from tb_news ORDER BY created_at DESC LIMIT #{offset}, #{pageSize}")
+   public List<News> getAllNewsP(@Param("offset") int offset, @Param("pageSize") int pageSize);
    
    @Select("SELECT * FROM tb_news WHERE news_idx = #{news_idx}")
    public News getNewsById(int news_idx);

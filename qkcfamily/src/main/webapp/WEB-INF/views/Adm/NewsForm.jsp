@@ -121,7 +121,7 @@
 <body>
 
 <h2>새 뉴스 작성</h2>
-<form action="NewsForm/1" method="post" enctype="multipart/form-data">
+<form action="NewsForm/1" method="post">
     <label for="title">제목:</label>
     <input type="text" id="title" name="news_title" required>
 
@@ -129,7 +129,7 @@
     <textarea id="content" name="news_content" required></textarea>
 
     <label for="imagePath">이미지 업로드 (선택):</label>
-    <input type="file" id="imageUpload" name="news_img" accept="image/*" style="display:none;">
+    <input type="file" id="imageUpload" name="news_img" accept="image/*" style="display:none;" required>
     
     <div class="image-preview" id="imagePreview" onclick="document.getElementById('imageUpload').click()">
         이미지 파일을 드래그하거나 클릭하여 업로드하세요.

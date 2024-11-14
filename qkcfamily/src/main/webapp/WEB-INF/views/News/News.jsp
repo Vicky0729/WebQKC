@@ -98,6 +98,31 @@ h1 {
 .read-more:hover {
 	text-decoration: underline;
 }
+
+.pagination {
+	display: flex;
+	margin-top: 20px;
+	justify-content: center;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+	transition: background-color .3s;
+}
+
+.pagination a.active {
+	background-color: #8B0000;
+	color: white;
+	border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+	border-radius: 5px;
+}
 </style>
 </head>
 <body>
@@ -126,6 +151,25 @@ h1 {
 			</div>
 		</c:forEach>
 	</div>
+	
+	<!-- Pagination -->
+	<div class="pagination">
+		<c:if test="${currentPage > 1}">
+			<a href="?page=${currentPage - 1}">&laquo; Prev</a>
+		</c:if>
+		<c:forEach begin="1" end="${totalPages}" var="pageNum">
+			<a href="?page=${pageNum}"
+				class="${pageNum == currentPage ? 'active' : ''}">${pageNum}</a>
+		</c:forEach>
+		<c:if test="${currentPage < totalPages}">
+			<a href="?page=${currentPage + 1}">Next &raquo;</a>
+		</c:if>
+	</div>
+	<br>
+	<br>
+	<br>
+	
+	
 	<jsp:include page="../Common/Footer.jsp" />
 
 </body>

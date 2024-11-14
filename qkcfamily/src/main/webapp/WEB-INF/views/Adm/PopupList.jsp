@@ -126,102 +126,99 @@ td {
 
 .close:hover {
 	cursor: pointer;
-}/* 11/03 모달 꾸미기 및 창 변경 */
-<style>
-/* 모달 창 스타일 */
-.modal {
-   display: none;
-   position: fixed;
-   z-index: 1;
-   left: 0;
-   top: 0;
-   width: 100%;
-   height: 100%;
-   background-color: rgba(0, 0, 0, 0.5); /* 반투명한 배경 */
+} /* 11/03 모달 꾸미기 및 창 변경 */
+<
+style> /* 모달 창 스타일 */ .modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5); /* 반투명한 배경 */
 }
 
 .modal-content {
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   background-color: #fff;
-   padding: 15px; /* 패딩을 줄여서 높이를 작게 */
-   width: 30%; /* 너비를 30%로 설정 */
-   max-width: 400px; /* 최대 너비를 400px로 제한 */
-   max-height: 70vh; /* 최대 높이를 화면 높이의 70%로 제한 */
-   border-radius: 12px;
-   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
-   font-family: 'Arial', sans-serif;
-   overflow-y: auto; /* 내용이 넘칠 경우 스크롤 */
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 15px; /* 패딩을 줄여서 높이를 작게 */
+	width: 30%; /* 너비를 30%로 설정 */
+	max-width: 400px; /* 최대 너비를 400px로 제한 */
+	max-height: 70vh; /* 최대 높이를 화면 높이의 70%로 제한 */
+	border-radius: 12px;
+	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+	font-family: 'Arial', sans-serif;
+	overflow-y: auto; /* 내용이 넘칠 경우 스크롤 */
 }
 
 /* 닫기 버튼 */
 .close {
-   color: #888;
-   float: right;
-   font-size: 24px;
-   font-weight: bold;
+	color: #888;
+	float: right;
+	font-size: 24px;
+	font-weight: bold;
 }
 
 .close:hover {
-   color: #f44336;
-   cursor: pointer;
+	color: #f44336;
+	cursor: pointer;
 }
 
 /* 모달 제목 */
 .modal-content h2 {
-   font-size: 20px; /* 제목 크기를 줄여서 높이 감소 */
-   margin-bottom: 15px;
-   color: #333;
+	font-size: 20px; /* 제목 크기를 줄여서 높이 감소 */
+	margin-bottom: 15px;
+	color: #333;
 }
 
 /* 입력 필드 스타일 */
-.modal-content input[type="text"],
-.modal-content input[type="password"],
-.modal-content input[type="email"] {
-   width: 100%;
-   padding: 10px; /* 입력 필드의 패딩을 줄여 높이를 더 줄임 */
-   margin: 6px 0 12px 0;
-   border: 1px solid #ddd;
-   border-radius: 5px;
-   box-sizing: border-box;
-   font-size: 14px;
+.modal-content input[type="text"], .modal-content input[type="password"],
+	.modal-content input[type="email"] {
+	width: 100%;
+	padding: 10px; /* 입력 필드의 패딩을 줄여 높이를 더 줄임 */
+	margin: 6px 0 12px 0;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	box-sizing: border-box;
+	font-size: 14px;
 }
 
 /* 입력 필드 포커스 효과 */
-.modal-content input[type="text"]:focus,
-.modal-content input[type="password"]:focus,
-.modal-content input[type="email"]:focus {
-   border: 1px solid #007BFF;
-   outline: none;
+.modal-content input[type="text"]:focus, .modal-content input[type="password"]:focus,
+	.modal-content input[type="email"]:focus {
+	border: 1px solid #007BFF;
+	outline: none;
 }
 
 /* 확인 버튼 스타일 */
 .modal-content button[type="submit"] {
-   width: 100%;
-   padding: 10px;
-   font-size: 14px;
-   background-color: #4CAF50;
-   color: white;
-   border: none;
-   border-radius: 5px;
-   cursor: pointer;
-   transition: background-color 0.3s ease;
-   margin-top: 8px;
+	width: 100%;
+	padding: 10px;
+	font-size: 14px;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	margin-top: 8px;
 }
 
 /* 확인 버튼 호버 효과 */
 .modal-content button[type="submit"]:hover {
-   background-color: #45a049;
+	background-color: #45a049;
 }
 
 /* 반응형 스타일 */
 @media screen and (max-width: 768px) {
-   .modal-content {
-      width: 80%;
-      padding: 15px;
-   }
+	.modal-content {
+		width: 80%;
+		padding: 15px;
+	}
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -247,9 +244,9 @@ td {
 			</tr>
 		</thead>
 		<tbody>
-			<!-- 샘플 데이터 (서버와 연동 시 동적으로 변경 가능) -->
 			<c:forEach items="${popupList}" var="popup">
-				<tr>
+				<tr data-pop-img="${popup.pop_img}">
+					<!-- 이미지 경로를 숨기기 -->
 					<td>${popup.pop_idx}</td>
 					<td>${popup.pop_title}</td>
 					<td>${popup.start_date}</td>
@@ -264,8 +261,8 @@ td {
 					</td>
 				</tr>
 			</c:forEach>
-
 		</tbody>
+
 	</table>
 
 	<!-- 모달 창 -->
@@ -367,20 +364,29 @@ td {
 
 			// 모든 .btn-update 버튼에 이벤트 리스너를 적용
 			$('.btn-update').on('click', function() {
-				// 클릭된 버튼이 속한 tr 행의 데이터를 가져와 모달에 표시
-				var row = $(this).closest('tr'); // 클릭된 버튼이 속한 tr 가져오기
-				var pop_idx = row.find('td:eq(0)').text(); // 팝업 ID
-				var pop_title = row.find('td:eq(1)').text(); // 팝업 제목
-				var start_date = row.find('td:eq(2)').text(); // 노출 시작일
-				var end_date = row.find('td:eq(3)').text(); // 노출 종료일
+				// 클릭된 버튼이 속한 tr 요소를 가져옵니다.
+				var row = $(this).closest('tr');
 
-				// 숨겨진 필드에 팝업 ID 값을 넣어줍니다.
-				$('#updatePopupFrom #pop_idx').val(pop_idx);
+				// tr의 데이터 속성에서 값 읽기
+				var pop_idx = row.find('td:eq(0)').text().trim(); // 팝업 ID
+				var pop_title = row.find('td:eq(1)').text().trim(); // 팝업 제목
+				var pop_img = row.data('pop-img'); // 숨겨진 이미지 경로 읽기
+				var start_date = row.find('td:eq(2)').text().trim(); // 노출 시작일
+				var end_date = row.find('td:eq(3)').text().trim(); // 노출 종료일
 
-				// 나머지 필드에 값을 넣어줍니다.
-				$('#updatePopupFrom #pop_title').val(pop_title);
-				$('#updatePopupFrom #start_date').val(start_date);
-				$('#updatePopupFrom #end_date').val(end_date);
+				// 읽은 값을 콘솔에 출력 (디버깅용)
+				console.log('팝업 ID:', pop_idx);
+				console.log('팝업 제목:', pop_title);
+				console.log('팝업 이미지 경로:', pop_img);
+				console.log('노출 시작일:', start_date);
+				console.log('노출 종료일:', end_date);
+
+				// 모달 창에 값 설정
+				$('#updatePopupFrom #pop_idx').val(pop_idx); // 숨겨진 ID 필드
+				$('#updatePopupFrom #pop_title').val(pop_title); // 팝업 제목
+				$('#updatePopupFrom #pop_img').val(pop_img); // 팝업 이미지 경로
+				$('#updatePopupFrom #start_date').val(start_date); // 노출 시작일
+				$('#updatePopupFrom #end_date').val(end_date); // 노출 종료일
 
 				// 수정 모달 창 열기
 				modal2.style.display = "block";

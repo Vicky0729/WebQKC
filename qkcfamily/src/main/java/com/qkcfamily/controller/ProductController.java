@@ -28,12 +28,20 @@ public class ProductController {
 	}
 
 	// 버섯 제품 페이지
-	@GetMapping("/Products/Mushroom")
-	public String MushroomPage(Model model) {
-		ArrayList<Product> mushRoomList = productMapper.allGetMushroom();
-		model.addAttribute("mushRoomList", mushRoomList);
-		return "Products/Mushroom";
-	}
+	   @GetMapping("/Products/Mushroom")
+	   public String MushroomPage(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+	      
+	      final int PAGE_SIZE = 16;
+	      int offset = (page - 1) * PAGE_SIZE;
+	      List<Product> mushRoomList = productMapper.allGetMushroom(offset, PAGE_SIZE);
+	      int Count = productMapper.getMushroomCount();
+	      int totalPages = (int) Math.ceil((double) Count / PAGE_SIZE);
+	      model.addAttribute("mushRoomList", mushRoomList);
+	      model.addAttribute("currentPage", page);
+	      model.addAttribute("totalPages", totalPages);
+	      
+	      return "Products/Mushroom";
+	   }
 
 	// 식료품 페이지
 	@GetMapping("/Products/Groceries")
