@@ -130,45 +130,65 @@ iframe {
 	top: 0;
 	left: 0;
 }
-
 /* 메인페이지 사업(수출, 수입, OEM제조, 브랜드사업) 부분 CSS */
 .MainOthers {
-	bottom: 10px;
-	width: 100%;
-	left: 0;
-	position: relative;
-	margin: 0 auto 40px;
-	margin-left: 5%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto 40px;
+    padding-bottom: 40px;
 }
 
-.Othersactive {
-	position: relative;
-	background: #cfc5c4; /* 서브 색상으로 선택한 베이지 계열 */
-	padding: 10px 0;
-	line-height: 46px; /* 수직 정렬을 위한 라인 높이 */
-	display: inline-block; /* 수평으로 나열하기 위해 inline-block 사용 */
-	width: calc(( 90% - 50px)/4); /* 전체 너비에서 여백을 빼고 균등 분배 */
-	height: 200px;
-	margin-right: 0;
-	border-radius: 5px; /* 모서리를 둥글게 만들기 */
-	opacity: 1;
-	vertical-align: top;
-	list-style: none; /* 기본 리스트 스타일 제거 */
-	text-align: center; /* 텍스트 가운데 정렬 */
+.MainOtherProduct {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    background: #cfc5c4;
+    border-radius: 5px;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-.Othersactive a {
-	color: #fff; /* 링크 색상 */
-	text-decoration: none; /* 링크의 밑줄 제거 */
-	display: block; /* 링크가 전체 박스를 커버하게 */
-	height: 100%; /* 링크가 전체 높이를 차지하도록 설정 */
-	line-height: 60px; /* 높이를 키우고 텍스트를 수직 중앙 정렬 */
-	font-size: 20px; /* 글자 크기를 키웁니다 */
+.MainOtherProduct:hover {
+    background: #eb1c24; /* 마우스 오버 시 색상 변경 */
 }
 
-.Othersactive:hover {
-	background: #eb1c24; /* 마우스 오버 시 배경색 변경 */
+.MainOtherProduct a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    line-height: 300px; /* 텍스트를 수직 중앙에 배치 */
+    font-weight: bold;
+    position: relative;
+    z-index: 2;
 }
+
+.MainOtherProduct .grayBg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* 반투명 회색 배경 */
+    z-index: 1;
+    transition: background 0.3s ease;
+}
+
+.MainOtherProduct img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
 
 /* BEST 상품 슬라이더 */
 .slider-section {
@@ -339,18 +359,29 @@ iframe {
 
 	<br>
 	<br>
-
-	<!-- 메인화면에서 수출,수입, OEM제조, 브랜드 사업으로 갈 수 있는 박스(추후 버튼으로 바꿀 예정) -->
-	<div class="MainOthers">
-		<ul>
-			<li class="Othersactive"><a href="AboutUs/CEO" class="click">CEO 인사말</a></li>
-			<li class="Othersactive"><a href="AboutUs/OurBrand" class="click">회사소개</a></li>
-			<li class="Othersactive"><a href="AboutUs/CIBrand" class="click">CI & 브랜드소개 </a></li>
-			<li class="Othersactive"><a href="AboutUs/Import"
-				class="click">수입사업</a></li>
-		</ul>
-	</div>
-
+<!-- 메인화면에서 수출,수입, OEM제조, 브랜드 사업으로 갈 수 있는 박스(추후 버튼으로 바꿀 예정) -->
+	<div class='MainOthers' style="display: flex; justify-content: center; gap: 20px;">
+    <div class="MainProduct">
+        <p class="visualThumb">CEO 인사말</p>
+        <a href="AboutUs/CEO"></a>
+        <img alt="CEO 인사말" src="resources/imgs/CEOIN.png">
+    </div>
+    <div class="MainProduct">
+        <p class="visualThumb">회사소개</p>
+        <a href="AboutUs/OurBrand"></a>
+        <img alt="회사소개" src="resources/imgs/COMP.png">
+    </div>
+    <div class="MainProduct">
+        <p class="visualThumb">CI & 브랜드소개</p>
+        <a href="AboutUs/CIBrand"></a>
+        <img alt="CI & 브랜드소개" src="resources/imgs/CIB.png">
+    </div>
+    <div class="MainProduct">
+        <p class="visualThumb">수입사업</p>
+        <a href="AboutUs/Import"></a>
+        <img alt="수입사업" src="resources/imgs/Imports.png">
+    </div>
+</div>
 	<br>
 	<br>
 
