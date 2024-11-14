@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>DCX스터디</title>
 <style type="text/css">
+<style type="text/css">
 @font-face {
 	font-family: 'Pretendard-Regular';
 	src:
@@ -39,10 +40,11 @@ body {
 }
 
 /* 메인페이지 홍보 영상 부분 CSS */
-.homeimg {
+iframe {
+	width : 100%;
+	height : 432px;
+	max-width: 768px;
 	justify-content: center;
-	width: 864px;
-	height: 661px;
 }
 
 /* 메인페이지 상품 버튼(식료품, 제과, 버섯, 수입) 부분 CSS */
@@ -268,6 +270,7 @@ body {
 	border-radius: 50%;
 	cursor: pointer;
 }
+
 </style>
 </head>
 
@@ -375,6 +378,7 @@ body {
 			<button class="next">▶</button>
 		</div>
 	</div>
+
 	<br>
 	<br>
 	<br>

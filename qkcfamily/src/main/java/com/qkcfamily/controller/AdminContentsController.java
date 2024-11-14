@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.qkcfamily.entity.Admin;
 import com.qkcfamily.entity.Product;
@@ -19,103 +20,153 @@ import com.qkcfamily.mapper.ProductMapper;
 
 @Controller
 public class AdminContentsController {
-	
-	@Autowired
-	ProductMapper productMapper;
-	
-	
-	
-	@PostMapping("Adm/AdminProduct")
-	public String loadPageContent(@RequestParam("selectedPage") String selectedPage,Model model ,HttpSession session) {
-		
-		System.out.println(selectedPage);
-		
-		Admin admin = (Admin) session.getAttribute("admin");
-		String admin_id = admin.getAdmin_id();
-		System.out.println(admin_id);
-		if ("edit_mushroom".equals(selectedPage)) {
-			
-			
-			ArrayList<Product> mushroomList = productMapper.allMushroom(admin_id);
-			model.addAttribute("ProductList", mushroomList);
-			
+   
+   @Autowired
+   ProductMapper productMapper;
+   
+   
+   String url = "http://qkcfamily.dothome.co.kr/pic/";
+   
+   @PostMapping("Adm/AdminProduct")
+   public String loadPageContent(@RequestParam("selectedPage") String selectedPage,Model model ,HttpSession session) {
+      
+      System.out.println(selectedPage);
+      
+      Admin admin = (Admin) session.getAttribute("admin");
+      String admin_id = admin.getAdmin_id();
+      System.out.println(admin_id);
+      if ("edit_mushroom".equals(selectedPage)) {
+         
+         
+         ArrayList<Product> mushroomList = productMapper.allMushroom(admin_id);
+         model.addAttribute("ProductList", mushroomList);
+         
             return "Adm/Content";  // edit_aboutM.jsp로 연결
         } else if ("edit_snack".equals(selectedPage)) {
-        	
-        	ArrayList<Product> snackList = productMapper.allSnack(admin_id);
-			model.addAttribute("ProductList", snackList);
-        	
+           
+           ArrayList<Product> snackList = productMapper.allSnack(admin_id);
+         model.addAttribute("ProductList", snackList);
+           
             return "Adm/Content";  // edit_products.jsp로 연결
         } else if ("edit_foodstuffs".equals(selectedPage)) {
-        	
-        	ArrayList<Product> foodStuffsList = productMapper.allFoodStuffs(admin_id);
-			model.addAttribute("ProductList", foodStuffsList);
-        	
+           
+           ArrayList<Product> foodStuffsList = productMapper.allFoodStuffs(admin_id);
+         model.addAttribute("ProductList", foodStuffsList);
+           
             return "Adm/Content";  // edit_news.jsp로 연결
         } else if ("edit_import".equals(selectedPage)) {
-        	
-        	System.out.println("도착");
-        	ArrayList<Product> importList = productMapper.allImport(admin_id);
-			model.addAttribute("ProductList", importList);
-        	
+           
+           System.out.println("도착");
+           ArrayList<Product> importList = productMapper.allImport(admin_id);
+         model.addAttribute("ProductList", importList);
+           
             return "Adm/Content";  // edit_contactUs.jsp로 연결
         } else if("edit_etc".equals(selectedPage)) {
-        	
-        	ArrayList<Product> EtcList = productMapper.allEtc(admin_id);
-			model.addAttribute("ProductList", EtcList);
-        	
-        	return "Adm/Content";
+           
+           ArrayList<Product> EtcList = productMapper.allEtc(admin_id);
+         model.addAttribute("ProductList", EtcList);
+           
+           return "Adm/Content";
         }else{
-        	return "error/404";
+           return "error/404";
         } 
         
-		
-		
-		
-		
-	}
-	
-	@GetMapping("Adm/addProductPage")
-	public String addProductPage(){
-		
-		
-		return "Adm/Products";
-	}
-	
-	
-	
-	@PostMapping("Adm/insertProduct")
-	public String insertProduct(Product product){
-		
-		
-		
-		productMapper.InsertProduct(product);
-		
-		
-		return "Adm/Content";
-	}
-	
-	@GetMapping("Adm/updateProductPage")
-	public String updateProductPage(@RequestParam("pd_idx") int pd_idx, Model model) {
-	    
-		Product	productOne =  productMapper.SelectById(pd_idx);
-		
-		model.addAttribute("productOne", productOne);
-		
-		return "Adm/ProductList";
-	}
-	
-	@PostMapping("Adm/updateProduct")
-	public String updateProduct(Product product){
-		
-		
-		
-		productMapper.updateProduct(product);
-		
-		
-		return "Adm/Content";
-	}
-	
-	
-	
+      
+      
+      
+      
+   }
+   
+   @GetMapping("Adm/addProductPage")
+   public String addProductPage(){
+      
+      
+      return "Adm/Products";
+   }
+   
+   
+   
+   @PostMapping("Adm/insertProduct")
+   public String insertProduct(Product product){
+      String categoryUrl = null;
+      
+      if(product.getCategory_d().equals("버섯")){
+         categoryUrl = "Mushrooms/";
+      }else if(product.getCategory_d().equals("냉장") || product.getCategory_d().equals("상온")) {
+         categoryUrl = "Ambient/";
+      }else if(product.getCategory_d().equals("비스켓류")){
+         categoryUrl = "Biscuits/";
+      }else if(product.getCategory_d().equals("스낵류")){
+    	 categoryUrl = "Snacks/";
+      }else if(product.getCategory_d().equals("쿠키류")) {
+    	  categoryUrl = "Cookies/";
+      }else if(product.getCategory_d().equals("냉동")){
+          categoryUrl = "Frozen/";
+      }else {
+    	  categoryUrl = "ETC/";
+      }
+       
+      
+     
+      
+      String Url = url + categoryUrl +product.getPd_img();
+      product.setPd_img(Url);
+      productMapper.InsertProduct(product);
+      
+      
+      return "Adm/Content";
+   }
+   
+   @GetMapping("Adm/updateProductPage")
+   public String updateProductPage(@RequestParam("pd_idx") int pd_idx, Model model) {
+       
+      Product productOne =  productMapper.SelectById(pd_idx);
+      
+      model.addAttribute("productOne", productOne);
+      
+      return "Adm/ProductList";
+   }
+   
+   @PostMapping("Adm/updateProduct")
+   public String updateProduct(Product product,@RequestParam("existingImagePath") String existingImagePath,@RequestParam("pd_img") String pdImgFile){
+	   String categoryUrl = null;
+	  
+	   if (pdImgFile != null && !pdImgFile.isEmpty()) {
+
+		  
+		      
+		      if(product.getCategory_d().equals("버섯")){
+		         categoryUrl = "Mushrooms/";
+		      }else if(product.getCategory_d().equals("냉장") || product.getCategory_d().equals("상온")) {
+		         categoryUrl = "Ambient/";
+		      }else if(product.getCategory_d().equals("비스켓류")){
+		         categoryUrl = "Biscuits/";
+		      }else if(product.getCategory_d().equals("스낵류")){
+		    	 categoryUrl = "Snacks/";
+		      }else if(product.getCategory_d().equals("쿠키류")) {
+		    	  categoryUrl = "Cookies/";
+		      }else if(product.getCategory_d().equals("냉동")){
+		          categoryUrl = "Frozen/";
+		      }else {
+		    	  categoryUrl = "ETC/";
+		      }
+		   
+		   String Url = url + categoryUrl +pdImgFile;
+		   product.setPd_img(Url);
+		   
+       } else {
+           // 이미지를 변경하지 않은 경우 기존 경로 사용
+           product.setPd_img(existingImagePath);
+       }
+	   
+	      
+      
+      productMapper.updateProduct(product);
+      
+      
+      return "Adm/Content";
+   }
+   
+   
+   
 }

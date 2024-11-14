@@ -134,6 +134,7 @@ td {
 			<label for="currentImage">현재 이미지</label>
 			<img id="currentImagePreview" src="${productOne.pd_img}" alt="현재 이미지"
 				style="max-width: 100%; border: 1px solid #ddd; border-radius: 5px; margin-top: 5px;">
+				<input type="hidden" id="existingImagePath" name="existingImagePath" value="${productOne.pd_img}">
 		</div>
 
 		<div class="form-group">
@@ -141,6 +142,7 @@ td {
 			<div id="dropZone">여기에 이미지를 드롭하거나 클릭하여 업로드하세요</div>
 			<input type="file" id="pd_img" name="pd_img" accept="image/*" style="display: none;" onchange="previewImage(event)">
 		</div>
+		
 
 		<div class="form-group">
 			<label for="productName">제품명</label>
@@ -173,6 +175,8 @@ td {
 		</div>
 
 		<input type="hidden" name="pd_idx" value="${productOne.pd_idx}">
+		<input type="hidden" name="category_d" value="${productOne.category_d}">
+		
 		<div class="btn-container">
 			<input type="submit" class="btn" value="제품 수정">
 			<button type="button" class="btn btn-cancel" onclick="window.location.href='Content'">취소</button>
@@ -186,6 +190,8 @@ td {
 	    reader.onload = function () {
 	        const output = document.getElementById('currentImagePreview');
 	        output.src = reader.result;
+	        
+	        document.getElementById('existingImagePath').value = "";
 	    };
 	    reader.readAsDataURL(event.target.files[0]);
 	}

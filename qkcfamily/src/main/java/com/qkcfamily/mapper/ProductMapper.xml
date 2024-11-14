@@ -25,7 +25,7 @@ SELECT * FROM tb_product WHERE pd_name LIKE CONCAT('%', #{searchProduct}, '%');
 
 <insert id="InsertProduct" parameterType="com.qkcfamily.entity.Product">
 
-INSERT INTO tb_product VALUES (default, #{pd_name}, #{pd_content}, #{price}, #{pd_img}, #{category} , default, #{pd_name}, #{spec_carton}, #{load_qty}, #{shelf_life},#{category_d})
+INSERT INTO tb_product VALUES (default, #{pd_name}, #{pd_content}, #{price}, #{pd_img}, #{category} , default, #{pd_name}, #{spec_carton},null ,#{load_qty}, #{shelf_life},#{category_d})
 </insert>
 
 <select id="allMushroom"  resultType="com.qkcfamily.entity.Product" parameterType="String">
