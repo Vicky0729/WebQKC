@@ -30,7 +30,11 @@
 | 사진삽입 | 사진삽입 | 사진삽입 | 사진삽입 | 사진삽입 |
 | - 프로젝트 관리
 - UI/UX 디자인
-- 뉴스 업로드 (관리자) 페이지 생성 |  |  |  |  |
+- 뉴스 업로드 (관리자) 페이지 생성 |  |
+|- homeMain 프론트 페이지 구현(영상 및 홍보 이미지 삽입, 메뉴구도 형성, 스크롤 구성)
+- AboutUs, Products, News, ImportBusiness 프론트 페이지 구현 및 연결
+- Footer, Header, Sidemenu 전 페이지 적용
+- ScrollToTopBtn기능 구현  |  |
 | 깃허브 링크 삽입 |  |  |  |  |
 
 ## 1) UI 디자인 개선
