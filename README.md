@@ -28,10 +28,10 @@
 | 김나혜 | 김예원 | 송근주 | 신충용 | 전정훈 |
 | --- | --- | --- | --- | --- |
 | 사진삽입 | 사진삽입 | 사진삽입 | 사진삽입 | 사진삽입 |
-| 프로젝트 관리| | | homeMain 프론트 페이지 구현(영상 및 홍보 이미지 삽입) | |
-| UI/UX 디자인| | | AboutUs, Products, News, ImportBusiness 프론트 페이지 구현 및 연결| |
-| 뉴스 업로드 (관리자) 페이지 생성 |  |  | Footer, Header, Sidemenu 전 페이지 적용 |  |
-| 깃허브 링크 삽입 |  |  | ScrollToTop 기능 구현 |  |
+| 프로젝트 관리| | adminMain 프론트 페이지 | homeMain 프론트 페이지 구현(영상 및 홍보 이미지 삽입) | |
+| UI/UX 디자인| | 제품, 회원, 광고관리 페이지 | AboutUs, Products, News, ImportBusiness 프론트 페이지 구현 및 연결| |
+| 뉴스 업로드 (관리자) 페이지 생성 | 지도API 활용하여 찾아오시는 길 구현 |  | Footer, Header, Sidemenu 전 페이지 적용 |  |
+| 깃허브 링크 삽입 | IFRAME 적용 |  | ScrollToTop 기능 구현 |  |
 
 ## 1) UI 디자인 개선
 
